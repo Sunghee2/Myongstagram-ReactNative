@@ -34,7 +34,22 @@
 - 기본 구현 사항 외에 추가 구현 내용에 따라 추가 20점 부여 - 추가 내용은 보고서 및 발표에서 잘 제시하세요.
 
 
+##### 18-05-25
+ - [x] 5개 Screen(Feed, Search, AddPhoto, Notification, Profile) 추가
+ - [x] BottomTab 추가
+ - [x] Tab icon 적용
+ - [x] Feed, Profile header 추가
 
 > header가 stack 거쳐야 나옴.. 왜지?
 > 마지막도 꼭 , 적어줘야 함.
 > 로고가 묘하게 삐뚤어짐
+
+
+##### 18-05-27
+ - [x] LoginScreen 추가
+ - [x] Login button click => FeedScreen 이동
+ - [x] screens 폴더 생성 => Screen들 이동
+
+ > 폴더를 나눠야 할 것 같은데 어떻게 나눠야할지 모르겠음ㅠㅠ -> 스택들 다 하나하나 naigation에 넣어야 하는 건가
+ > ....stack들 tabnavigation에 다 합치려고 했더니 header사라짐.......
+ > ** Failed prop type: Invalid props.style key `marginRigth` supplied to `Text`. ** : 뭘까..

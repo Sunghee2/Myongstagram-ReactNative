@@ -4,7 +4,9 @@ import {
   Text,
   View, 
   Image,
-  Button
+  Button,
+  PermissionsAndroid,
+  CameraRoll
 } from 'react-native';
 import { 
   createStackNavigator,
@@ -22,6 +24,7 @@ class LoginScreen extends React.Component {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
+        backgroundColor: 'white'
         // alignItems: 'center',
       }}>
         <View style={{
@@ -126,9 +129,45 @@ class SearchScreen extends React.Component {
 }
 
 class AddPhotoScreen extends React.Component {
+  // async componentWillMount() {
+  //   await requestCameraPermission()
+  // }
+  // getPhotos() {
+    //   CameraRoll.getPhotos({
+      //       first: 20,
+      //       assetType: 'Photos',
+      //     })
+      //     .then(r => {
+        //       this.setState({ photos: r.edges });
+        //     })
+        //     .catch((err) => {
+          //        //Error Loading Images
+          //     });
+          //   };
+  // async requestCameraPermission() {
+  //   try {
+  //     const granted = await PermissionsAndroid.request(
+  //       PermissionsAndroid.PERMISSIONS.CAMERA,
+  //       {
+  //         'title': 'Cool Photo App Camera Permission',
+  //         'message': 'Cool Photo App needs access to your camera ' +
+  //                     'so you can take awesome pictures.'
+  //       }
+  //     )
+  //     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+  //       console.log("You can use the camera")
+  //     } else {
+  //       console.log("Camera permission denied")
+  //     }
+  //   } catch (err) {
+  //     console.warn(err)
+  //   }
+  // }
   render() {
     return (
       <View>
+        {/* {this.requestCameraPermission()} */}
+        {/* {this.getPhotos()} */}
         <Text>AddPhoto!</Text>
       </View>
     )
@@ -146,10 +185,47 @@ class NotificationScreen extends React.Component {
 }
 
 class ProfileScreen extends React.Component {
+  renderProfileHeader() {
+    return (
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row'
+        }}>
+        <View
+          style={{
+            flex: 1
+          }}>
+          <Image
+            source={require('./image/test.png')}
+            style={{
+              height: 70,
+              width: 70,
+              borderRadius: 100,
+            }}
+          />
+          <Text>Sunghee</Text>
+        </View>
+        <View 
+          style={{
+            flex: 2,
+            flexDirection: 'row'
+          }}>
+          <Text
+            style={{
+              flex: 1
+            }}>게시물</Text>
+          <Text>팔로워</Text>
+          <Text>팔로잉</Text>
+        </View>
+      </View>
+    );
+  }
+
   render() {
     return (
       <View>
-        <Text>Profile!</Text>
+        {this.renderProfileHeader()}
       </View>
     )
   } 
@@ -196,7 +272,8 @@ const ProfileStack = createStackNavigator (
       navigationOptions: ({ navigation }) => ({
         headerTitle: 
           <Text style={{
-            textAlign: 'center'
+            justifyContent: 'center',
+            alignItems: 'center'
           }}>Sunghee</Text>
         ,
         headerLeft: (
