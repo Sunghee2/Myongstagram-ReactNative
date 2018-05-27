@@ -92,7 +92,7 @@ class LoginScreen extends React.Component {
             style={{
               padding: 5
             }}
-            // onPress={}
+            onPress={()=>this.props.navigation.navigate('Home')}
             title="로그인"
           />
         </View>
@@ -108,7 +108,7 @@ class LoginScreen extends React.Component {
 class FeedScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <Text>Home Screen</Text>
       </View>
     );
@@ -224,9 +224,8 @@ const ProfileStack = createStackNavigator (
 //   }
 // }
 
-export default createBottomTabNavigator (
+const TabNav = createBottomTabNavigator (
   {
-    Login: LoginScreen,
     Home: FeedStack,
     Search: SearchScreen,
     AddPhoto: AddPhotoScreen,
@@ -260,3 +259,21 @@ export default createBottomTabNavigator (
     swipeEnabled: false,
   }  
 );
+
+const StacksOverTabs = createStackNavigator({
+  Login: {
+    screen: LoginScreen,
+  },
+  Home: {
+    screen: TabNav,
+  }
+},
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    }
+  }
+)
+
+export default StacksOverTabs;
