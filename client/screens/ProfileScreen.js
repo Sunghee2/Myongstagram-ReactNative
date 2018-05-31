@@ -12,34 +12,15 @@ import {
 class ProfileScreen extends React.Component {
   renderProfileHeader() {
     return (
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row'
-        }}>
-        <View
-          style={{
-            flex: 1
-          }}>
+      <View>
+        <View>
           <Image
             source={require('./image/test.png')}
-            style={{
-              height: 70,
-              width: 70,
-              borderRadius: 100,
-            }}
           />
           <Text>Sunghee</Text>
         </View>
-        <View 
-          style={{
-            flex: 2,
-            flexDirection: 'row'
-          }}>
-          <Text
-            style={{
-              flex: 1
-            }}>게시물</Text>
+        <View>
+          <Text>게시물</Text>
           <Text>팔로워</Text>
           <Text>팔로잉</Text>
         </View>
@@ -47,10 +28,28 @@ class ProfileScreen extends React.Component {
     );
   }
 
+  renderProfileTab() {
+    return (
+      <View>
+        
+{/* user */}
+{/* EvilIcons */}
+
+{/* list */}
+{/* Feather */}
+        <Ionicons
+            name='ios-bookmark-outline'
+            size={25}
+            style={{marginRight: 10}}
+          />
+      </View>
+    );
+  }
+
   render() {
     return (
       <View>
-        {this.renderProfileHeader()}
+        {this.renderProfileTab()}
       </View>
     )
   } 

@@ -52,4 +52,16 @@
 
  > 폴더를 나눠야 할 것 같은데 어떻게 나눠야할지 모르겠음ㅠㅠ -> 스택들 다 하나하나 naigation에 넣어야 하는 건가
  > ....stack들 tabnavigation에 다 합치려고 했더니 header사라짐.......
- > ** Failed prop type: Invalid props.style key `marginRigth` supplied to `Text`. ** : 뭘까..
+ > ** Failed prop type: Invalid props.style key `marginRigth` supplied to `Text`. ** : 뭘까.. -> 오타난 것이였음...
+
+##### 18-05-31
+
+- [ ] psql 환경변수 설정 -> 변수는 설정되었는데 인증을 못함..... pg_hba
+
+- [ ] #### 
+
+> ios-timer-outline
+>
+> 아이콘들 그냥 row하면 안됨-> view에 넣어야.
+>
+> 중앙에 탭 못만드나 ㅠㅠ

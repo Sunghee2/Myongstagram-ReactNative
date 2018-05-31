@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "express-basic-auth": "^1.1.5",
+    "express-oauth-server": "^2.0.0",
+    "global": "^4.3.2",
+    "http-errors": "~1.6.2",
+    "method-override": "^2.3.10",
+    "morgan": "~1.9.0",
+    "nanoid": "^1.0.2",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "pug": "2.0.0-beta11",
+    "sequelize": "^4.37.10",
+    "sequelize-cli": "^4.0.0"
+  }
+}
