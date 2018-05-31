@@ -57,11 +57,13 @@
 ##### 18-05-31
 
 - [ ] psql 환경변수 설정 -> 변수는 설정되었는데 인증을 못함..... pg_hba
-
-- [ ] #### 
+- [x] toptab ~ing
+- [x] search inputText
 
 > ios-timer-outline
 >
 > 아이콘들 그냥 row하면 안됨-> view에 넣어야.
 >
-> 중앙에 탭 못만드나 ㅠㅠ
+> 중앙에 탭 못만드나 ㅠㅠ => tab을 중첩시키면 될 듯
+>
+> 사진 resize가 제대로 안됨..

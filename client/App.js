@@ -11,6 +11,7 @@ import {
 import { 
   createStackNavigator,
   createBottomTabNavigator,
+  createMaterialTopTabNavigator,
   TabNavigator,
   TabBarBottom 
 } from 'react-navigation';
@@ -122,7 +123,22 @@ class SearchScreen extends React.Component {
   render() {
     return (
       <View>
-        <Text>Search!</Text>
+        <TextInput
+            style={{
+              borderWidth: 1,
+              borderRadius: 5,
+              borderColor: 'lightgray',
+              padding: 3,
+              paddingLeft: 10,
+              backgroundColor: '#f2f2f2',
+              textDecorationColor: 'gray',
+              marginBottom: 10,
+            }}
+            underlineColorAndroid='transparent'
+            placeholder="검색"
+            // onChangeText={(text) => this.setState({text})}
+            // value={this.state.text}
+          />
       </View>
     )
   } 
@@ -183,6 +199,199 @@ class NotificationScreen extends React.Component {
     )
   } 
 }
+
+class ProfileTabScreen extends React.Component {
+  render() {
+    return (
+      <View
+          style={{
+            flex: 0.7,
+            flexDirection: 'column'
+          }}>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row'
+            }}>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+          </View> 
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row'
+            }}>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row'
+            }}>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+          </View>
+        </View>
+    )
+  }
+}
+class ProfileTab2Screen extends React.Component {
+  render() {
+    return (
+      <View>
+        <Text>test2</Text>
+      </View>
+    )
+  }
+}
+class ProfileTab3Screen extends React.Component {
+  render() {
+    return (
+      <View>
+        <Text>test3</Text>
+      </View>
+    )
+  }
+}
+class ProfileTab4Screen extends React.Component {
+  render() {
+    return (
+      <View>
+        <Text>test4</Text>
+      </View>
+    )
+  }
+}
+const TabNav2 = createMaterialTopTabNavigator (
+  {
+    GridPicture: ProfileTabScreen,
+    ListPicture: ProfileTab2Screen,
+    Tag: ProfileTab3Screen,
+    Bookmark: ProfileTab4Screen,
+  },{
+      navigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused }) => {
+          const { routeName } = navigation.state;
+          let iconName;
+          if (routeName === 'GridPicture' ) {
+            iconName = `ios-home${focused? '': '-outline'}`;
+          } else if (routeName === 'ListPicture') {
+            iconName = `ios-search${focused? '': '-outline'}`;
+          } else if (routeName === 'Tag') {
+            iconName = `ios-add-circle${focused? '': '-outline'}`;
+          } else if (routeName === 'Bookmark') {
+            iconName = `ios-heart${focused? '': '-outline'}`;
+          } 
+          return <Ionicons name={iconName} size={25}/>;
+        },
+      }),
+      // tabBarOptions: {
+      //   showLabel: false
+      // },
+      tabBarPosition: 'top',
+      swipeEnabled: false,
+      animationEnabled: false,
+      tabBarOptions: {
+        style: {
+          backgroundColor: 'white'
+        }
+      }
+  }
+);
 
 class ProfileScreen extends React.Component {
   renderProfileHeader() {
@@ -287,7 +496,128 @@ class ProfileScreen extends React.Component {
           }}>
           {this.renderProfileTab()}
         </View>
-        <View>
+        <View
+          style={{
+            flex: 0.7,
+            flexDirection: 'column'
+          }}>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row'
+            }}>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+          </View> 
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row'
+            }}>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row'
+            }}>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+            <View
+              style={{
+                flex: 1
+              }}>
+              <Image
+                  source={require('./image/test.png')}
+                  style={{
+                  }}
+                  resizeMode= 'contain'
+                />
+            </View>
+          </View>
         </View>
       </View>
     )
@@ -331,7 +661,7 @@ const FeedStack = createStackNavigator (
 const ProfileStack = createStackNavigator (
   {
     Profile: {
-      screen: ProfileScreen,
+      screen: TabNav2,
       navigationOptions: ({ navigation }) => ({
         headerTitle: 
           <Text style={{
