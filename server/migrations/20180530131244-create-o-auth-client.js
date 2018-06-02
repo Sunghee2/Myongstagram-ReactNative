@@ -1,20 +1,22 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('OAuthClients', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
+      clientId: {
         type: Sequelize.STRING,
         unique: true
       },
-      password_digest: {
-        type: Sequelize.STRING,
-        allowNull: false
+      clientSecret: {
+        type: Sequelize.STRING
+      },
+      redirectUri: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -26,7 +28,7 @@ module.exports = {
       }
     });
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+  down: (queryInterface) => {
+    return queryInterface.dropTable('OAuthClients');
   }
 };

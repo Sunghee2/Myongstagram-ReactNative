@@ -5,6 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     clientSecret: DataTypes.STRING,
     redirectUri: DataTypes.STRING
   }, {});
-
+  
   return OAuthClient;
 };

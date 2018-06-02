@@ -21,15 +21,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
+
+// Add body parser.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(methodOverride('_method', { methods: ['POST', 'GET']}));
+app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/admin', require('./routes/admin'));
 app.use('/api', require('./routes/api')(app));
 app.use('/users', app.oauth.authenticate(), usersRouter);
 

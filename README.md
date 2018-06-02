@@ -89,3 +89,6 @@
 > headerTitle은 header와 다르게 top에 margin생김..
 >
 > cannot add a chile that doesn't have a yoganode to a parent without a -> 오탈자
+>
+> Invalid Client..............
+

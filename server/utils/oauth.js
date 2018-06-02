@@ -67,6 +67,7 @@ m.getAccessToken = async function (accessToken) {
   if (!token) {
     return null;
   }
+  //client와 user는 객체로 넘겨주기 findOne해서 
   return {
     accessToken: token.access_token,
     accessTokenExpiresAt: token.expiresAt,
@@ -77,3 +78,4 @@ m.getAccessToken = async function (accessToken) {
 };
 
 module.exports = m;
+

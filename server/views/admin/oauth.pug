@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  h1 OAuth Client List
+
+  table.table.table-bordered.table-dark
+    thead
+      tr
+        th Client ID
+        th Secret
+        th Redirect Uri
+        th
+    tbody
+      each client in clients
+        tr
+          td= client.clientId
+          td= client.clientSecret
+          td= client.redirectUri
+          td
+            a.delete.btn.btn-danger(href=`/admin/oauth/${client.id}?_method=DELETE`) Delete
+  form(action='/admin/oauth', method='POST')
+    button.btn.btn-primary Create New
+
+  

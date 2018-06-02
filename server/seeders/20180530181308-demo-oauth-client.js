@@ -12,6 +12,12 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
+    return queryInterface.bulkInsert('OAuthClients', [{
+      clientId: 'ABCDEFG',
+      clientSecret: '123456789',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }], {});
   },
 
   down: (queryInterface, Sequelize) => {

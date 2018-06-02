@@ -50,7 +50,7 @@ module.exports = {
       () => queryInterface.addIndex('OAuthTokens', ['userId'])
     );
   },
-  down: (queryInterface, Sequelize) => {
+  down: (queryInterface) => {
     return queryInterface.dropTable('OAuthTokens');
   }
 };

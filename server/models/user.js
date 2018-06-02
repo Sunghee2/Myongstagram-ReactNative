@@ -1,5 +1,4 @@
 'use strict';
-
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
@@ -20,12 +19,16 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   }, {});
-
+ 
   User.beforeValidate((user) => {
-    return bcrypt.hash(user.password, 10).then(hash => {
+    return bcrypt.hash(user.password, 10).then( hash => {
       user.password_digest = hash;
     });
   });
+  
+  User.prototype.validatePassword = function(password) {
+    return bcrypt.compare(password, this.password_digest);
+  };
 
   User.prototype.toJSON = function() {
     var values = Object.assign({}, this.get());
@@ -34,6 +37,5 @@ module.exports = (sequelize, DataTypes) => {
     delete values.password_digest;
     return values;
   };
-
   return User;
 };
