@@ -71,9 +71,8 @@
 ##### 18-06-02 
 
 - [x] 상단바 padding
-- [ ] 
-
-
+- [x] card layout 완성~
+- [x] folder 정리
 
 > 상단바 padding  `style={{ paddingTop: Expo.Constants.statusBarHeight }}`
 >
@@ -82,4 +81,3 @@
 > 여전히 resizeMode안먹음..- > width 100% 설정
 >
 > resize는 되었는데 이제 남는 부분이 문제...
-

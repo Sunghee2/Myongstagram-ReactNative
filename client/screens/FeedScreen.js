@@ -8,15 +8,22 @@ import {
   PermissionsAndroid,
   CameraRoll
 } from 'react-native';
+import { TextInput, FlatList } from 'react-native-gesture-handler';
 
-class FeedScreen extends React.Component {
+import Card from '../components/card';
+
+
+export default class FeedScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
+      <View>
+        <FlatList
+          data={[
+            {key: 0, name: 'sunghee'},
+            {key: 1, name: 'hayoung'}
+          ]}
+          renderItem={ ({item}) => <Card key={item.key} item={item}/>}/>
       </View>
     );
   }
 }
-
-export default FeedScreen;
