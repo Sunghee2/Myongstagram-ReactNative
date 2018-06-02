@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-
 class LoginScreen extends React.Component {
   render() {
     return (

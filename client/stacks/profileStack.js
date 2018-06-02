@@ -4,11 +4,12 @@ import { createStackNavigator } from 'react-navigation';
 import { Ionicons } from "@expo/vector-icons";
 
 import ProfileTabNavigation from '../navigations/profileTabNavigation';
+import ProfileTabStack from './profileTabStack';
 
 export default ProfileStack = createStackNavigator (
   {
     Profile: {
-      screen: ProfileTabNavigation,
+      screen: ProfileTabStack,
       navigationOptions: ({ navigation }) => ({
         headerTitle: 
           <Text style={{

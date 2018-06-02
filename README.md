@@ -73,6 +73,8 @@
 - [x] 상단바 padding
 - [x] card layout 완성~
 - [x] folder 정리
+- [x] header title 정렬 이상한 것 고침
+- [x] profile 중첩 tab icon
 
 > 상단바 padding  `style={{ paddingTop: Expo.Constants.statusBarHeight }}`
 >
@@ -81,3 +83,7 @@
 > 여전히 resizeMode안먹음..- > width 100% 설정
 >
 > resize는 되었는데 이제 남는 부분이 문제...
+>
+> 중첩 tab할 때 screen 껴 넣는 문제 => stack 두 개로 나눠서 header로
+>
+> headerTitle은 header와 다르게 top에 margin생김..

@@ -35,20 +35,21 @@ export default profileTabNavigation = createMaterialTopTabNavigator (
           } else if (routeName === 'Bookmark') {
             iconName = `ios-heart${focused? '': '-outline'}`;
           } 
-          return <Ionicons name={iconName} size={25}/>;
+          return <Ionicons name={iconName} size={23}/>;
         },
       }),
       tabBarOptions: {
         showIcon: true,
-        showLabel: false
+        showLabel: false,
+        tabStyle: {
+          height: 40
+        },
+        style: {
+          backgroundColor: 'white'
+        }
       },
       tabBarPosition: 'top',
       swipeEnabled: false,
       animationEnabled: false,
-      tabBarOptions: {
-        style: {
-          backgroundColor: 'white'
-        }
-      }
   }
 );
