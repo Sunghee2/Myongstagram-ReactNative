@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 
@@ -11,30 +11,25 @@ export default FeedStack = createStackNavigator (
       screen: FeedScreen,
       navigationOptions: ({ navigation }) => ({
         headerTitle:
-          <Image
-            source={require('../image/logo.png')}
-            style={{ 
-              height: 40, 
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-            resizeMode={'contain'}
-          />,
-        headerLeft: (
-          <SimpleLineIcons 
-            name='camera' 
-            size={25}
-            style={{marginLeft: 10}}
-          />
-        ),
-        headerRight: (
-          <Ionicons 
-            name='ios-paper-plane-outline' 
-            size={30}
-            style={{marginRight: 10}}
-          />
-        )
+          <View style={styles.headerContainer}>
+            <SimpleLineIcons name='camera' size={25}/>
+            <Image 
+              source={require('../image/logo.png')} 
+              style={{ height: 40 }}
+              resizeMode={'contain'}
+            />
+            <Ionicons name='ios-paper-plane-outline' size={30}/>
+          </View>
       })
     }
   }
 );
+
+const styles = StyleSheet.create({
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 10,
+    marginRight: 10
+  }
+});
