@@ -4,9 +4,7 @@ import {
   Text,
   View, 
   Image,
-  Button,
-  PermissionsAndroid,
-  CameraRoll
+  Button
 } from 'react-native';
 
 class NotificationScreen extends React.Component {

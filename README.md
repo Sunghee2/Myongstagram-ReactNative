@@ -75,6 +75,10 @@
 - [x] folder 정리
 - [x] header title 정렬 이상한 것 고침
 - [x] profile 중첩 tab icon
+- [x] login : signin 추가
+- [x] signscreen 추가
+- [ ] id -> password page id넘기기
+- [ ] camera roll 하다가 중단
 
 > 상단바 padding  `style={{ paddingTop: Expo.Constants.statusBarHeight }}`
 >
@@ -92,3 +96,8 @@
 >
 > Invalid Client..............
 
+
+
+** 해야할 것 **
+
+stylesheet 정리하기

@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import FeedStack from '../stacks/feedStack';
 import SearchScreen from '../screens/searchScreen';
 import AddPhotoScreen from '../screens/addPhotoScreen';
-import NotificationScreen from '../screens/NotificationScreen';
+import NotificationScreen from '../screens/notificationScreen';
 import ProfileStack from '../stacks/profileStack';
 
 

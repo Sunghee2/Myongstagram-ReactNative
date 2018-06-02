@@ -4,10 +4,27 @@ import { TextInput } from 'react-native-gesture-handler';
 
 
 export default class SigninScreen extends React.Component {
+  state = {
+    values: {
+      email: '',
+      username: '',
+      password: '',
+    },
+    errors: {}
+  }
+
+  submit = () => {
+
+  };
+
   render() {
+    const { navigation } = this.props;
+    const email = navigation.getParam('email', 'no!!');
+
     return (
       <View style={styles.container}>
         <View style={styles.topContainer}>
+          <Text style={styles.nameText}>sadfasdf {email}</Text>
           <Text style={styles.nameText}>이름 및 비밀번호</Text>
           <Text style={styles.descText}>친구들이 회원님을 찾을 수 있도록 이름을 추가하세요.</Text>
           <TextInput
@@ -27,8 +44,9 @@ export default class SigninScreen extends React.Component {
           />
           <Button
             style={styles.button}
+            // onPress={this.submit}
             onPress={()=>this.props.navigation.navigate('Login')}
-            title="로그인"
+            title="가입"
           />
         </View>
         <View style={styles.loginContainer}>

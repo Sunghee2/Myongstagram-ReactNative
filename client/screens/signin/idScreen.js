@@ -4,6 +4,10 @@ import { TextInput } from 'react-native-gesture-handler';
 
 
 export default class SigninScreen extends React.Component {
+  state={
+    email: ''
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -13,12 +17,12 @@ export default class SigninScreen extends React.Component {
             style={styles.input}
             underlineColorAndroid='transparent'
             placeholder=" 이메일"
-            // onChangeText={(text) => this.setState({text})}
-            // value={this.state.text}
+            value={this.state.email}
+            onChangeText={(text) => this.setState({email: text})}
           />
           <Button
             style={styles.button}
-            onPress={()=>this.props.navigation.navigate('CheckPw')}
+            onPress={()=>this.props.navigation.navigate('CheckPw', { email : this.props.email })}
             title="다음"
           />
         </View>

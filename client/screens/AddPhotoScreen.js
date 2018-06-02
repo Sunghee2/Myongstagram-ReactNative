@@ -9,6 +9,8 @@ import {
   CameraRoll
 } from 'react-native';
 
+import CameraRollPicker from 'react-native-camera-roll-picker';
+
 class AddPhotoScreen extends React.Component {
   // async componentWillMount() {
   //   await requestCameraPermission()
@@ -44,13 +46,14 @@ class AddPhotoScreen extends React.Component {
   //     console.warn(err)
   //   }
   // }
+  getSelectedImages(image) {
+    if (image[0])
+      alert(image[0].url);
+  }
+
   render() {
     return (
-      <View>
-        {/* {this.requestCameraPermission()} */}
-        {/* {this.getPhotos()} */}
-        <Text>AddPhoto!</Text>
-      </View>
+      <CameraRollPicker/>
     )
   } 
 }
