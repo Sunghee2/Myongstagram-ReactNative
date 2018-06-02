@@ -1,6 +1,6 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation';
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Foundation } from "@expo/vector-icons";
 
 import GridScreen from '../screens/profile/gridScreen';
 import ListScreen from '../screens/profile/listScreen';
@@ -27,15 +27,14 @@ export default profileTabNavigation = createMaterialTopTabNavigator (
           const { routeName } = navigation.state;
           let iconName;
           if (routeName === 'Grid' ) {
-            iconName = `ios-home${focused? '': '-outline'}`;
+            return <Foundation name='thumbnails' size={23}/>;
           } else if (routeName === 'List') {
-            iconName = `ios-search${focused? '': '-outline'}`;
+            return <Ionicons name='ios-contact-outline' size={23}/>;
           } else if (routeName === 'Tag') {
-            iconName = `ios-add-circle${focused? '': '-outline'}`;
+            return <Ionicons name='ios-list-outline' size={23}/>;
           } else if (routeName === 'Bookmark') {
-            iconName = `ios-heart${focused? '': '-outline'}`;
+            return <Ionicons name='ios-bookmark-outline' size={23}/>;
           } 
-          return <Ionicons name={iconName} size={23}/>;
         },
       }),
       tabBarOptions: {
@@ -46,6 +45,9 @@ export default profileTabNavigation = createMaterialTopTabNavigator (
         },
         style: {
           backgroundColor: 'white'
+        },
+        indicatorStyle: {
+          backgroundColor: 'gray'
         }
       },
       tabBarPosition: 'top',
