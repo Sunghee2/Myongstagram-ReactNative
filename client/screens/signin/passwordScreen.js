@@ -8,18 +8,27 @@ export default class SigninScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <Text style={styles.emailText}>이메일</Text>
+          <Text style={styles.nameText}>이름 및 비밀번호</Text>
+          <Text style={styles.descText}>친구들이 회원님을 찾을 수 있도록 이름을 추가하세요.</Text>
           <TextInput
             style={styles.input}
             underlineColorAndroid='transparent'
-            placeholder=" 이메일"
+            placeholder=" 이름"
+            // onChangeText={(text) => this.setState({text})}
+            // value={this.state.text}
+          />
+          <TextInput
+            style={styles.input}
+            underlineColorAndroid='transparent'
+            placeholder=" 비밀번호"
+            secureTextEntry={true}
             // onChangeText={(text) => this.setState({text})}
             // value={this.state.text}
           />
           <Button
             style={styles.button}
-            onPress={()=>this.props.navigation.navigate('Home')}
-            title="다음"
+            onPress={()=>this.props.navigation.navigate('Login')}
+            title="로그인"
           />
         </View>
         <View style={styles.loginContainer}>
@@ -48,10 +57,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: 'lightgray'
   },
-  emailText: {
+  nameText: {
     fontSize: 20,
     textAlign: 'center',
     marginBottom: 20
+  },
+  descText: {
+    fontSize: 12,
+    textAlign: 'center',
+    marginBottom: 15
   },
   input: {
     borderWidth: 1,

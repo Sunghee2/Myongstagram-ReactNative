@@ -1,7 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
+
 import LoginScreen from '../screens/loginScreen';
-import SigninScreen from '../screens/signin/signinScreen';
+import SigninNavigation from './signinNavigation';
 import TabNavigation from './tabNavigation';
 
 
@@ -10,7 +11,7 @@ export default RootNavigation = createStackNavigator({
     screen: LoginScreen,
   },
   Signin: {
-    screen: SigninScreen,
+    screen: SigninNavigation,
   },
   Home: {
     screen: TabNavigation,
