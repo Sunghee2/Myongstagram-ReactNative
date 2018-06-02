@@ -67,3 +67,19 @@
 > 중앙에 탭 못만드나 ㅠㅠ => tab을 중첩시키면 될 듯
 >
 > 사진 resize가 제대로 안됨..
+
+##### 18-06-02 
+
+- [x] 상단바 padding
+- [ ] 
+
+
+
+> 상단바 padding  `style={{ paddingTop: Expo.Constants.statusBarHeight }}`
+>
+> 중앙에 두려면 그 상위 view에다가 적용하기.
+>
+> 여전히 resizeMode안먹음..- > width 100% 설정
+>
+> resize는 되었는데 이제 남는 부분이 문제...
+

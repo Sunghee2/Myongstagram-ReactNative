@@ -5,10 +5,9 @@ import {
   View, 
   Image,
   Button,
-  PermissionsAndroid,
-  CameraRoll
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+
 
 class LoginScreen extends React.Component {
   render() {
@@ -27,7 +26,7 @@ class LoginScreen extends React.Component {
           marginBottom: 30
         }}>
           <Image
-              source={require('./image/logo.png')}
+              source={require('../image/logo.png')}
               style={{ 
                 height: 60, 
                 alignItems: 'center',

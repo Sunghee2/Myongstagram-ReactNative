@@ -16,7 +16,10 @@ import {
   TabBarBottom 
 } from 'react-navigation';
 import { Ionicons, SimpleLineIcons, Foundation } from "@expo/vector-icons";
-import { TextInput } from 'react-native-gesture-handler';
+import { TextInput, FlatList } from 'react-native-gesture-handler';
+
+import Card from './components/card';
+import RootNavigation from './navigations/rootNavigation';
 
 class LoginScreen extends React.Component {
   render() {
@@ -112,8 +115,13 @@ class LoginScreen extends React.Component {
 class FeedScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
+      <View>
+        <FlatList
+          data={[
+            {key: 0, name: 'sunghee'},
+            {key: 1, name: 'hayoung'}
+          ]}
+          renderItem={ ({item}) => <Card key={item.key} item={item}/>}/>
       </View>
     );
   }
@@ -122,7 +130,8 @@ class FeedScreen extends React.Component {
 class SearchScreen extends React.Component {
   render() {
     return (
-      <View>
+      <View
+        style={{ paddingTop: Expo.Constants.statusBarHeight }}>
         <TextInput
             style={{
               borderWidth: 1,
@@ -133,6 +142,7 @@ class SearchScreen extends React.Component {
               backgroundColor: '#f2f2f2',
               textDecorationColor: 'gray',
               marginBottom: 10,
+              textAlign: 'center'
             }}
             underlineColorAndroid='transparent'
             placeholder="검색"
@@ -358,10 +368,18 @@ class ProfileTab4Screen extends React.Component {
 }
 const TabNav2 = createMaterialTopTabNavigator (
   {
-    GridPicture: ProfileTabScreen,
-    ListPicture: ProfileTab2Screen,
-    Tag: ProfileTab3Screen,
-    Bookmark: ProfileTab4Screen,
+    GridPicture: {
+      screen: ProfileTabScreen
+    },
+    ListPicture: {
+      screen: ProfileTab2Screen
+    },
+    Tag: {
+      screen: ProfileTab3Screen
+    },
+    Bookmark: {
+      screen: ProfileTab4Screen
+    },
   },{
       navigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ focused }) => {
@@ -379,9 +397,10 @@ const TabNav2 = createMaterialTopTabNavigator (
           return <Ionicons name={iconName} size={25}/>;
         },
       }),
-      // tabBarOptions: {
-      //   showLabel: false
-      // },
+      tabBarOptions: {
+        showIcon: true,
+        showLabel: false
+      },
       tabBarPosition: 'top',
       swipeEnabled: false,
       animationEnabled: false,
@@ -746,4 +765,4 @@ const StacksOverTabs = createStackNavigator({
   }
 )
 
-export default StacksOverTabs;
+export default RootNavigation;
