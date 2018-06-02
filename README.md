@@ -87,3 +87,5 @@
 > 중첩 tab할 때 screen 껴 넣는 문제 => stack 두 개로 나눠서 header로
 >
 > headerTitle은 header와 다르게 top에 margin생김..
+>
+> cannot add a chile that doesn't have a yoganode to a parent without a -> 오탈자
