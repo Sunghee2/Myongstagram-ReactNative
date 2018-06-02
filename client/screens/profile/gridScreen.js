@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   gridRow: {
-    flex: 0.333333,
+    flex: 1,
     flexDirection: 'row'
   },
   gridItem: {

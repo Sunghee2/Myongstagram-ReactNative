@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "express-generator": "^4.16.0",
-    "global": "^4.3.2"
-  }
-}

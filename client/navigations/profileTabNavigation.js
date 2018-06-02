@@ -29,9 +29,9 @@ export default profileTabNavigation = createMaterialTopTabNavigator (
           if (routeName === 'Grid' ) {
             return <Foundation name='thumbnails' size={23}/>;
           } else if (routeName === 'List') {
-            return <Ionicons name='ios-contact-outline' size={23}/>;
-          } else if (routeName === 'Tag') {
             return <Ionicons name='ios-list-outline' size={23}/>;
+          } else if (routeName === 'Tag') {
+            return <Ionicons name='ios-contact-outline' size={23}/>;
           } else if (routeName === 'Bookmark') {
             return <Ionicons name='ios-bookmark-outline' size={23}/>;
           } 
