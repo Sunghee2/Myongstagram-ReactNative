@@ -101,3 +101,12 @@
 ** 해야할 것 **
 
 stylesheet 정리하기
+
+##### 18-06-03
+
+- [x] props 넘기기.....
+- [x] 갤러리 드디어 접근...
+
+> state가 안바뀜(email 가입시) -> state는 바뀌는데 안넘어감.....  -> this.state를 this.props라고 pass함.. 삽질..
+>
+> permission-> app.json에서 

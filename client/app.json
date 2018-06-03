@@ -4,5 +4,14 @@
     "androidStatusBar": {
       "backgroundColor": "#000000"
     }
+  },
+  "android": {
+    "permissions": [
+      "CAMERA",
+      "READ_INTERNAL_STORAGE",
+      "WRITE_INTERNAL_STORAGE",
+      "READ_EXTERNAL_STORAGE",
+      "WRITE_EXTERNAL_STORAGE"      
+    ]
   }
 }

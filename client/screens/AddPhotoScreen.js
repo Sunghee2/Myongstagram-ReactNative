@@ -6,56 +6,78 @@ import {
   Image,
   Button,
   PermissionsAndroid,
-  CameraRoll
+  CameraRolls
 } from 'react-native';
 
-import CameraRollPicker from 'react-native-camera-roll-picker';
+import { ImagePicker } from 'expo';
+import { TextInput } from 'react-native-gesture-handler';
+
+
 
 class AddPhotoScreen extends React.Component {
-  // async componentWillMount() {
-  //   await requestCameraPermission()
-  // }
-  // getPhotos() {
-    //   CameraRoll.getPhotos({
-      //       first: 20,
-      //       assetType: 'Photos',
-      //     })
-      //     .then(r => {
-        //       this.setState({ photos: r.edges });
-        //     })
-        //     .catch((err) => {
-          //        //Error Loading Images
-          //     });
-          //   };
-  // async requestCameraPermission() {
-  //   try {
-  //     const granted = await PermissionsAndroid.request(
-  //       PermissionsAndroid.PERMISSIONS.CAMERA,
-  //       {
-  //         'title': 'Cool Photo App Camera Permission',
-  //         'message': 'Cool Photo App needs access to your camera ' +
-  //                     'so you can take awesome pictures.'
-  //       }
-  //     )
-  //     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-  //       console.log("You can use the camera")
-  //     } else {
-  //       console.log("Camera permission denied")
-  //     }
-  //   } catch (err) {
-  //     console.warn(err)
-  //   }
-  // }
-  getSelectedImages(image) {
-    if (image[0])
-      alert(image[0].url);
+  state = {
+    image: null,
+    context: '',
+  };
+
+  componentWillMount() {
+    this._pickImage();
   }
 
   render() {
+    let { image } = this.state;
     return (
-      <CameraRollPicker/>
-    )
-  } 
+      <View style={styles.container}>
+        <View>
+          {image &&
+            <Image source={{ uri: image }} style={styles.image} />}
+        </View>
+        <View>
+          <TextInput
+            multiline
+            style={styles.input}
+            underlineColorAndroid='transparent'
+            placeholder="설명 입력..."
+            onChangeText={(context) => this.setState({context})}
+            value={this.state.context}
+            maxLength={50}
+          />
+        </View>
+      </View>
+    );
+  }
+
+  _pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [3, 3],
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      this.setState({ image: result.uri });
+    }
+  };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+  },
+  image: {
+    width: 200, 
+    height: 200
+  },
+  input: {
+
+  }
+})
+
 
 export default AddPhotoScreen;

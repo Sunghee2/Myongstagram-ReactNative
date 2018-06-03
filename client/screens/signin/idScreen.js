@@ -1,11 +1,15 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
 
 export default class SigninScreen extends React.Component {
-  state={
+  state = {
     email: ''
+  }
+
+  handleEmail = (text) => {
+    this.setState({ email: text })
   }
 
   render() {
@@ -18,11 +22,22 @@ export default class SigninScreen extends React.Component {
             underlineColorAndroid='transparent'
             placeholder=" 이메일"
             value={this.state.email}
-            onChangeText={(text) => this.setState({email: text})}
+            onChangeText={this.handleEmail}
           />
           <Button
             style={styles.button}
-            onPress={()=>this.props.navigation.navigate('CheckPw', { email : this.props.email })}
+            // onPress={Alert.alert(
+            //   'Alert Title',
+            //   this.props.email,
+            //   [
+            //     {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+            //     {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+            //     {text: 'OK', onPress: () => console.log('OK Pressed')},
+            //   ],
+            //   { cancelable: false }
+            // )}
+            // onPress={()=> this.login(this.state.email)}
+            onPress={()=>this.props.navigation.navigate('CheckPw', { email : this.state.email})}
             title="다음"
           />
         </View>
