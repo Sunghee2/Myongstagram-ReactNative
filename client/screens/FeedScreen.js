@@ -11,8 +11,23 @@ import {
 import { TextInput, FlatList } from 'react-native-gesture-handler';
 
 import Card from '../components/card';
+import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+
 
 export default class FeedScreen extends React.Component {
+  static navigationOptions= ({ navigation }) => ({
+    headerTitle:
+      <View>
+        <SimpleLineIcons name='camera' size={25}/>
+        <Image 
+          source={require('../image/logo.png')} 
+          style={{ height: 40 }}
+          resizeMode={'contain'}
+        />
+        <Ionicons name='ios-paper-plane-outline' size={30}/>
+      </View>
+  })
+
   render() {
     return (
       <View>

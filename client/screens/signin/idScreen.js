@@ -26,17 +26,6 @@ export default class SigninScreen extends React.Component {
           />
           <Button
             style={styles.button}
-            // onPress={Alert.alert(
-            //   'Alert Title',
-            //   this.props.email,
-            //   [
-            //     {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-            //     {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-            //     {text: 'OK', onPress: () => console.log('OK Pressed')},
-            //   ],
-            //   { cancelable: false }
-            // )}
-            // onPress={()=> this.login(this.state.email)}
             onPress={()=>this.props.navigation.navigate('CheckPw', { email : this.state.email})}
             title="다음"
           />

@@ -9,6 +9,11 @@ import {
 import { TextInput } from 'react-native-gesture-handler';
 
 export default class LoginScreen extends React.Component {
+  state={
+    email: '',
+    password: ''
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -27,14 +32,16 @@ export default class LoginScreen extends React.Component {
             style={styles.input}
             underlineColorAndroid='transparent'
             placeholder="전화번호, 사용자 이름 또는 이메일"
-            // onChangeText={(text) => this.setState({text})}
-            // value={this.state.text}
+            onChangeText={(email) => this.setState({email})}
+            value={this.state.email}
           />
           <TextInput
             style={styles.input}
             placeholder="비밀번호"
             secureTextEntry={true}
             underlineColorAndroid='transparent'
+            onChangeText={(password) => this.setState({password})}
+            value={this.state.password}
           />
           <Text style={styles.passwordText}>비밀번호를 잊으셨나요?</Text>
           <Button
