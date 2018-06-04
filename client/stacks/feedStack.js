@@ -9,18 +9,18 @@ export default FeedStack = createStackNavigator (
   {
     Feed: {
       screen: FeedScreen,
-      // navigationOptions: ({ navigation }) => ({
-      //   headerTitle:
-      //     <View style={styles.headerContainer}>
-      //       <SimpleLineIcons name='camera' size={25}/>
-      //       <Image 
-      //         source={require('../image/logo.png')} 
-      //         style={{ height: 40 }}
-      //         resizeMode={'contain'}
-      //       />
-      //       <Ionicons name='ios-paper-plane-outline' size={30}/>
-      //     </View>
-      // })
+      navigationOptions: ({ navigation }) => ({
+        header:
+          <View style={styles.headerContainer}>
+            <SimpleLineIcons name='camera' size={25}/>
+            <Image 
+              source={require('../image/logo.png')} 
+              style={{ height: 35 }}
+              resizeMode={'contain'}
+            />
+            <Ionicons name='ios-paper-plane-outline' size={30}/>
+          </View>
+      })
     }
   }
 );
@@ -29,7 +29,9 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10
+    padding: 8,
+    backgroundColor: '#FAFAFA',
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'lightgray'
   }
 });

@@ -119,3 +119,15 @@
 
 - header 이상해진 거 고치기
 - stack 없애기
+
+
+
+##### 18-06-04
+
+- [x] header 수정
+
+
+
+> stack 없애면 header가 안나옴.... 
+>
+> header, headerTitle(이건 top margin 생김...)
