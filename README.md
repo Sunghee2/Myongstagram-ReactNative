@@ -119,3 +119,13 @@
 > stack 없애면 header가 안나옴.... 
 >
 > header, headerTitle(이건 top margin 생김...)
+
+
+
+`$ sequelize db:migrate`
+
+- 테이블 생성됨
+
+`$ sequelize db:migrate:undo`
+
+- 테이블 생성 취소 - 계속해볼것.

@@ -4,9 +4,19 @@ const asyncError = require('../../utils/async-error');
 var router = express.Router();
 
 module.exports = function(app) {
+  router.post('/', asyncError(async(req, res, next) => {
+    const email = req.body.email;
+    const user = await db.User.findOne({where: {email: email}})
+    if (user) {
+      console.log("중복");
+    } else {
+      console.log("성공");
+    }
+  }));
 
-  router.post('/', asyncError(async (req, res, next) => {
+  router.post('/new', asyncError(async (req, res, next) => {
     db.User.create({
+      email: req.body.email,
       username: req.body.username,
       password: req.body.password
     }).then( user => {
