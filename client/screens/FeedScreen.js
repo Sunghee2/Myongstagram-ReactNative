@@ -8,30 +8,14 @@ import {
   PermissionsAndroid,
   CameraRoll
 } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
 import { TextInput, FlatList } from 'react-native-gesture-handler';
 
 import Card from '../components/card';
 import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 
 
-export default class FeedScreen extends React.Component {
-  static navigationOptions= ({ navigation }) => {
-    headerStyle: {height:100}
-
-    return {
-      headerTitle:
-        <View style={styles.headerContainer}>
-          <SimpleLineIcons name='camera' size={25}/>
-          <Image 
-            source={require('../image/logo.png')} 
-            style={{ height: 40 }}
-            resizeMode={'contain'}
-          />
-          <Ionicons name='ios-paper-plane-outline' size={30}/>
-        </View>
-    }
-  }
-
+class FeedScreen extends React.Component {
   render() {
     return (
       <View>
@@ -46,11 +30,33 @@ export default class FeedScreen extends React.Component {
   }
 }
 
+export default FeedStack = createStackNavigator (
+  {
+    Feed: {
+      screen: FeedScreen,
+      navigationOptions: ({ navigation }) => ({
+        header:
+          <View style={styles.headerContainer}>
+            <SimpleLineIcons name='camera' size={25}/>
+            <Image 
+              source={require('../image/logo.png')} 
+              style={{ height: 35 }}
+              resizeMode={'contain'}
+            />
+            <Ionicons name='ios-paper-plane-outline' size={30}/>
+          </View>
+      })
+    }
+  }
+);
+
 const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10
+    padding: 8,
+    backgroundColor: '#FAFAFA',
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'lightgray'
   }
-})
+});

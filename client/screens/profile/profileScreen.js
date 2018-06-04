@@ -3,9 +3,9 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Ionicons } from "@expo/vector-icons";
 
-import ProfileTabNavigation from '../navigations/profileTabNavigation';
+import ProfileTabNavigation from '../../navigations/profileTabNavigation';
 
-export default ProfileStack = createStackNavigator (
+const ProfileTabStack = createStackNavigator (
   {
     Profile: {
       screen: ProfileTabNavigation,
@@ -14,7 +14,7 @@ export default ProfileStack = createStackNavigator (
           <View style={styles.header}>
             <View style={styles.headerLeft}>
               <Image
-                source={require('../image/test.png')}
+                source={require('../../image/test.png')}
                 style={styles.profilePhoto}
               />
               <Text style={{ fontSize: 12 }}>Sunghee</Text>
@@ -36,7 +36,43 @@ export default ProfileStack = createStackNavigator (
   }
 )
 
+export default ProfileStack = createStackNavigator (
+  {
+    Profile: {
+      screen: ProfileTabStack,
+      navigationOptions: ({ navigation }) => ({
+        header: 
+          <View style={styles.headerContainer}>
+            <Ionicons
+              name='md-person-add'
+              size={23}
+            />
+            <Text style={styles.username}>Sunghee</Text>
+            <Ionicons
+              name='ios-clock-outline'
+              size={25}
+            />
+          </View>
+      })
+    }
+  }
+)
+
 const styles = StyleSheet.create({
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 8,
+    backgroundColor: '#FAFAFA',
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'lightgray',
+    height: 50
+  },
+  username: {
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
   header: {
     flexDirection: 'row',
     backgroundColor: 'white',

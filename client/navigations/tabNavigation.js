@@ -2,20 +2,21 @@ import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation'; 
 import { Ionicons } from "@expo/vector-icons";
 
-import FeedStack from '../stacks/feedStack';
 import SearchScreen from '../screens/searchScreen';
 import AddPhotoScreen from '../screens/addPhotoScreen';
 import NotificationScreen from '../screens/notificationScreen';
 import ProfileStack from '../stacks/profileStack';
+import feedScreen from '../screens/feedScreen';
+import profileScreen from '../screens/profile/profileScreen';
 
 
 export default TabNavigation = createBottomTabNavigator (
   {
-    Home: FeedStack,
+    Home: feedScreen,
     Search: SearchScreen,
     AddPhoto: AddPhotoScreen,
     Notification: NotificationScreen,
-    Profile: ProfileStack
+    Profile: profileScreen
   },
   {
     navigationOptions: ({ navigation }) => ({
