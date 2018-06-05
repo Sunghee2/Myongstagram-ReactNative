@@ -5,6 +5,7 @@ import {
   View, 
   Image,
   Button,
+  ActivityIndicator
 } from 'react-native';
 import { ImagePicker } from 'expo';
 import { TextInput } from 'react-native-gesture-handler';
@@ -21,6 +22,7 @@ class AddPhotoScreen extends React.Component {
   state = {
     image: null,
     content: '',
+    uploading: false
   };
 
   componentWillMount() {
@@ -48,25 +50,14 @@ class AddPhotoScreen extends React.Component {
         </View>
         <Button
           // style={styles.button}
-          onPress={() => this.props.postNew(this.state.image, this.state.content)}
+          onPress={()=> alert(this.state.image)}
+          // onPress={() => this.props.postNew(this.state.image, this.state.content)}
           title="공유"
         />
       </View>
     );
   }
-
-//   _pickImage = async () => {
-//     let result = await ImagePicker.launchImageLibraryAsync({
-//       allowsEditing: true,
-//       aspect: [3, 3],
-//     });
-
-//     if (!result.cancelled) {
-//       this.setState({ image: result.uri});
-//     }
-//   };
-// }
-
+  
   _pickImage = async () => {
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
@@ -88,21 +79,22 @@ class AddPhotoScreen extends React.Component {
       console.log(e);
       alert('Upload failed, sorry :(');
     } finally {
-      // this.setState({ uploading: false });
+      this.setState({ uploading: false });
     }
   };
 }
-    async function uploadImageAsync(uri) {
-      const response = await fetch(uri);
-      const blob = await response.blob();
-      const ref = firebase
-        .storage()
-        .ref()
-        .child(uuid.v4());
-  
-      const snapshot = await ref.put(blob);
-      return snapshot.downloadURL;
-    }
+   
+async function uploadImageAsync(uri) {
+  const response = await fetch(uri);
+  const blob = await response.blob();
+  const ref = firebase
+    .storage()
+    .ref('post_images')
+    .child(uuid.v4());
+
+  var snapshot = await ref.put(blob);
+  return ref.getDownloadURL()
+}
 
 
 const styles = StyleSheet.create({
