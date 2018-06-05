@@ -8,7 +8,10 @@ import {
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-export default class LoginScreen extends React.Component {
+import { connect } from 'react-redux';
+import { signin } from '../actions';
+
+class LoginScreen extends React.Component {
   state={
     email: '',
     password: ''
@@ -46,7 +49,8 @@ export default class LoginScreen extends React.Component {
           <Text style={styles.passwordText}>비밀번호를 잊으셨나요?</Text>
           <Button
             style={styles.button}
-            onPress={()=>this.props.navigation.navigate('Home')}
+            onPress={()=>this.props.signin(this.state.email, this.state.password)}
+            disabled={!this.state.email || !this.state.password}
             title="로그인"
           />
         </View>
@@ -118,3 +122,5 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 });
+
+export default connect(null, { signin })(LoginScreen);

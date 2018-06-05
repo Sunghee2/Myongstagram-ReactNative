@@ -132,4 +132,8 @@
 
 table 만들때 띄어쓰기 절대 x
 
-post - userId: integer, image: string, context: string
+##### 18-06-05
+- [x] 이메일 형식 체크
+- [x] 이메일 중복 체크
+- [x] 회원가입 성공
+- [x] 로그인 성공

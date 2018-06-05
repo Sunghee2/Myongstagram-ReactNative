@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: '#FAFAFA',
     borderBottomWidth: 0.5,
-    borderBottomColor: 'lightgray'
+    borderBottomColor: 'lightgray',
+    paddingTop: Expo.Constants.statusBarHeight
   }
 });

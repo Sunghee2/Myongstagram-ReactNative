@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { connect } from 'react-redux';
 
+import { signup } from '../../actions';
 
-export default class SigninScreen extends React.Component {
+class passwordScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,21 +14,6 @@ export default class SigninScreen extends React.Component {
       password: ''
     }
   }
-
-
-  submit = () => {
-    // fetch('https://mywebsite.com/endpoint/', {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     firstParam: 'yourValue',
-    //     secondParam: 'yourOtherValue',
-    //   }),
-    // });
-  };
 
   render() {
     return (
@@ -52,7 +39,8 @@ export default class SigninScreen extends React.Component {
           <Button
             style={styles.button}
             // onPress={this.submit}
-            onPress={()=>this.props.navigation.navigate('Login')}
+            onPress={()=>this.props.signup(this.state.email, this.state.username, this.state.password)}
+            disabled={!this.state.password || !this.state.username}
             title="가입"
           />
         </View>
@@ -125,3 +113,5 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 })
+
+export default connect(null, { signup })(passwordScreen);

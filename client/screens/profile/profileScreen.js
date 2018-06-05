@@ -47,7 +47,7 @@ export default ProfileStack = createStackNavigator (
               name='md-person-add'
               size={23}
             />
-            <Text style={styles.username}>Sunghee</Text>
+            <Text style={styles.username}></Text>
             <Ionicons
               name='ios-clock-outline'
               size={25}
@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAFAFA',
     borderBottomWidth: 0.5,
     borderBottomColor: 'lightgray',
-    height: 50
+    height: 50,
+    paddingTop: Expo.Constants.statusBarHeight
   },
   username: {
     fontSize: 16,

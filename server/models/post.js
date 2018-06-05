@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     image: {
       type: DataTypes.STRING,
     },
-    context: {
+    content: {
       type: DataTypes.STRING,
     }
   }, {});

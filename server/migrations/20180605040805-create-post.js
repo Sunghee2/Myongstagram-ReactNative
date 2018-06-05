@@ -21,7 +21,7 @@ module.exports = {
       image: {
         type: Sequelize.STRING
       },
-      context: {
+      content: {
         type: Sequelize.STRING
       },
       createdAt: {

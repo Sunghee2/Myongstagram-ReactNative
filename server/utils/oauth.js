@@ -19,8 +19,8 @@ m.getClient = async function(clientId, clientSecret) {
   };
 };
 
-m.getUser = async function(username, password) {
-  const user = await db.User.findOne({where: {username: username}});
+m.getUser = async function(email, password) {
+  const user = await db.User.findOne({where: {email: email}});
   if (!user) {
     return null;
   }

@@ -13,8 +13,8 @@ module.exports = {
       }], {});
     */
     return queryInterface.bulkInsert('OAuthClients', [{
-      clientId: 'ABCDEFG',
-      clientSecret: '123456789',
+      clientId: '0gsrKsZ5j4In6lWfgEQNS',
+      clientSecret: '78J_8GNW6lUbKyGe4_Wul',
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
