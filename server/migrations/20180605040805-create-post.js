@@ -19,7 +19,8 @@ module.exports = {
         },
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       content: {
         type: Sequelize.STRING

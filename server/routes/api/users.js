@@ -31,7 +31,8 @@ module.exports = function(app) {
 
   router.use(app.oauth.authenticate());
   router.use('/me', (req, res) => {
-    res.json(req.locals.user);
+    console.log(res.locals.oauth.token.user);
+    // res.json(req.locals.user);
   });
   router.get('/', asyncError(async (req, res, next) => {
     const users = await db.User.findAll({});

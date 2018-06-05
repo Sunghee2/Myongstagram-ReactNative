@@ -8,12 +8,12 @@ module.exports = function(app) {
 
   router.get('/', asyncError(async (req, res) => {
     const posts = await db.Post.findAll();
-    res.json(posts);
+    res.json(posts.toJSON());
   }));
 
   router.post('/new', asyncError(async (req, res, next) => {
     db.Post.create({
-      userId: res.locals.oauth.token.user.id,
+      userId: req.locals.user.id,
       image: req.body.image,
       context: req.body.context
     }).then( user => {

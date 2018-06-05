@@ -12,6 +12,10 @@ import { TextInput } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import * as firebase from 'firebase';
 import uuid from 'uuid';
+import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import { createStackNavigator } from 'react-navigation';
+
+
 
 import { postNew } from '../actions';
 import { firebaseConfig } from '../config';
@@ -19,11 +23,14 @@ import { firebaseConfig } from '../config';
 firebase.initializeApp(firebaseConfig);
 
 class AddPhotoScreen extends React.Component {
-  state = {
-    image: null,
-    content: '',
-    uploading: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      image: null,
+      content: '',
+      uploading: false
+    };
+  }
 
   componentWillMount() {
     this._pickImage();
@@ -50,14 +57,13 @@ class AddPhotoScreen extends React.Component {
         </View>
         <Button
           // style={styles.button}
-          onPress={()=> alert(this.state.image)}
-          // onPress={() => this.props.postNew(this.state.image, this.state.content)}
+          onPress={() => this.props.postNew(this.state.image, this.state.content)}
           title="공유"
         />
       </View>
     );
   }
-  
+
   _pickImage = async () => {
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
@@ -96,6 +102,28 @@ async function uploadImageAsync(uri) {
   return ref.getDownloadURL()
 }
 
+export default connect(null, { postNew } )(AddPhotoScreen);
+
+const AddPhotoStack = createStackNavigator (
+  {
+    Feed: {
+      screen: AddPhotoScreen,
+      navigationOptions: ({ navigation }) => ({
+        header:
+          <View>
+            <SimpleLineIcons name='camera' size={25}/>
+            <Image 
+              source={require('../image/logo.png')} 
+              style={{ height: 35 }}
+              resizeMode={'contain'}
+            />
+            <Ionicons name='ios-paper-plane-outline' size={30}/>
+          </View>
+      })
+    }
+  }
+);
+
 
 const styles = StyleSheet.create({
   container: {
@@ -120,6 +148,3 @@ const styles = StyleSheet.create({
     width: '100%',
   }
 })
-
-
-export default connect(null, { postNew } )(AddPhotoScreen);
