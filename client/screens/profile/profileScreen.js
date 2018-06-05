@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Ionicons } from "@expo/vector-icons";
 
@@ -20,14 +20,24 @@ const ProfileTabStack = createStackNavigator (
               <Text style={{ fontSize: 12 }}>Sunghee</Text>
             </View>
             <View style={styles.headerRight}>
-              <View>
-                <Text style={styles.headerText}>게시물</Text>
+              <View style={styles.headerRightTop}>
+                <View>
+                  <Text style={styles.headerText}>게시물</Text>
+                </View>
+                <View>
+                  <Text style={styles.headerText}>팔로워</Text>
+                </View>
+                <View>
+                  <Text style={styles.headerText}>팔로잉</Text>
+                </View> 
               </View>
-              <View>
-                <Text style={styles.headerText}>팔로워</Text>
-              </View>
-              <View>
-                <Text style={styles.headerText}>팔로잉</Text>
+              <View style={styles.headerRightBottom}>
+                <TouchableOpacity style={styles.button, {flex: 4, backgroundColor: 'green'}}>
+                  <Text style={{fontSize: 12}}>프로필 수정</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button, {flex: 1, backgroundColor: 'yellow'}}>
+                  <Ionicons name='ios-settings' size={20}/>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
@@ -87,8 +97,21 @@ const styles = StyleSheet.create({
   },
   headerRight: {
     flex: 6,
+    flexDirection: 'column'
+  },
+  headerRightTop: {
+    flex: 2,
     flexDirection: 'row',
     justifyContent: 'space-around',
+  },
+  headerRightBottom: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'red',
+    marginLeft: 30,
+    marginRight: 30
   },
   profilePhoto: {
     height: 60,
@@ -98,5 +121,11 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 10,
     color: 'gray'
+  },
+  button: {
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: 'lightgray',
+    justifyContent: 'center'
   }
 });
