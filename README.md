@@ -129,3 +129,7 @@
 `$ sequelize db:migrate:undo`
 
 - 테이블 생성 취소 - 계속해볼것.
+
+table 만들때 띄어쓰기 절대 x
+
+post - userId: integer, image: string, context: string
