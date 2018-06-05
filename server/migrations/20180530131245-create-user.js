@@ -17,6 +17,12 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true
       },
+      name: {
+        type: Sequelize.STRING
+      },
+      profileImage: {
+        type: Sequelize.STRING
+      },
       password_digest: {
         type: Sequelize.STRING,
         allowNull: false

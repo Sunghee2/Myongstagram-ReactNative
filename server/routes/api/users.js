@@ -18,6 +18,7 @@ module.exports = function(app) {
     db.User.create({
       email: req.body.email,
       username: req.body.username,
+      name: req.body.username,
       password: req.body.password
     }).then( user => {
       return res.json({code: 200, message: '회원가입에 성공하셨습니다.'});
@@ -30,10 +31,11 @@ module.exports = function(app) {
   }));
 
   router.use(app.oauth.authenticate());
-  router.use('/me', (req, res) => {
-    console.log(res.locals.oauth.token.user);
-    // res.json(req.locals.user);
-  });
+  router.use('/me', asyncError(async (req, res) => {
+    const user = await db.User.findOne({where: { id : res.locals.oauth.token.user.id }})
+    res.json(user);
+  }));
+
   router.get('/', asyncError(async (req, res, next) => {
     const users = await db.User.findAll({});
     res.json(users);

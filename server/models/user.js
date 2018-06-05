@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     username: DataTypes.STRING,
+    name: DataTypes.STRING,
+    profileImage: DataTypes.STRING,
     password_digest: {
       type: DataTypes.STRING,
       allowNull: false,

@@ -34,7 +34,7 @@ class LoginScreen extends React.Component {
           <TextInput
             style={styles.input}
             underlineColorAndroid='transparent'
-            placeholder="전화번호, 사용자 이름 또는 이메일"
+            placeholder="이메일"
             onChangeText={(email) => this.setState({email})}
             value={this.state.email}
           />
