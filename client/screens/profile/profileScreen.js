@@ -21,21 +21,24 @@ const ProfileTabStack = createStackNavigator (
             </View>
             <View style={styles.headerRight}>
               <View style={styles.headerRightTop}>
-                <View>
+                <View style={styles.headerRightTopView}>
+                  <Text>20</Text>
                   <Text style={styles.headerText}>게시물</Text>
                 </View>
-                <View>
+                <View style={styles.headerRightTopView}>
+                  <Text>205</Text>
                   <Text style={styles.headerText}>팔로워</Text>
                 </View>
-                <View>
+                <View style={styles.headerRightTopView}>
+                  <Text>201</Text>
                   <Text style={styles.headerText}>팔로잉</Text>
                 </View> 
               </View>
               <View style={styles.headerRightBottom}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={{flex: 7, borderWidth: 1, borderRadius: 5, borderColor: 'lightgray', justifyContent: 'center', alignItems: 'center', height: '100%', marginRight: 10}}>
                   <Text style={{fontSize: 12, textAlign: 'center'}}>프로필 수정</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={{flex: 1, borderWidth: 1, borderRadius: 5, borderColor: 'lightgray', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
                   <Ionicons name='ios-settings' size={20}/>
                 </TouchableOpacity>
               </View>
@@ -104,14 +107,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  headerRightTopView: {
+    alignItems: 'center'
+  },
   headerRightBottom: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'red',
     marginLeft: 30,
-    marginRight: 30
+    marginRight: 30,
+    marginBottom: 5
+  },
+  button: {
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: 'lightgray',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   profilePhoto: {
     height: 60,
@@ -122,13 +135,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: 'gray'
   },
-  button: {
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: 'lightgray',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
 });
 
 

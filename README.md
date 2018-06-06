@@ -148,6 +148,8 @@ table 만들때 띄어쓰기 절대 x
 - [x] user table에 이름, 프로필이미지 추가
 - [x] user/post association
 - [x] fetchPosts
+- [x] story ui 추가
+- [x] profile 버튼 고침
 
 
 > fk join하려면 association 설정해야됨.

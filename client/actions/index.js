@@ -76,6 +76,7 @@ export function signout() {
   };
 }
 
+
 export function fetchPosts() {
   return async dispatch => {
     axios.get(`${Config.server}/posts`).then(response => {
