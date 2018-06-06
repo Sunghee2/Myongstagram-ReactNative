@@ -24,5 +24,21 @@ module.exports = function(app) {
     });
   }));
 
+  router.post('/:id', asyncError(async (req, res, next) => {
+    let updateValues = {
+      content: req.body.content
+    };
+    console.log("content" + req.body.content);
+    db.Post.update(
+      updateValues, 
+      { where: { id: req.params.id }}
+    ).then( user => {
+      console.log(user);
+      return res.json({code: 200, message: '성공적으로 수정하였습니다.'});
+    }).catch( error => {
+      next(error);
+    })
+  }))
+
   return router;
 }

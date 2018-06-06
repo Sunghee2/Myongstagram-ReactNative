@@ -40,5 +40,24 @@ module.exports = function(app) {
     const users = await db.User.findAll({});
     res.json(users);
   }));
+
+  router.post('/edit', asyncError(async (req, res, next) => {
+    let updateValues = {
+      username: req.body.username,
+      name: req.body.name,
+      profileImage: req.body.profileImage
+    };
+
+    db.User.update(
+      updateValues, 
+      { where: { id: res.locals.oauth.token.user.id }}
+    ).then( user => {
+      return res.json({code: 200, message: '성공적으로 수정하였습니다.'});
+    }).catch( error => {
+      next(error);
+    })
+  }));
+
+
   return router;
 }

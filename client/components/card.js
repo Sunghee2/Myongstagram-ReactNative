@@ -23,7 +23,9 @@ class Card extends Component {
           <Text style={styles.headerName}>{name}</Text>
         </View>
         <View style={styles.headerRight}>
-          <MaterialCommunityIcons style={styles.headerIcon} name='dots-horizontal' size={20} />
+          <TouchableOpacity onPress={}>
+            <MaterialCommunityIcons style={styles.headerIcon} name='dots-horizontal' size={20} />
+          </TouchableOpacity>
         </View>
       </View>
     )

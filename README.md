@@ -150,6 +150,7 @@ table 만들때 띄어쓰기 절대 x
 - [x] fetchPosts
 - [x] story ui 추가
 - [x] profile 버튼 고침
+- [x] post 수정 server router
 
 
 > fk join하려면 association 설정해야됨.
