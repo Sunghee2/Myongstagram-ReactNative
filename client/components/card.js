@@ -10,11 +10,11 @@ import { MaterialCommunityIcons, EvilIcons, Ionicons } from "@expo/vector-icons"
 
 
 class Card extends Component {
-  renderHeader(name) {
+  renderHeader(name, profileImage) {
     return (
       <View style={styles.header}>
         <View style={styles.headerLeft}>
-          <Image source={require('../image/test.png')} style={styles.headerImage} />
+          <Image source={profileImage || require('../image/profile.jpg')} style={styles.headerImage} />
           <Text style={styles.headerName}>{name}</Text>
         </View>
         <View style={styles.headerRight}>
@@ -75,7 +75,7 @@ class Card extends Component {
     return (
       <View style={styles.container}>
         <View>
-          {this.renderHeader(this.props.item.name)}
+          {this.renderHeader(this.props.item.username, this.props.item.profileImage)}
         </View>
         <View style={styles.photo}>
           {this.renderPhoto()}

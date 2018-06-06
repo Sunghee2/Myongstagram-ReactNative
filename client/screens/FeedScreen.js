@@ -35,27 +35,19 @@ class FeedScreen extends React.Component {
     this.props.fetchPosts();
   }
 
-  renderPosts() {
+  render() {
+    var data = [];
     if (this.props.posts) {
-      return this.props.posts.map(post => {
-        console.log(post);
-        return (
-          <View/>
-        );
+      this.props.posts.map(post => {
+        data.push({ key: post.id, username: post.User.username, profileImage: post.User.profileImage, image: post.image, content: post.content, createdAt: post.createdAt});
       })
     }
-  }
+    console.log(data);
 
-  render() {
-    // console.log(this.props.posts[0]);
     return (
       <View>
-        {this.renderPosts()}
         <FlatList
-          data={[
-            {key: '0', name: 'sunghee'},
-            {key: '1', name: 'hayoung'}
-          ]}
+          data={data}
           renderItem={ ({item}) => <Card key={item.key} item={item}/>}/>
       </View>
     );
