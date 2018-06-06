@@ -4,17 +4,22 @@ import {
   Text,
   Image,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
 import { MaterialCommunityIcons, EvilIcons, Ionicons } from "@expo/vector-icons";
+import moment from 'moment';
 
 
 class Card extends Component {
   renderHeader(name, profileImage) {
+    if (profileImage) {
+      profileImage = { url: profileImage }
+    }
     return (
       <View style={styles.header}>
         <View style={styles.headerLeft}>
-          <Image source={profileImage || require('../image/profile.jpg')} style={styles.headerImage} />
+          <Image source={ profileImage || require('../image/profile.jpg')} style={styles.headerImage} />
           <Text style={styles.headerName}>{name}</Text>
         </View>
         <View style={styles.headerRight}>
@@ -24,12 +29,15 @@ class Card extends Component {
     )
   }
 
-  renderPhoto(photo) {
+  renderImage(image) {
+    console.log("url: " + image);
     return (
       <Image 
-        style={{width: '100%', height: '100%'}}
+        style={{height: 200, width: null}}
+        // style={{width: '100%', height: '100%'}}
         source={require('../image/test.png')}
-        resizeMode='contain'/>
+        // resizeMode='contain'
+      />
     );
   }
 
@@ -38,7 +46,9 @@ class Card extends Component {
       <View style={styles.likeContainer}>
         <View style={styles.likeIconContainer}>
           <View style={styles.likeLeft}>
-            <EvilIcons name="heart" size={30} style={{ marginRight: 5 }}/>
+            <TouchableOpacity onPress={()=>alert("heart!")}>
+              <EvilIcons name="heart" size={30} style={{ marginRight: 5 }}/>
+            </TouchableOpacity>
             <EvilIcons name="comment" size={30} style={{ marginRight: 8 }}/>
             <Ionicons name="ios-send-outline" size={30} style={{ marginRight: 5 }}/>
           </View>
@@ -53,20 +63,19 @@ class Card extends Component {
     );
   }
 
-  renderBody(name, context) {
+  renderBody(context) {
     return (
       <View style={styles.bodyContainer}>
-        <Text style={{ fontWeight: 'bold', marginRight: 5 }}>{name}</Text>
         <Text style={{ marginRight: 5 }}>{context}</Text>
       </View>
     );
   }
 
-  renderComment() {
+  renderComment(createdAt) {
     return (
       <View style={styles.commentContainer}>
         <Text style={{ fontSize: 12, color: 'gray' }}>댓글 5개 모두 보기</Text>
-        <Text style={{ fontSize: 9, color: 'gray', marginTop: 4 }}>5월 24일</Text>
+        <Text style={{ fontSize: 9, color: 'gray', marginTop: 4 }}>{moment(createdAt).format("MM월 DD일")}</Text>
       </View>
     );
   }
@@ -78,11 +87,11 @@ class Card extends Component {
           {this.renderHeader(this.props.item.username, this.props.item.profileImage)}
         </View>
         <View style={styles.photo}>
-          {this.renderPhoto()}
+          {this.renderImage(this.props.item.image)}
         </View>
         {this.renderLike()}
-        {this.renderBody('sunghee', 'abcdsfafjsldkfjsldfmasndf,masdfasdfadsfasdfasdfasdfasdfasdfasdfansdfljwe')}
-        {this.renderComment()}
+        {this.renderBody(this.props.item.content)}
+        {this.renderComment(this.props.item.createdAt)}
       </View> 
     );
   }

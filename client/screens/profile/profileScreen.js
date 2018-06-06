@@ -32,10 +32,10 @@ const ProfileTabStack = createStackNavigator (
                 </View> 
               </View>
               <View style={styles.headerRightBottom}>
-                <TouchableOpacity style={styles.button, {flex: 4, backgroundColor: 'green'}}>
+                <TouchableOpacity style={styles.button}>
                   <Text style={{fontSize: 12, textAlign: 'center'}}>프로필 수정</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button, {flex: 1, backgroundColor: 'yellow'}}>
+                <TouchableOpacity style={styles.button}>
                   <Ionicons name='ios-settings' size={20}/>
                 </TouchableOpacity>
               </View>
@@ -130,3 +130,16 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 });
+
+
+// renderSectionOne(){
+//   return romeImages.map((image,index) => {
+//     return (
+//       <View key={index} style ={[{width :(width/3)},{height:(width)/3},
+//         index % 3 !=0 ? {paddingLeft:2} : {paddingLeft:0},{marginBottom:2}]} >
+//         <Image style ={{flex:1,width:undefined,height:undefined}}
+//         source = {image}/>
+//       </View>
+//     )
+//   })
+// }

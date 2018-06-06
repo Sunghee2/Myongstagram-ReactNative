@@ -146,5 +146,11 @@ table 만들때 띄어쓰기 절대 x
 
 ##### 18-06-06
 - [x] user table에 이름, 프로필이미지 추가
+- [x] user/post association
+- [x] fetchPosts
+
 
 > fk join하려면 association 설정해야됨.
+> 피드에 사진이 안들어감.....
+
+> stack 정리해야됨.
