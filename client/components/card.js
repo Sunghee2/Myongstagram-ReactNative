@@ -116,8 +116,8 @@ const styles = StyleSheet.create({
     marginLeft: 5
   },
   headerImage: {
-    height: 35,
-    width: 35,
+    height: 30,
+    width: 30,
     borderRadius: 100,
   },
   headerName: {
