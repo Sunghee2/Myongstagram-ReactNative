@@ -7,7 +7,7 @@ module.exports = function(app) {
   router.use(app.oauth.authenticate());
 
   router.get('/', asyncError(async (req, res) => {
-    const posts = await db.Post.findAll();
+    const posts = await db.Post.findAll({ include: { model: db.User }});
     res.json(posts);
   }));
 

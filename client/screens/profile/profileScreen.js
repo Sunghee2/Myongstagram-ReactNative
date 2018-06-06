@@ -33,7 +33,7 @@ const ProfileTabStack = createStackNavigator (
               </View>
               <View style={styles.headerRightBottom}>
                 <TouchableOpacity style={styles.button, {flex: 4, backgroundColor: 'green'}}>
-                  <Text style={{fontSize: 12}}>프로필 수정</Text>
+                  <Text style={{fontSize: 12, textAlign: 'center'}}>프로필 수정</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button, {flex: 1, backgroundColor: 'yellow'}}>
                   <Ionicons name='ios-settings' size={20}/>
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: 'lightgray',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });

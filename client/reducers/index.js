@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-function users(state = [], action) {
+function posts(state = [], action) {
   switch (action.type) {
-    case 'FETCHED_USERS':
+    case 'FETCHED_POSTS':
       return action.payload;
     default:
       return state;
@@ -10,7 +10,7 @@ function users(state = [], action) {
 }
 
 const rootReducer = combineReducers({
-  users
+  posts
 });
 
 export default rootReducer;

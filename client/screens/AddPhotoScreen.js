@@ -106,7 +106,7 @@ export default connect(null, { postNew } )(AddPhotoScreen);
 
 const AddPhotoStack = createStackNavigator (
   {
-    Feed: {
+    AddPhoto: {
       screen: AddPhotoScreen,
       navigationOptions: ({ navigation }) => ({
         header:
@@ -127,7 +127,7 @@ const AddPhotoStack = createStackNavigator (
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: 'red',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -135,14 +135,16 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   imageContainer: {
-    flex: 3
+    flex: 3,
+    backgroundColor: 'green'
   },
   image: {
     width: 200, 
     height: 200
   },
   inputContainer: {
-    flex: 2
+    flex: 2,
+    backgroundColor: 'yellow'
   },
   input: {
     width: '100%',

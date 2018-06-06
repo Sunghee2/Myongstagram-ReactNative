@@ -1,17 +1,18 @@
 import React from 'react';
-import { createBottomTabNavigator } from 'react-navigation'; 
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'; 
 import { Ionicons } from "@expo/vector-icons";
 
 import SearchScreen from '../screens/searchScreen';
 import AddPhotoScreen from '../screens/addPhotoScreen';
 import NotificationScreen from '../screens/notificationScreen';
-import feedScreen from '../screens/feedScreen';
+import FeedScreen from '../screens/feedScreen';
 import profileScreen from '../screens/profile/profileScreen';
 
+const FeedStack = createStackNavigator ({ Feed: { screen : FeedScreen } });
 
 export default TabNavigation = createBottomTabNavigator (
   {
-    Home: feedScreen,
+    Home: FeedStack,
     Search: SearchScreen,
     AddPhoto: AddPhotoScreen,
     Notification: NotificationScreen,

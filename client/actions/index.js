@@ -66,6 +66,31 @@ export function signin(email, password) {
   };
 }
 
+export function signout() {
+  console.log("SIGNOUT!!");
+  return async dispatch => {
+    console.log("DELETE authorization header!");
+    delete axios.defaults.headers.common['Authorization'];
+    await AsyncStorage.clear();
+    NavigationService.navigate('Login');
+  };
+}
+
+export function fetchPosts() {
+  return async dispatch => {
+    axios.get(`${Config.server}/posts`).then(response => {
+      dispatch({ type: 'FETCHED_POSTS', payload: response.data});
+    }).catch(err => {
+      console.log(err.response);
+      if (err.response.status == 401) {
+        dispatch(signout());
+      } else {
+        alert('Network Error');
+      }
+    })
+  }
+}
+
 export function postNew(image, content) {
   return async dispatch => {
     try {
@@ -73,8 +98,9 @@ export function postNew(image, content) {
         qs.stringify({
           image: image,
           content: content
-        }));   
-      console.log(response);   
+        }));
+      alert('새 글을 등록하였습니다.');   
+      NavigationService.navigate('Home');
     } catch (err) {
       console.log(err);
     }
