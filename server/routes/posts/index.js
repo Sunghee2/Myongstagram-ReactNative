@@ -40,5 +40,15 @@ module.exports = function(app) {
     })
   }))
 
+  router.delete('/:id', asyncError(async (req, res, next) => {
+    db.Post.destroy({
+      where: { id: req.params.id }
+    }).then( result => {
+      return res.json({code: 200, message: '성공적으로 삭제하였습니다.'});
+    }).catch( error => {
+      next(error);
+    })
+  }))
+
   return router;
 }

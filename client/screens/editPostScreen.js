@@ -7,51 +7,40 @@ import {
   Button,
   ActivityIndicator
 } from 'react-native';
-import { ImagePicker } from 'expo';
 import { TextInput } from 'react-native-gesture-handler';
-import { connect } from 'react-redux';
 import * as firebase from 'firebase';
-import uuid from 'uuid';
-import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
-import { createStackNavigator } from 'react-navigation';
-
-
 
 import { postNew } from '../actions';
 import { firebaseConfig } from '../config';
 
-firebase.initializeApp(firebaseConfig);
 
-class AddPhotoScreen extends React.Component {
+export default class EditPostScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     header:
       <View style={{flexDirection: 'row', justifyContent: 'center'}}>
         <View>
-          <Text style={{ textAlign: 'center'}}>새 게시물</Text>
+          <Text style={{ textAlign: 'center'}}>게시물 수정</Text>
         </View>
       </View>
   })
 
   constructor(props) {
     super(props);
+    console.log(this.props.navigation.state.params.post);
     this.state = {
-      image: null,
-      content: '',
-      uploading: false
+      content: this.props.navigation.state.params.post.content || '',
+      image: this.props.navigation.state.params.post.image
     };
   }
 
-  componentWillMount() {
-    this._pickImage();
-  }
-
   render() {
-    let { image } = this.state;
+    console.log("here??")
+    console.log(this.state.content);
+    console.log(this.state.image);
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          {image &&
-            <Image source={{ uri: image }} style={styles.image} />}
+          <Image source={{ uri: this.state.image }} style={styles.image} />}
         </View>
         <View style={styles.inputContainer}>
           <TextInput
@@ -66,7 +55,6 @@ class AddPhotoScreen extends React.Component {
         </View>
         <View style={styles.buttonContainer}>
           <Button
-            // style={styles.button}
             onPress={() => this.props.postNew(this.state.image, this.state.content)}
             title="공유"
           />
@@ -74,46 +62,7 @@ class AddPhotoScreen extends React.Component {
       </View>
     );
   }
-
-  _pickImage = async () => {
-    let pickerResult = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [3, 3.5],
-    });
-
-    this._handleImagePicked(pickerResult);
-  };
-
-  _handleImagePicked = async pickerResult => {
-    try {
-      this.setState({ uploading: true });
-
-      if (!pickerResult.cancelled) {
-        uploadUrl = await uploadImageAsync(pickerResult.uri);
-        this.setState({ image: uploadUrl });
-      }
-    } catch (e) {
-      console.log(e);
-      alert('Upload failed, sorry :(');
-    } finally {
-      this.setState({ uploading: false });
-    }
-  };
 }
-   
-async function uploadImageAsync(uri) {
-  const response = await fetch(uri);
-  const blob = await response.blob();
-  const ref = firebase
-    .storage()
-    .ref('post_images')
-    .child(uuid.v4());
-
-  var snapshot = await ref.put(blob);
-  return ref.getDownloadURL()
-}
-
-export default connect(null, { postNew } )(AddPhotoScreen);
 
 const styles = StyleSheet.create({
   container: {

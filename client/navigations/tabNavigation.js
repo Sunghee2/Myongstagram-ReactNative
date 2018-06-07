@@ -7,16 +7,22 @@ import AddPhotoScreen from '../screens/addPhotoScreen';
 import NotificationScreen from '../screens/notificationScreen';
 import FeedScreen from '../screens/feedScreen';
 import profileScreen from '../screens/profile/profileScreen';
+// import EditPostScreen from '../screens/editPostScreen';
+
 
 const FeedStack = createStackNavigator ({ Feed: { screen : FeedScreen } });
+const AddPhotoStack = createStackNavigator ({ AddPhoto: { screen : AddPhotoScreen } });
+// const EditPostStack = createStackNavigator ({ EditPost: { screen : EditPostScreen } });
+
 
 export default TabNavigation = createBottomTabNavigator (
   {
     Home: FeedStack,
     Search: SearchScreen,
-    AddPhoto: AddPhotoScreen,
+    AddPhoto: AddPhotoStack,
     Notification: NotificationScreen,
-    Profile: profileScreen
+    Profile: profileScreen,
+    // EditPost: EditPostStack
   },
   {
     navigationOptions: ({ navigation }) => ({

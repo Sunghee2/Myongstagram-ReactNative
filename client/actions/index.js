@@ -79,7 +79,7 @@ export function signout() {
 
 export function fetchPosts() {
   return async dispatch => {
-    axios.get(`${Config.server}/posts`).then(response => {
+    axios.get(`${Config.server}/api/posts`).then(response => {
       dispatch({ type: 'FETCHED_POSTS', payload: response.data});
     }).catch(err => {
       console.log(err.response);
@@ -95,13 +95,23 @@ export function fetchPosts() {
 export function postNew(image, content) {
   return async dispatch => {
     try {
-      const response = await axios.post(`${Config.server}/posts/new`,
+      const response = await axios.post(`${Config.server}/api/posts/new`,
         qs.stringify({
           image: image,
           content: content
         }));
       alert('새 글을 등록하였습니다.');   
       NavigationService.navigate('Home');
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
+
+export function editPost(content) {
+  return async dispatch => {
+    try {
+
     } catch (err) {
       console.log(err);
     }

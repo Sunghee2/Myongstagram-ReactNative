@@ -9,9 +9,34 @@ import {
 } from 'react-native';
 import { MaterialCommunityIcons, EvilIcons, Ionicons } from "@expo/vector-icons";
 import moment from 'moment';
+import Menu, { MenuItem } from 'react-native-material-menu';
+import NavigationService from '../navigation_service';
 
 
 class Card extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  _menu = null;
+
+  setMenuRef = ref => {
+    this._menu = ref;
+  }
+
+  hideMenu = () => {
+    this._menu.hide();
+  };
+
+  showMenu = () => {
+    this._menu.show();
+  };
+
+  onPressEdit = () => {
+    console.log("send: "+ this.props.item);
+    NavigationService.navigate('EditPost', { post: this.props.item });
+  };
+
   renderHeader(name, profileImage) {
     if (profileImage) {
       profileImage = { url: profileImage }
@@ -23,9 +48,15 @@ class Card extends Component {
           <Text style={styles.headerName}>{name}</Text>
         </View>
         <View style={styles.headerRight}>
-          <TouchableOpacity onPress={}>
-            <MaterialCommunityIcons style={styles.headerIcon} name='dots-horizontal' size={20} />
-          </TouchableOpacity>
+          <Menu
+            ref={this.setMenuRef}
+            button={
+              <MaterialCommunityIcons style={styles.headerIcon} name='dots-horizontal' size={20} onPress={this.showMenu}/>
+            }
+          >
+            <MenuItem onPress={this.onPressEdit}>수정</MenuItem>
+            <MenuItem>삭제</MenuItem>
+          </Menu>
         </View>
       </View>
     )
@@ -37,7 +68,7 @@ class Card extends Component {
       <Image 
         style={{height: 200, width: null}}
         // style={{width: '100%', height: '100%'}}
-        source={require('../image/test.png')}
+        source={{url: image}}
         // resizeMode='contain'
       />
     );
@@ -94,6 +125,20 @@ class Card extends Component {
         {this.renderLike()}
         {this.renderBody(this.props.item.content)}
         {this.renderComment(this.props.item.createdAt)}
+        {/* <View>
+          <Menu
+            ref={this.setMenuRef}
+            button={<Text onPress={this.showMenu}>Show menu</Text>}
+          >
+            <MenuItem onPress={this.hideMenu}>Menu item 1</MenuItem>
+            <MenuItem onPress={this.hideMenu}>Menu item 2</MenuItem>
+            <MenuItem onPress={this.hideMenu} disabled>
+              Menu item 3
+            </MenuItem>
+            <MenuDivider />
+            <MenuItem onPress={this.hideMenu}>Menu item 4</MenuItem>
+          </Menu>
+        </View> */}
       </View> 
     );
   }

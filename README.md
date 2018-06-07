@@ -157,3 +157,8 @@ table 만들때 띄어쓰기 절대 x
 > 피드에 사진이 안들어감.....
 
 > stack 정리해야됨.
+
+##### 18-06-07
+- [x] post routes 정리
+- [x] editPostScreen 추가
+- [x] menu 추가 

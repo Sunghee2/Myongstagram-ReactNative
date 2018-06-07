@@ -2,20 +2,24 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
 import LoginScreen from '../screens/loginScreen';
-import SigninNavigation from './signinNavigation';
 import TabNavigation from './tabNavigation';
+import IdScreen from '../screens/signup/idScreen';
+import PasswordScreen from '../screens/signup/passwordScreen';
 
 
 export default RootNavigation = createStackNavigator({
   Login: {
     screen: LoginScreen,
   },
-  Signin: {
-    screen: SigninNavigation,
+  CheckId: {
+    screen: IdScreen
+  },
+  CheckPw: {
+    screen: PasswordScreen
   },
   Home: {
     screen: TabNavigation,
-  }
+  },
 },
   {
     headerMode: 'none',
