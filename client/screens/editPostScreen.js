@@ -40,7 +40,7 @@ export default class EditPostScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image source={{ uri: this.state.image }} style={styles.image} />}
+          <Image source={{ uri: this.state.image }} style={styles.image} />
         </View>
         <View style={styles.inputContainer}>
           <TextInput
@@ -54,10 +54,7 @@ export default class EditPostScreen extends React.Component {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button
-            onPress={() => this.props.postNew(this.state.image, this.state.content)}
-            title="공유"
-          />
+          <Button title="공유"/>
         </View>
       </View>
     );

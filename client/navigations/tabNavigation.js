@@ -7,10 +7,11 @@ import AddPhotoScreen from '../screens/addPhotoScreen';
 import NotificationScreen from '../screens/notificationScreen';
 import FeedScreen from '../screens/feedScreen';
 import profileScreen from '../screens/profile/profileScreen';
+import EditPostScreen from '../screens/editPostScreen';
 // import EditPostScreen from '../screens/editPostScreen';
 
 
-const FeedStack = createStackNavigator ({ Feed: { screen : FeedScreen } });
+const FeedStack = createStackNavigator ({ Feed: { screen : FeedScreen }, EditPost: {screen: EditPostScreen} });
 const AddPhotoStack = createStackNavigator ({ AddPhoto: { screen : AddPhotoScreen } });
 // const EditPostStack = createStackNavigator ({ EditPost: { screen : EditPostScreen } });
 
