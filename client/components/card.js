@@ -5,15 +5,19 @@ import {
   Image,
   StyleSheet,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 import { MaterialCommunityIcons, EvilIcons, Ionicons } from "@expo/vector-icons";
 import moment from 'moment';
 import Menu, { MenuItem } from 'react-native-material-menu';
 import NavigationService from '../navigation_service';
+import { connect } from 'react-redux';
+
+import { deletePost } from '../actions';
 
 
-class Card extends Component {
+class Card extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -33,9 +37,22 @@ class Card extends Component {
   };
 
   onPressEdit = () => {
-    console.log("send: "+ this.props.item);
     NavigationService.navigate('EditPost', { post: this.props.item });
   };
+
+  onPressDelete = () => {
+    Alert.alert(
+      '이 게시물을 삭제하시겠습니까?',
+      '',
+      [
+        {text: 'Cancel', style: 'cancel'},
+        {text: 'Delete', onPress: () => this.props.deletePost(this.props.item.key)},
+      ],
+      { 
+        cancelable: false
+      }
+    )
+  }
 
   renderHeader(name, profileImage) {
     if (profileImage) {
@@ -55,7 +72,7 @@ class Card extends Component {
             }
           >
             <MenuItem onPress={this.onPressEdit}>수정</MenuItem>
-            <MenuItem>삭제</MenuItem>
+            <MenuItem onPress={this.onPressDelete}>삭제</MenuItem>
           </Menu>
         </View>
       </View>
@@ -114,6 +131,7 @@ class Card extends Component {
   }
 
   render() {
+    console.log(this.props.item);
     return (
       <View style={styles.container}>
         <View>
@@ -143,6 +161,9 @@ class Card extends Component {
     );
   }
 }
+
+export default connect(null, { deletePost } )(Card);
+
 
 const styles = StyleSheet.create({
   container: {
@@ -227,5 +248,3 @@ const styles = StyleSheet.create({
     paddingBottom: 5,    
   }
 });
-
-export default Card;

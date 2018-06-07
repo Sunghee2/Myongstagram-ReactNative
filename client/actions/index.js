@@ -1,6 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, ToastAndroid } from 'react-native';
 import { Config } from '../config';
 import NavigationService from '../navigation_service';
 
@@ -16,7 +16,7 @@ export function checkEmail(email) {
       } 
     } catch (err) {
       if (err.response.status == 422) {
-        alert(err.response.data.message);
+        ToastAndroid.show(err.response.data.message, ToastAndroid.SHORT);
       }
     }
   }
@@ -32,12 +32,12 @@ export function signup(email, username, password) {
         password: password
       }));
       if (response.status == 200) {
-        alert(response.data.message);
+        ToastAndroid.show(response.data.message, ToastAndroid.SHORT);
         NavigationService.navigate('Login');
       }
     } catch (err) {
       if (err.response.status == 422) {
-        alert(err.response.data.message);
+        ToastAndroid.show(err.response.data.message, ToastAndroid.SHORT);
       }      
     }
   }
@@ -61,7 +61,7 @@ export function signin(email, password) {
       await AsyncStorage.setItem('accessToken', response.data.access_token);
       NavigationService.navigate('Home');
     } catch (err) {
-      alert('Invalid ID or Password');
+      ToastAndroid.show('Invalid ID or Password', ToastAndroid.SHORT);  
     }
   };
 }
@@ -85,7 +85,7 @@ export function fetchPosts() {
       console.log(err.response);
       if (err.response.status == 401) {
         dispatch(signout());
-      } else {
+      } else {        
         alert('Network Error');
       }
     })
@@ -100,7 +100,7 @@ export function postNew(image, content) {
           image: image,
           content: content
         }));
-      alert('새 글을 등록하였습니다.');   
+      ToastAndroid.show('새 글을 등록하였습니다.', ToastAndroid.SHORT);  
       NavigationService.navigate('Home');
     } catch (err) {
       console.log(err);
@@ -108,10 +108,27 @@ export function postNew(image, content) {
   }
 }
 
-export function editPost(content) {
+export function editPost(id, content) {
   return async dispatch => {
     try {
+      const response = await axios.post(`${Config.server}/api/posts/${id}`,
+        qs.stringify({
+          content: content
+        }))
+      ToastAndroid.show('성공적으로 수정되었습니다!', ToastAndroid.SHORT);
+      NavigationService.navigate('Feed');  
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
 
+export function deletePost(id) {
+  return async dispatch => {
+    try {
+      const response = await axios.delete(`${Config.server}/api/posts/${id}`);
+      ToastAndroid.show('성공적으로 삭제되었습니다!', ToastAndroid.SHORT);
+      NavigationService.navigate('Feed');  
     } catch (err) {
       console.log(err);
     }

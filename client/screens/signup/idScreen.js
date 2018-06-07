@@ -18,7 +18,7 @@ class idScreen extends React.Component {
     var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
     if (!regExp.test(email)) {
-      alert('이메일 형식이 올바르지 않습니다.');
+      ToastAndroid.show('이메일 형식이 올바르지 않습니다.', ToastAndroid.SHORT);  
     } else {
       this.props.checkEmail(email);
     }

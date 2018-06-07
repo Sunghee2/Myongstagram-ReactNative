@@ -7,7 +7,7 @@ module.exports = function(app) {
   router.use(app.oauth.authenticate());
 
   router.get('/', asyncError(async (req, res) => {
-    const posts = await db.Post.findAll({ include: { model: db.User }});
+    const posts = await db.Post.findAll({ order: [ ['createdAt', 'DESC'] ],include: { model: db.User }});
     res.json(posts);
   }));
 
@@ -16,7 +16,7 @@ module.exports = function(app) {
       userId: res.locals.oauth.token.user.id,
       image: req.body.image,
       context: req.body.context
-    }).then( user => {
+    }).then( post => {
       return res.json({code: 200});
     }).catch( error => {
       console.log(error);
@@ -28,12 +28,10 @@ module.exports = function(app) {
     let updateValues = {
       content: req.body.content
     };
-    console.log("content" + req.body.content);
     db.Post.update(
       updateValues, 
       { where: { id: req.params.id }}
-    ).then( user => {
-      console.log(user);
+    ).then( post => {
       return res.json({code: 200, message: '성공적으로 수정하였습니다.'});
     }).catch( error => {
       next(error);

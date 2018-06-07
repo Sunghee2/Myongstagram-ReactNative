@@ -94,7 +94,7 @@ class AddPhotoScreen extends React.Component {
       }
     } catch (e) {
       console.log(e);
-      alert('Upload failed, sorry :(');
+      ToastAndroid.show('Upload failed', ToastAndroid.SHORT);  
     } finally {
       this.setState({ uploading: false });
     }

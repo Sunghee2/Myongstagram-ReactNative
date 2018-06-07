@@ -162,3 +162,4 @@ table 만들때 띄어쓰기 절대 x
 - [x] post routes 정리
 - [x] editPostScreen 추가
 - [x] menu 추가 
+- [x] post delete 추가

@@ -8,15 +8,14 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import * as firebase from 'firebase';
+import { connect } from 'react-redux';
 
-import { postNew } from '../actions';
-import { firebaseConfig } from '../config';
+import { editPost } from '../actions';
 
 
-export default class EditPostScreen extends React.Component {
+class EditPostScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    header:
+    headerTitle:
       <View style={{flexDirection: 'row', justifyContent: 'center'}}>
         <View>
           <Text style={{ textAlign: 'center'}}>게시물 수정</Text>
@@ -28,19 +27,15 @@ export default class EditPostScreen extends React.Component {
     super(props);
     console.log(this.props.navigation.state.params.post);
     this.state = {
-      content: this.props.navigation.state.params.post.content || '',
-      image: this.props.navigation.state.params.post.image
+      content: this.props.navigation.state.params.post.content || ''
     };
   }
 
   render() {
-    console.log("here??")
-    console.log(this.state.content);
-    console.log(this.state.image);
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image source={{ uri: this.state.image }} style={styles.image} />
+          <Image source={{ uri: this.props.navigation.state.params.post.image }} style={styles.image} />
         </View>
         <View style={styles.inputContainer}>
           <TextInput
@@ -54,12 +49,14 @@ export default class EditPostScreen extends React.Component {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button title="공유"/>
+          <Button title="공유" onPress={() => this.props.editPost(this.props.navigation.state.params.post.key, this.state.content)}/>
         </View>
       </View>
     );
   }
 }
+
+export default connect(null, { editPost } )(EditPostScreen);
 
 const styles = StyleSheet.create({
   container: {
