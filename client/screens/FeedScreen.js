@@ -16,6 +16,10 @@ import Card from '../components/card';
 
 
 class FeedScreen extends React.Component {
+  state = {
+    posts: this.props.posts
+  }
+
   static navigationOptions = ({ navigation }) => ({
     header:
       <View style={styles.headerContainer}>
@@ -67,8 +71,8 @@ class FeedScreen extends React.Component {
 
   render() {
     var data = [];
-    if (this.props.posts) {
-      this.props.posts.map(post => {
+    if (this.state.posts) {
+      this.state.posts.map(post => {
         data.push({ key: post.id, username: post.User.username, profileImage: post.User.profileImage, image: post.image, content: post.content, createdAt: post.createdAt});
       })
     }

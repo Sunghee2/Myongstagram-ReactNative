@@ -8,6 +8,7 @@ import NotificationScreen from '../screens/notificationScreen';
 import FeedScreen from '../screens/feedScreen';
 import profileScreen from '../screens/profile/profileScreen';
 import EditPostScreen from '../screens/editPostScreen';
+import testScreen from '../screens/profile/testScreen';
 // import EditPostScreen from '../screens/editPostScreen';
 
 
@@ -22,7 +23,8 @@ export default TabNavigation = createBottomTabNavigator (
     Search: SearchScreen,
     AddPhoto: AddPhotoStack,
     Notification: NotificationScreen,
-    Profile: profileScreen,
+    // Profile: profileScreen,
+    Profile: testScreen
     // EditPost: EditPostStack
   },
   {

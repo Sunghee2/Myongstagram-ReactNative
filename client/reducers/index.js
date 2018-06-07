@@ -9,8 +9,18 @@ function posts(state = [], action) {
   }
 }
 
+function user(state = [], action) {
+  switch (action.type) {
+    case 'FETCHED_USER':
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
-  posts
+  posts,
+  user
 });
 
 export default rootReducer;
