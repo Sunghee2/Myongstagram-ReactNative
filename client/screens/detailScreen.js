@@ -32,7 +32,7 @@ export default class DetailScreen extends React.Component {
           data={[{
             key: post.id, 
             username: user.username, 
-            profileImage: user.username, 
+            profileImage: user.profileImage, 
             image: post.image, 
             content: post.content, 
             createdAt: post.createdAt

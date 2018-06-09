@@ -75,7 +75,7 @@ class FeedScreen extends React.Component {
 
     if (this.props.posts) {
       this.props.posts.map(post => {
-        data.push({ key: post.id, username: post.User.username, profileImage: post.User.profileImage, image: post.image, content: post.content, createdAt: post.createdAt});
+        data.push({ key: post.id.toString(), username: post.User.username, profileImage: post.User.profileImage, image: post.image, content: post.content, createdAt: post.createdAt});
       })
     } else {
       return (

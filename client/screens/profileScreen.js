@@ -71,7 +71,7 @@ class ProfileScreen extends React.Component {
   renderImage() {
     return this.props.user.posts.map((post, index) => {
       return (
-        <TouchableOpacity key={index} onPress={() => this.imageClicked(post)}>
+        <TouchableOpacity key={index.toString()} onPress={() => this.imageClicked(post)}>
           <View style={[
             { width: width / 3 }, 
             { height: width / 3}, 
@@ -102,7 +102,7 @@ class ProfileScreen extends React.Component {
       var data = [];
       if (this.props.user.posts) {
         this.props.user.posts.map(post => {
-          data.push({ key: post.id, username: this.props.user.user.username, profileImage: this.props.user.user.username, image: post.image, content: post.content, createdAt: post.createdAt});
+          data.push({ key: post.id.toString(), username: this.props.user.user.username, profileImage: this.props.user.user.profileImage, image: post.image, content: post.content, createdAt: post.createdAt});
         })
       }
       return (
