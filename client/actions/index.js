@@ -59,6 +59,7 @@ export function signin(email, password) {
 
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
       await AsyncStorage.setItem('accessToken', response.data.access_token);
+      console.log(response);
       NavigationService.navigate('Home');
     } catch (err) {
       ToastAndroid.show('Invalid ID or Password', ToastAndroid.SHORT);  

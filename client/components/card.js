@@ -65,6 +65,7 @@ class Card extends React.Component {
           <Text style={styles.headerName}>{name}</Text>
         </View>
         <View style={styles.headerRight}>
+          
           <Menu
             ref={this.setMenuRef}
             button={
