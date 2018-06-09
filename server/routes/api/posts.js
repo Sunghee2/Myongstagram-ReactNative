@@ -24,6 +24,11 @@ module.exports = function(app) {
     });
   }));
 
+  router.get('/me', asyncError(async (req, res, next) => {
+    const posts = await db.Post.findAll({ where: { userId : res.locals.oauth.token.user.id }, order: [ ['createdAt', 'DESC'] ]});
+    res.json(posts);
+  }));
+
   router.post('/:id', asyncError(async (req, res, next) => {
     let updateValues = {
       content: req.body.content

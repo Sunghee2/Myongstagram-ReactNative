@@ -32,6 +32,7 @@ class EditPostScreen extends React.Component {
   }
 
   render() {
+    console.log("edit: " + this.props.navigation.state.params.post.image);
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>

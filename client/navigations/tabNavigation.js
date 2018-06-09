@@ -9,11 +9,13 @@ import FeedScreen from '../screens/feedScreen';
 import profileScreen from '../screens/profile/profileScreen';
 import EditPostScreen from '../screens/editPostScreen';
 import testScreen from '../screens/profile/testScreen';
+import DetailScreen from '../screens/detailScreen';
 // import EditPostScreen from '../screens/editPostScreen';
 
 
 const FeedStack = createStackNavigator ({ Feed: { screen : FeedScreen }, EditPost: {screen: EditPostScreen} });
 const AddPhotoStack = createStackNavigator ({ AddPhoto: { screen : AddPhotoScreen } });
+const ProfileStack = createStackNavigator ({ Profile: { screen: testScreen }, Detail: { screen: DetailScreen}});
 // const EditPostStack = createStackNavigator ({ EditPost: { screen : EditPostScreen } });
 
 
@@ -24,7 +26,7 @@ export default TabNavigation = createBottomTabNavigator (
     AddPhoto: AddPhotoStack,
     Notification: NotificationScreen,
     // Profile: profileScreen,
-    Profile: testScreen
+    Profile: ProfileStack
     // EditPost: EditPostStack
   },
   {

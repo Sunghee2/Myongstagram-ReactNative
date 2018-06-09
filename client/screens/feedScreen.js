@@ -4,7 +4,8 @@ import {
   Text,
   View, 
   Image,
-  Button
+  Button,
+  ActivityIndicator
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { TextInput, FlatList, ScrollView } from 'react-native-gesture-handler';
@@ -71,13 +72,18 @@ class FeedScreen extends React.Component {
 
   render() {
     var data = [];
-    if (this.state.posts) {
-      this.state.posts.map(post => {
+
+    if (this.props.posts) {
+      this.props.posts.map(post => {
         data.push({ key: post.id, username: post.User.username, profileImage: post.User.profileImage, image: post.image, content: post.content, createdAt: post.createdAt});
       })
+    } else {
+      return (
+        <View style={{flex: 1, justifyContent: 'center'}}>
+          <ActivityIndicator size="large" color='blue'/>
+        </View>
+      )
     }
-    console.log(data);
-
     return (
       <View>
         <View>

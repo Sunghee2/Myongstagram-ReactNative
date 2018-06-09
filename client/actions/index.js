@@ -138,7 +138,23 @@ export function deletePost(id) {
 export function getUser() {
   return async dispatch => {
     axios.get(`${Config.server}/api/users/me`).then(response => {
+      console.log("here~");
       dispatch({ type: 'FETCHED_USER', payload: response.data});
+    }).catch(err => {
+      console.log(err.response);
+      if (err.response.status == 401) {
+        dispatch(signout());
+      } else {        
+        alert('Network Error');
+      }
+    })
+  }
+}
+
+export function getMyPost() {
+  return async dispatch => {
+    axios.get(`${Config.server}/api/posts/me`).then(response => {
+      dispatch({ type: 'FETCHED_MYPOST', payload: response.data});
     }).catch(err => {
       console.log(err.response);
       if (err.response.status == 401) {

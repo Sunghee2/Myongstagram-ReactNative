@@ -163,3 +163,13 @@ table 만들때 띄어쓰기 절대 x
 - [x] editPostScreen 추가
 - [x] menu 추가 
 - [x] post delete 추가
+
+
+##### 18-06-09
+- [x] 이미지 안나오는 것 고침
+- [x] 디테일페이지 완성
+- [] 프로필 username
+- [x] feed card 안나왔던 것 고침
+
+> 이미지 안나오는게 uri... %2f로 되어있었음.
+> 프로필 username header 오류

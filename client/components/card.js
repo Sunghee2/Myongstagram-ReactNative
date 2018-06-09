@@ -83,9 +83,9 @@ class Card extends React.Component {
     console.log("url: " + image);
     return (
       <Image 
-        style={{height: 200, width: null}}
-        // style={{width: '100%', height: '100%'}}
-        source={{url: image}}
+        // style={{height: 200, width: 200}}
+        style={{width: '100%', height: '100%'}}
+        source={{uri: image}}
         // resizeMode='contain'
       />
     );
@@ -131,7 +131,7 @@ class Card extends React.Component {
   }
 
   render() {
-    console.log(this.props.item);
+    console.log("card들어옴");
     return (
       <View style={styles.container}>
         <View>

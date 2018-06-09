@@ -12,15 +12,17 @@ function posts(state = [], action) {
 function user(state = [], action) {
   switch (action.type) {
     case 'FETCHED_USER':
-      return action.payload;
+      return {...state, 'user': action.payload};
+    case 'FETCHED_MYPOST':
+      return {...state, 'posts': action.payload};
     default:
       return state;
   }
 }
 
 const rootReducer = combineReducers({
-  posts,
-  user
+  posts: posts,
+  user: user
 });
 
 export default rootReducer;
