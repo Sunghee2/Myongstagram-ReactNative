@@ -55,13 +55,10 @@ class Card extends React.Component {
   }
 
   renderHeader(name, profileImage) {
-    if (profileImage) {
-      profileImage = { url: profileImage }
-    }
     return (
       <View style={styles.header}>
         <View style={styles.headerLeft}>
-          <Image source={ profileImage || require('../image/profile.jpg')} style={styles.headerImage} />
+          <Image source={ profileImage? { uri: profileImage } : require('../image/profile.jpg')} style={styles.headerImage} />
           <Text style={styles.headerName}>{name}</Text>
         </View>
         <View style={styles.headerRight}>
@@ -81,7 +78,6 @@ class Card extends React.Component {
   }
 
   renderImage(image) {
-    console.log("url: " + image);
     return (
       <Image 
         // style={{height: 200, width: 200}}

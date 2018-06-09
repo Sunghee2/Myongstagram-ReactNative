@@ -51,13 +51,12 @@ module.exports = function(app) {
     let updateValues = {
       username: req.body.username,
       name: req.body.name,
-      profileImage: req.body.profileImage
+      profileImage: req.body.image
     };
 
     db.User.update(
       updateValues, 
-      {where: {username: req.body.username}}
-      // { where: { id: res.locals.oauth.token.user.id }}
+      {where: {id: res.locals.oauth.token.user.id}}
     ).then( user => {
       return res.json({code: 200, message: '성공적으로 수정하였습니다.'});
     }).catch( error => {

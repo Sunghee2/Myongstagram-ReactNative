@@ -173,6 +173,7 @@ table 만들때 띄어쓰기 절대 x
 - [x] 프로필 정리
 - [x] user, account table 나눔
 - [x] key string
+- [x] 유저 정보 수정 추가
 
 > 이미지 안나오는게 uri... %2f로 되어있었음.
 > 프로필 username header 오류

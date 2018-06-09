@@ -67,10 +67,25 @@ export function signin(email, password) {
   };
 }
 
-export function signout() {
-  console.log("SIGNOUT!!");
+export function editUser(username, name, image) {
   return async dispatch => {
-    console.log("DELETE authorization header!");
+    try {
+      const response = await axios.post(`${Config.server}/api/users/edit`,
+        qs.stringify({
+          username: username,
+          name: name,
+          image: image
+        }))
+      ToastAndroid.show('성공적으로 수정되었습니다!', ToastAndroid.SHORT);
+      NavigationService.navigate('Profile');  
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
+
+export function signout() {
+  return async dispatch => {
     delete axios.defaults.headers.common['Authorization'];
     await AsyncStorage.clear();
     NavigationService.navigate('Login');

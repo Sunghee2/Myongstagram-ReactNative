@@ -9,12 +9,12 @@ import FeedScreen from '../screens/feedScreen';
 import EditPostScreen from '../screens/editPostScreen';
 import profileScreen from '../screens/profileScreen';
 import DetailScreen from '../screens/detailScreen';
-// import EditPostScreen from '../screens/editPostScreen';
+import EditUserScreen from '../screens/editUserScreen';
 
 
 const FeedStack = createStackNavigator ({ Feed: { screen : FeedScreen }, EditPost: {screen: EditPostScreen} });
 const AddPhotoStack = createStackNavigator ({ AddPhoto: { screen : AddPhotoScreen } });
-const ProfileStack = createStackNavigator ({ Profile: { screen: profileScreen }, Detail: { screen: DetailScreen}});
+const ProfileStack = createStackNavigator ({ Profile: { screen: profileScreen }, Detail: { screen: DetailScreen }, EditUser: { screen: EditUserScreen }});
 // const EditPostStack = createStackNavigator ({ EditPost: { screen : EditPostScreen } });
 
 

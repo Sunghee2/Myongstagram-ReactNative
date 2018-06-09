@@ -30,7 +30,7 @@ export default class DetailScreen extends React.Component {
       <View>
         <FlatList
           data={[{
-            key: post.id, 
+            key: post.id.toString(), 
             username: user.username, 
             profileImage: user.profileImage, 
             image: post.image, 

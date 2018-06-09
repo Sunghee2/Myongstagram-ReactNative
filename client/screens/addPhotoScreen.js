@@ -13,9 +13,6 @@ import { connect } from 'react-redux';
 import * as firebase from 'firebase';
 import uuid from 'uuid';
 import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
-import { createStackNavigator } from 'react-navigation';
-
-
 
 import { postNew } from '../actions';
 import { firebaseConfig } from '../config';
@@ -39,6 +36,9 @@ class AddPhotoScreen extends React.Component {
       content: '',
       uploading: false
     };
+    console.ignoredYellowBox = [
+      'Setting a timer'
+    ];
   }
 
   componentWillMount() {

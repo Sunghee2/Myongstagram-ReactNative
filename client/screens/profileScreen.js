@@ -9,13 +9,12 @@ import {
     ActivityIndicator,
     TouchableOpacity 
 } from "react-native";
-import { Container, Content, Icon, Header, Left, Body, Right, Segment, Button } from 'native-base'
+import { Button } from 'native-base'
 var { height, width } = Dimensions.get('window');
 import { Ionicons, Foundation } from "@expo/vector-icons";
 import { connect } from 'react-redux';
 
 import { getUser, getMyPost } from '../actions';
-
 import Card from '../components/card';
 
 class ProfileScreen extends React.Component {
@@ -161,7 +160,7 @@ class ProfileScreen extends React.Component {
           <View style={styles.header}>
             <View style={styles.headerLeft}>
               <Image
-                source={user.profileImage || require('../image/profile.jpg')}
+                source={user.profileImage? { uri: user.profileImage } : require('../image/profile.jpg')}
                 style={styles.profilePhoto}
               />
               <Text style={{ fontSize: 12 }}>{user.username}</Text>
@@ -182,7 +181,9 @@ class ProfileScreen extends React.Component {
                 </View> 
               </View>
               <View style={styles.headerRightBottom}>
-                <TouchableOpacity style={{flex: 7, borderWidth: 1, borderRadius: 5, borderColor: 'lightgray', justifyContent: 'center', alignItems: 'center', height: '100%', marginRight: 10}}>
+                <TouchableOpacity 
+                  onPress={()=>this.props.navigation.navigate('EditUser', { user: user })}
+                  style={{flex: 7, borderWidth: 1, borderRadius: 5, borderColor: 'lightgray', justifyContent: 'center', alignItems: 'center', height: '100%', marginRight: 10}}>
                   <Text style={{fontSize: 12, textAlign: 'center'}}>프로필 수정</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{flex: 1, borderWidth: 1, borderRadius: 5, borderColor: 'lightgray', justifyContent: 'center', alignItems: 'center', height: '100%'}}>

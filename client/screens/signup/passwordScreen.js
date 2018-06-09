@@ -12,7 +12,7 @@ class passwordScreen extends React.Component {
       email: this.props.navigation.state.params.email,
       username: '',
       password: ''
-    }
+    };
   }
 
   render() {
