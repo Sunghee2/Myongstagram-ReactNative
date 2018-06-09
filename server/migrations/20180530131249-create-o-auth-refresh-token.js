@@ -29,7 +29,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users',
+          model: 'Accounts',
           key: 'id',
           onDelete: 'cascade'
         }

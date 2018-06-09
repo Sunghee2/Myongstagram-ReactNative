@@ -1,50 +1,15 @@
 'use strict';
-const bcrypt = require('bcrypt');
-
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
-    email: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: true
-      }
     },
-    username: DataTypes.STRING,
     name: DataTypes.STRING,
-    profileImage: DataTypes.STRING,
-    password_digest: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
-    },
-    password: {
-      type: DataTypes.VIRTUAL,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
-    }
+    profileImage: DataTypes.STRING
   }, {});
- 
-  User.beforeValidate((user) => {
-    return bcrypt.hash(user.password, 10).then( hash => {
-      user.password_digest = hash;
-    });
-  });
-  
-  User.prototype.validatePassword = function(password) {
-    return bcrypt.compare(password, this.password_digest);
-  };
-
-  User.prototype.toJSON = function() {
-    var values = Object.assign({}, this.get());
-
-    delete values.password;
-    delete values.password_digest;
-    return values;
+  User.associate = function(models) {
+    // associations can be defined here
   };
   return User;
 };

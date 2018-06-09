@@ -6,8 +6,8 @@ var router = express.Router();
 module.exports = function(app) {
   router.post('/', asyncError(async(req, res, next) => {
     const email = req.body.email;
-    const user = await db.User.findOne({where: {email: email}})
-    if (user) {
+    const account = await db.Account.findOne({where: {email: email}})
+    if (account) {
       return res.status(422).json({code: 101, message: '이미 존재하는 이메일입니다.'})
     } else {
       return res.json({code: 200})
@@ -15,17 +15,22 @@ module.exports = function(app) {
   }));
 
   router.post('/new', asyncError(async (req, res, next) => {
-    db.User.create({
+    db.Account.create({
       email: req.body.email,
-      username: req.body.username,
-      name: req.body.username,
       password: req.body.password
     }).then( user => {
-      return res.json({code: 200, message: '회원가입에 성공하셨습니다.'});
+      db.User.create({
+        id: user.dataValues.id,
+        username: req.body.username,
+        name: req.body.username
+      }).then( result => {
+        return res.json({code: 200, message: '회원가입에 성공하셨습니다.'});
+      }).catch( error => {
+        if (error.name == 'SequelizeUniqueConstraintError') {
+          return res.status(422).json({code: 101, message: '사용자이름이 이미 존재합니다.'});
+        }
+      })
     }).catch( error => {
-      if (error.name == 'SequelizeUniqueConstraintError') {
-        return res.status(422).json({code: 101, message: '사용자이름이 이미 존재합니다.'});
-      }
       next(error);
     });
   }));
@@ -51,7 +56,8 @@ module.exports = function(app) {
 
     db.User.update(
       updateValues, 
-      { where: { id: res.locals.oauth.token.user.id }}
+      {where: {username: req.body.username}}
+      // { where: { id: res.locals.oauth.token.user.id }}
     ).then( user => {
       return res.json({code: 200, message: '성공적으로 수정하였습니다.'});
     }).catch( error => {

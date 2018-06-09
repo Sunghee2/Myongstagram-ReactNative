@@ -11,4 +11,4 @@ export const firebaseConfig = {
   projectId: "myongstagram",
   storageBucket: "myongstagram.appspot.com",
   messagingSenderId: "194524925203"
-}
+};

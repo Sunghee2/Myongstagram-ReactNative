@@ -171,6 +171,7 @@ table 만들때 띄어쓰기 절대 x
 - [ ] 프로필 username
 - [x] feed card 안나왔던 것 고침
 - [x] 프로필 정리
+- [x] user, account table 나눔
 
 > 이미지 안나오는게 uri... %2f로 되어있었음.
 > 프로필 username header 오류

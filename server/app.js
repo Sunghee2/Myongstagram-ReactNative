@@ -8,7 +8,6 @@ var OAuthServer = require('express-oauth-server');
 var methodOverride = require('method-override');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -33,7 +32,6 @@ app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
 app.use('/', indexRouter);
 app.use('/admin', require('./routes/admin'));
 app.use('/api', require('./routes/api')(app));
-app.use('/users', app.oauth.authenticate(), usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
