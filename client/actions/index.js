@@ -76,14 +76,15 @@ export async function facebookLogIn() {
   // console.log(token);
 
   if (type === 'success') {
-    // Get the user's name using Facebook's Graph API
     const response = await fetch(`https://graph.facebook.com/me?fields=email,name,picture&access_token=${token}`);
-
     console.log(await response.json());
     Alert.alert(
       'Logged in!',
       `Hi ${(await response.json()).picture}!`,
     );
+  } else {
+    ToastAndroid.show('로그인이 취소되었습니다.', ToastAndroid.SHORT); 
+    NavigationService.navigate('Login'); 
   }
 }
 
@@ -220,7 +221,6 @@ export function getMyPost() {
 export function searchUser(searchValue) {
   return async dispatch => {
     try {
-      console.log("user action: "+searchValue);
       const users = await axios.post(`${Config.server}/api/users/search`,
         qs.stringify({
           searchValue: searchValue
@@ -235,7 +235,6 @@ export function searchUser(searchValue) {
 export function searchPost(searchValue) {
   return async dispatch => {
     try {
-      console.log("post action: "+searchValue);
       const posts = await axios.post(`${Config.server}/api/posts/search`,
         qs.stringify({
           searchValue: searchValue
@@ -245,4 +244,30 @@ export function searchPost(searchValue) {
       console.log(err);
     }
   }
+}
+
+export function addLike(id) {
+  return async dispatch => {
+    axios.get(`${Config.server}/api/posts/like/${id}`).then(response => {
+      dispatch({ type: 'ADD_LIKE', payload: response.data});
+    }).catch(err => {
+      console.log(err.response);
+      if (err.response.status == 401) {
+        dispatch(signout());
+      } else {        
+        alert('Network Error');
+      }
+    })
+  }
+}
+
+export function deleteLike(id) {
+  return async dispatch => {
+    try {
+      const response = await axios.delete(`${Config.server}/api/posts/like/${id}`);
+      dispatch({type: 'DELETE_LIKE', payload: response.data}); 
+    } catch (err) {
+      console.log(err);
+    }
+  } 
 }

@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
-  Alert
+  Alert,
+  AsyncStorage
 } from 'react-native';
 import { MaterialCommunityIcons, EvilIcons, Ionicons } from "@expo/vector-icons";
 import moment from 'moment';
@@ -20,7 +21,19 @@ import { deletePost } from '../actions';
 class Card extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      username: ''
+    }
   }
+
+  componentWillMount() {
+    AsyncStorage.getItem('user')
+      .then( data => {
+        data = JSON.parse(data);
+        this.setState(prevState => ({
+          username: data.username
+      }));
+  })}
 
   _menu = null;
 
@@ -54,15 +67,18 @@ class Card extends React.Component {
     )
   }
 
+
+
   renderHeader(name, profileImage) {
+    console.log(this.state.username+"?? %o"+this.props.item.username);
     return (
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <Image source={ profileImage? { uri: profileImage } : require('../image/profile.jpg')} style={styles.headerImage} />
           <Text style={styles.headerName}>{name}</Text>
         </View>
+        {this.state.username==this.props.item.username? 
         <View style={styles.headerRight}>
-          
           <Menu
             ref={this.setMenuRef}
             button={
@@ -72,7 +88,7 @@ class Card extends React.Component {
             <MenuItem onPress={this.onPressEdit}>수정</MenuItem>
             <MenuItem onPress={this.onPressDelete}>삭제</MenuItem>
           </Menu>
-        </View>
+        </View> : <View></View>}
       </View>
     )
   }

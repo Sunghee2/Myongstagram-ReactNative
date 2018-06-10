@@ -13,9 +13,10 @@ import {
 import { Button } from 'native-base'
 var { height, width } = Dimensions.get('window');
 import { Ionicons, Foundation } from "@expo/vector-icons";
+import Menu, { MenuItem } from 'react-native-material-menu';
 import { connect } from 'react-redux';
 
-import { getUser, getMyPost } from '../actions';
+import { getUser, getMyPost, signout } from '../actions';
 import Card from '../components/card';
 
 class ProfileScreen extends React.Component {
@@ -74,20 +75,23 @@ class ProfileScreen extends React.Component {
           }
         }));
       })
-    // this.props.getUser();
-    // this.props.getMyPost();
-    // const {setParams} = this.props.navigation;
-    // // const {setParams} = this.props.user;
-    // setParams({username: this.props.user.user.username});
   }
 
-  // componentWillReceiveProps() {
-  //   if (this.props.user) {
-  //     const user = this.props.user.user;
-  //     console.log("설정  " + user.username);
-  //     this.props.navigation.setParams({username: user.username});
-  //   }
-  // }
+  
+  _menu = null;
+
+  setMenuRef = ref => {
+    this._menu = ref;
+  }
+
+  hideMenu = () => {
+    this._menu.hide();
+  };
+
+  showMenu = () => {
+    this._menu.show();
+  };
+
 
   tabClicked(tabIndex) {
     this.setState({
@@ -219,7 +223,14 @@ class ProfileScreen extends React.Component {
                   <Text style={{fontSize: 12, textAlign: 'center'}}>프로필 수정</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{flex: 1, borderWidth: 1, borderRadius: 5, borderColor: 'lightgray', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
-                  <Ionicons name='ios-settings' size={20}/>
+                  <Menu
+                    ref={this.setMenuRef}
+                    button={
+                      <Ionicons name='ios-settings' size={20} onPress={this.showMenu}/>
+                    }
+                  >
+                    <MenuItem onPress={this.props.signout}>로그아웃</MenuItem>
+                  </Menu>
                 </TouchableOpacity>
               </View>
             </View>
@@ -239,7 +250,7 @@ function mapStateToProps(state) {
   return { my_post: state.my_post};
 }
 
-export default connect(mapStateToProps, { getUser, getMyPost })(ProfileScreen);
+export default connect(mapStateToProps, { getUser, getMyPost, signout })(ProfileScreen);
 
 const styles = StyleSheet.create({
   Container: {

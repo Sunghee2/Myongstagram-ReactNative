@@ -58,7 +58,7 @@ module.exports = function(app) {
     })
   }))
 
-  router.post('/like/:id', asyncError(async (req, res, next) => {
+  router.get('/like/:id', asyncError(async (req, res, next) => {
     db.Like.create({
       postId: req.params.id,
       userId: res.locals.oauth.token.user.id
