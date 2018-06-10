@@ -56,11 +56,12 @@ export function signin(email, password) {
         }), {
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         });
-
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
       await AsyncStorage.setItem('accessToken', response.data.access_token);
-      console.log(response);
-      NavigationService.navigate('Home');
+      axios.get(`${Config.server}/api/users/me`).then(async user => {
+        await AsyncStorage.setItem('user', JSON.stringify(user.data));
+        NavigationService.navigate('Home');
+      });
     } catch (err) {
       ToastAndroid.show('Invalid ID or Password', ToastAndroid.SHORT);  
     }
@@ -116,6 +117,11 @@ export function postNew(image, content) {
           image: image,
           content: content
         }));
+      await AsyncStorage.getItem('user').then( user => {
+          user = JSON.parse(user);
+          const new_post = { ...response.data, "User": user};
+          dispatch({ type: 'ADD_POST', payload: new_post});
+      });
       ToastAndroid.show('새 글을 등록하였습니다.', ToastAndroid.SHORT);  
       NavigationService.navigate('Home');
     } catch (err) {
@@ -131,6 +137,8 @@ export function editPost(id, content) {
         qs.stringify({
           content: content
         }))
+      console.log(response.data);
+      dispatch({ type: 'EDIT_POST', payload: response.data});
       ToastAndroid.show('성공적으로 수정되었습니다!', ToastAndroid.SHORT);
       NavigationService.navigate('Feed');  
     } catch (err) {
@@ -143,6 +151,7 @@ export function deletePost(id) {
   return async dispatch => {
     try {
       const response = await axios.delete(`${Config.server}/api/posts/${id}`);
+      dispatch({type: 'DELETE_POST', payload: response.data}); 
       ToastAndroid.show('성공적으로 삭제되었습니다!', ToastAndroid.SHORT);
       NavigationService.navigate('Feed');  
     } catch (err) {
@@ -154,7 +163,6 @@ export function deletePost(id) {
 export function getUser() {
   return async dispatch => {
     axios.get(`${Config.server}/api/users/me`).then(response => {
-      console.log("here~");
       dispatch({ type: 'FETCHED_USER', payload: response.data});
     }).catch(err => {
       console.log(err.response);

@@ -15,9 +15,9 @@ module.exports = function(app) {
     db.Post.create({
       userId: res.locals.oauth.token.user.id,
       image: req.body.image,
-      context: req.body.context
+      content: req.body.content
     }).then( post => {
-      return res.json({code: 200});
+      return res.json(post.dataValues);
     }).catch( error => {
       console.log(error);
       next(error);
@@ -33,25 +33,46 @@ module.exports = function(app) {
     let updateValues = {
       content: req.body.content
     };
-    db.Post.update(
+    const post = await db.Post.findOne({ where: { id: req.params.id } });
+    post.update(
       updateValues, 
       { where: { id: req.params.id }}
-    ).then( post => {
-      return res.json({code: 200, message: '성공적으로 수정하였습니다.'});
+    ).then( result => {
+      return res.json(post);
     }).catch( error => {
       next(error);
     })
   }))
 
   router.delete('/:id', asyncError(async (req, res, next) => {
-    db.Post.destroy({
-      where: { id: req.params.id }
-    }).then( result => {
-      return res.json({code: 200, message: '성공적으로 삭제하였습니다.'});
+    const post = await db.Post.findOne({ where: { id: req.params.id }});
+    post.destroy().then( result => {
+      return res.json(post.dataValues);
     }).catch( error => {
       next(error);
     })
   }))
+
+  router.post('/like/:id', asyncError(async (req, res, next) => {
+    db.Like.create({
+      postId: req.params.id,
+      userId: res.locals.oauth.token.user.id
+    }).then( post => {
+      return res.json(post);
+    }).catch( error => {
+      console.log(error);
+      next(error);
+    }); 
+  }));
+
+  router.delete('/like/:id', asyncError(async (req, res, next) => {
+    const like = await db.Like.findOne({ where: { postId: req.params.id, userId: res.locals.oauth.token.user.id}});
+    like.destroy().then( result => {
+      return res.json(like.dataValues);
+    }).catch( error => {
+      next(error);
+    })
+  }));
 
   return router;
 }

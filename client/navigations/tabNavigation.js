@@ -45,6 +45,10 @@ export default TabNavigation = createBottomTabNavigator (
 
         return <Ionicons name={iconName} size={25}/>;
       },
+      // tabBarOnPress: (scene, jumpToIndex) => {
+      //   console.log('onPress:', scene.route);
+      //   jumpToIndex(scene.index);
+      // }
     }),
     tabBarOptions: {
       showLabel: false

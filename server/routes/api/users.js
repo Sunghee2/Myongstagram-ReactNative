@@ -38,7 +38,6 @@ module.exports = function(app) {
   router.use(app.oauth.authenticate());
   router.use('/me', asyncError(async (req, res) => {
     const user = await db.User.findOne({where: { id : res.locals.oauth.token.user.id }})
-    const posts = await db.Post.findAll({ where: { userId: res.locals.oauth.token.user.id }})
     res.json(user);
   }));
 

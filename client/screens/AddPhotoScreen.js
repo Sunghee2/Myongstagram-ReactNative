@@ -20,14 +20,13 @@ import { firebaseConfig } from '../config';
 firebase.initializeApp(firebaseConfig);
 
 class AddPhotoScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
-    header:
-      <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-        <View>
-          <Text style={{ textAlign: 'center'}}>새 게시물</Text>
-        </View>
-      </View>
-  })
+  static navigationOptions = {
+    headerTitle: '새 게시물',
+    headerTitleStyle: { 
+      alignSelf: 'center',
+      textAlign: 'center' 
+    },
+  }
 
   constructor(props) {
     super(props);

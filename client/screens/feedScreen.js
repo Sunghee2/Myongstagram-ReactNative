@@ -18,7 +18,8 @@ import Card from '../components/card';
 
 class FeedScreen extends React.Component {
   state = {
-    posts: this.props.posts
+    posts: this.props.posts,
+    // rerender: this.props.navigation.state.params.rerender || false
   }
 
   static navigationOptions = ({ navigation }) => ({

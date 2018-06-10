@@ -128,7 +128,6 @@ class Card extends React.Component {
   }
 
   render() {
-    console.log("card들어옴");
     return (
       <View style={styles.container}>
         <View>
@@ -140,20 +139,6 @@ class Card extends React.Component {
         {this.renderLike()}
         {this.renderBody(this.props.item.content)}
         {this.renderComment(this.props.item.createdAt)}
-        {/* <View>
-          <Menu
-            ref={this.setMenuRef}
-            button={<Text onPress={this.showMenu}>Show menu</Text>}
-          >
-            <MenuItem onPress={this.hideMenu}>Menu item 1</MenuItem>
-            <MenuItem onPress={this.hideMenu}>Menu item 2</MenuItem>
-            <MenuItem onPress={this.hideMenu} disabled>
-              Menu item 3
-            </MenuItem>
-            <MenuDivider />
-            <MenuItem onPress={this.hideMenu}>Menu item 4</MenuItem>
-          </Menu>
-        </View> */}
       </View> 
     );
   }
