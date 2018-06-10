@@ -16,7 +16,7 @@ function posts(state = [], action) {
       });
       return updatedPost;
     case 'DELETE_POST':
-      return _.omit(state, action.payload);
+      return state.filter( post => post.id !== action.payload.id);
     default:
       return state;
   }
