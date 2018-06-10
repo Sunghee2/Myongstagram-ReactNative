@@ -168,7 +168,7 @@ class ProfileScreen extends React.Component {
             <View style={styles.headerRight}>
               <View style={styles.headerRightTop}>
                 <View style={styles.headerRightTopView}>
-                  <Text>20</Text>
+                  <Text>{this.props.user.posts.length}</Text>
                   <Text style={styles.headerText}>게시물</Text>
                 </View>
                 <View style={styles.headerRightTopView}>

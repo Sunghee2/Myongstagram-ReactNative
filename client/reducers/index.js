@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { combineReducers } from 'redux';
 
 function posts(state = [], action) {
