@@ -29,6 +29,11 @@ module.exports = function(app) {
     res.json(posts);
   }));
 
+  router.post('/search', asyncError(async (req, res, next) => {
+    const posts = await db.Post.findAll({ where: { content: { like: `%${req.body.searchValue}%`}}, include: { model: db.User }});
+    res.json(posts);
+  }));
+
   router.post('/:id', asyncError(async (req, res, next) => {
     let updateValues = {
       content: req.body.content

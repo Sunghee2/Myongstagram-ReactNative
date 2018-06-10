@@ -7,7 +7,8 @@ import {
     Dimensions,
     FlatList,
     ActivityIndicator,
-    TouchableOpacity 
+    TouchableOpacity,
+    AsyncStorage
 } from "react-native";
 import { Button } from 'native-base'
 var { height, width } = Dimensions.get('window');
@@ -19,30 +20,62 @@ import Card from '../components/card';
 
 class ProfileScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
-    header: 
-      <View style={styles.headerContainer}>
-        <Ionicons
-          name='md-person-add'
-          size={23}
-        />
-        <Text style={styles.username}></Text><Text></Text>
-        <Ionicons
-          name='ios-clock-outline'
-          size={25}
-        />
-      </View>
+    const { state } = navigation;
+    if (state.params) {
+      console.log(state.params.title);
+      
+      return {
+        headerTitle: `${state.params.title}`,
+        headerLeft: 
+          <Ionicons
+            name='md-person-add'
+            size={23}
+            style={{paddingLeft: 13}}
+          />,
+        headerRight:
+          <Ionicons
+            name='ios-clock-outline'
+            size={25}
+            style={{paddingRight: 13}}
+          />,
+        headerTitleStyle: {
+          textAlign: 'center',
+          alignSelf: 'center'
+        }             
+      }
+    }
   }
 
   constructor(props) {
     super(props);
     this.state = {
       tabIndex: 0,
+      user: {
+        username: '',
+        name: '',
+        profileImage: ''
+      }
     };
   }
 
   componentWillMount() {
-    this.props.getUser();
     this.props.getMyPost();
+    AsyncStorage.getItem('user')
+      .then( data => {
+        data = JSON.parse(data);
+        const {setParams} = this.props.navigation;
+        setParams({title: data.username});
+        this.setState(prevState => ({
+          user: {
+            ...prevState.user,
+            username: data.username,
+            name: data.name,
+            profileImage: data.profileImage
+          }
+        }));
+      })
+    // this.props.getUser();
+    // this.props.getMyPost();
     // const {setParams} = this.props.navigation;
     // // const {setParams} = this.props.user;
     // setParams({username: this.props.user.user.username});
@@ -63,12 +96,12 @@ class ProfileScreen extends React.Component {
   }
 
   imageClicked(post) {
-    this.props.navigation.navigate('Detail', { post: post, user: this.props.user.user});
+    this.props.navigation.navigate('Detail', { post: post, user: this.state.user});
   }
   
 
   renderImage() {
-    return this.props.user.posts.map((post, index) => {
+    return this.props.my_post.map((post, index) => {
       return (
         <TouchableOpacity key={index.toString()} onPress={() => this.imageClicked(post)}>
           <View style={[
@@ -99,9 +132,9 @@ class ProfileScreen extends React.Component {
       );
     } else if (this.state.tabIndex == 1) {
       var data = [];
-      if (this.props.user.posts) {
-        this.props.user.posts.map(post => {
-          data.push({ key: post.id.toString(), username: this.props.user.user.username, profileImage: this.props.user.user.profileImage, image: post.image, content: post.content, createdAt: post.createdAt});
+      if (this.props.my_post) {
+        this.props.my_post.map(post => {
+          data.push({ key: post.id.toString(), username: this.state.user.username, profileImage: this.state.user.profileImage, image: post.image, content: post.content, createdAt: post.createdAt});
         })
       }
       return (
@@ -145,9 +178,8 @@ class ProfileScreen extends React.Component {
   }
 
   render() {
-    const user = this.props.user.user;
-    const posts = this.props.user.posts;
-    if (!user || !posts) {
+    const posts = this.props.my_post;
+    if (!posts || !this.state.user) {
       return (
         <View style={{flex: 1, justifyContent: 'center'}}>
           <ActivityIndicator size="large" color='blue'/>
@@ -160,15 +192,15 @@ class ProfileScreen extends React.Component {
           <View style={styles.header}>
             <View style={styles.headerLeft}>
               <Image
-                source={user.profileImage? { uri: user.profileImage } : require('../image/profile.jpg')}
+                source={this.state.user.profileImage? { uri: this.state.user.profileImage } : require('../image/profile.jpg')}
                 style={styles.profilePhoto}
               />
-              <Text style={{ fontSize: 12 }}>{user.username}</Text>
+              <Text style={{ fontSize: 12 }}>{this.state.user.name}</Text>
             </View>
             <View style={styles.headerRight}>
               <View style={styles.headerRightTop}>
                 <View style={styles.headerRightTopView}>
-                  <Text>{this.props.user.posts.length}</Text>
+                  <Text>{this.props.my_post.length}</Text>
                   <Text style={styles.headerText}>게시물</Text>
                 </View>
                 <View style={styles.headerRightTopView}>
@@ -182,7 +214,7 @@ class ProfileScreen extends React.Component {
               </View>
               <View style={styles.headerRightBottom}>
                 <TouchableOpacity 
-                  onPress={()=>this.props.navigation.navigate('EditUser', { user: user })}
+                  onPress={()=>this.props.navigation.navigate('EditUser', { user: this.state.user })}
                   style={{flex: 7, borderWidth: 1, borderRadius: 5, borderColor: 'lightgray', justifyContent: 'center', alignItems: 'center', height: '100%', marginRight: 10}}>
                   <Text style={{fontSize: 12, textAlign: 'center'}}>프로필 수정</Text>
                 </TouchableOpacity>
@@ -203,7 +235,8 @@ class ProfileScreen extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { user: state.user };
+  // return { user: state.user };
+  return { my_post: state.my_post};
 }
 
 export default connect(mapStateToProps, { getUser, getMyPost })(ProfileScreen);

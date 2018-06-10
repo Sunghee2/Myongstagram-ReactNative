@@ -68,6 +68,25 @@ export function signin(email, password) {
   };
 }
 
+
+export async function facebookLogIn() {
+  const { type, token } = await Facebook.logInWithReadPermissionsAsync('224269501712885', {
+    permissions: ['public_profile', 'email'],
+  });
+  // console.log(token);
+
+  if (type === 'success') {
+    // Get the user's name using Facebook's Graph API
+    const response = await fetch(`https://graph.facebook.com/me?fields=email,name,picture&access_token=${token}`);
+
+    console.log(await response.json());
+    Alert.alert(
+      'Logged in!',
+      `Hi ${(await response.json()).picture}!`,
+    );
+  }
+}
+
 export function editUser(username, name, image) {
   return async dispatch => {
     try {
@@ -77,6 +96,15 @@ export function editUser(username, name, image) {
           name: name,
           image: image
         }))
+      await AsyncStorage.getItem('user')
+        .then( user => {
+          user = JSON.parse(user);
+          user.username = username;
+          user.name = name;
+          user.image = image;
+          console.log(user);
+          AsyncStorage.setItem('user', JSON.stringify(user));
+        }).done();
       ToastAndroid.show('성공적으로 수정되었습니다!', ToastAndroid.SHORT);
       NavigationService.navigate('Profile');  
     } catch (err) {
@@ -137,7 +165,6 @@ export function editPost(id, content) {
         qs.stringify({
           content: content
         }))
-      console.log(response.data);
       dispatch({ type: 'EDIT_POST', payload: response.data});
       ToastAndroid.show('성공적으로 수정되었습니다!', ToastAndroid.SHORT);
       NavigationService.navigate('Feed');  
@@ -187,5 +214,35 @@ export function getMyPost() {
         alert('Network Error');
       }
     })
+  }
+}
+
+export function searchUser(searchValue) {
+  return async dispatch => {
+    try {
+      console.log("user action: "+searchValue);
+      const users = await axios.post(`${Config.server}/api/users/search`,
+        qs.stringify({
+          searchValue: searchValue
+      }));
+      dispatch({ type: 'SEARCH_USER', payload: users.data});
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
+
+export function searchPost(searchValue) {
+  return async dispatch => {
+    try {
+      console.log("post action: "+searchValue);
+      const posts = await axios.post(`${Config.server}/api/posts/search`,
+        qs.stringify({
+          searchValue: searchValue
+      }));
+      dispatch({ type: 'SEARCH_POST', payload: posts.data});
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

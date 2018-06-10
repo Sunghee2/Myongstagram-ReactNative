@@ -63,6 +63,14 @@ module.exports = function(app) {
     })
   }));
 
+  router.post('/search', asyncError(async (req, res, next) => {
+    console.log("searchvalue: "+req.body.searchValue);
+    const users = await db.User.findAll({ where: {$or: [
+      { username: { like: `%${req.body.searchValue}%`}},
+      { name: { like: `%${req.body.searchValue}%`}}
+    ]}});
+    res.json(users);
+  }));
 
   return router;
 }

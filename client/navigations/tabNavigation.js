@@ -15,13 +15,14 @@ import EditUserScreen from '../screens/editUserScreen';
 const FeedStack = createStackNavigator ({ Feed: { screen : FeedScreen }, EditPost: {screen: EditPostScreen} });
 const AddPhotoStack = createStackNavigator ({ AddPhoto: { screen : AddPhotoScreen } });
 const ProfileStack = createStackNavigator ({ Profile: { screen: profileScreen }, Detail: { screen: DetailScreen }, EditUser: { screen: EditUserScreen }});
+const SearchStack = createStackNavigator ({ Search: { screen: SearchScreen }, Detail: { screen: DetailScreen }}, { headerMode: 'screen' });
 // const EditPostStack = createStackNavigator ({ EditPost: { screen : EditPostScreen } });
 
 
 export default TabNavigation = createBottomTabNavigator (
   {
     Home: FeedStack,
-    Search: SearchScreen,
+    Search: SearchStack,
     AddPhoto: AddPhotoStack,
     Notification: NotificationScreen,
     Profile: ProfileStack
@@ -45,8 +46,8 @@ export default TabNavigation = createBottomTabNavigator (
 
         return <Ionicons name={iconName} size={25}/>;
       },
-      // tabBarOnPress: (scene, jumpToIndex) => {
-      //   console.log('onPress:', scene.route);
+      // tabBarOnPress: ({scene, jumpToIndex}) => {
+      //   console.log('onPress:', scene);
       //   jumpToIndex(scene.index);
       // }
     }),

@@ -5,17 +5,21 @@ import {
   View, 
   Image,
   Button,
+  Alert
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { Facebook } from 'expo';
 
 import { connect } from 'react-redux';
-import { signin } from '../actions';
+import { signin, facebookLogIn } from '../actions';
 
 class LoginScreen extends React.Component {
   state={
     email: '',
     password: ''
   }
+
+  
 
   render() {
     return (
@@ -53,6 +57,11 @@ class LoginScreen extends React.Component {
             disabled={!this.state.email || !this.state.password}
             title="로그인"
           />
+          <Button
+            style={styles.button}
+            onPress={() => this.props.facebookLogIn()}
+            title="페이스북 로그인"
+          />
         </View>
         <View style={styles.signinContainer}>
           <Text style={styles.signinText}>계정이 없으신가요?</Text>
@@ -64,6 +73,7 @@ class LoginScreen extends React.Component {
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -102,7 +112,8 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   button: {
-    padding: 5
+    padding: 5,
+    marginBottom: 50
   },
   signinContainer: {
     flex: 0.3,
@@ -123,4 +134,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, { signin })(LoginScreen);
+export default connect(null, { signin, facebookLogIn })(LoginScreen);

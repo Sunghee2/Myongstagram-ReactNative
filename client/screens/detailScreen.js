@@ -25,14 +25,14 @@ export default class DetailScreen extends React.Component {
 
   render() {
     const post = this.props.navigation.state.params.post;
-    const user = this.props.navigation.state.params.user;
+    const user = this.props.navigation.state.params.user || null;
     return (
       <View>
         <FlatList
           data={[{
             key: post.id.toString(), 
-            username: user.username, 
-            profileImage: user.profileImage, 
+            username: user? user.username : post.User.username, 
+            profileImage: user? user.profileImage : post.User.profileImage, 
             image: post.image, 
             content: post.content, 
             createdAt: post.createdAt

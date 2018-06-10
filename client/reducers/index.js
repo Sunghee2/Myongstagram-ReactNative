@@ -21,12 +21,24 @@ function posts(state = [], action) {
   }
 }
 
-function user(state = [], action) {
+
+function myPost(state = [], action) {
   switch (action.type) {
-    case 'FETCHED_USER':
-      return {...state, 'user': action.payload};
+    // case 'FETCHED_USER':
+    //   return {...state, 'user': action.payload};
     case 'FETCHED_MYPOST':
-      return {...state, 'posts': action.payload};
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+function search(state=[], action) {
+  switch (action.type) {
+    case 'SEARCH_USER':
+      return {'user': action.payload};
+    case 'SEARCH_POST':
+      return {'post': action.payload};
     default:
       return state;
   }
@@ -34,7 +46,9 @@ function user(state = [], action) {
 
 const rootReducer = combineReducers({
   posts: posts,
-  user: user
+  my_post: myPost,
+  search: search
+  // user: user
 });
 
 export default rootReducer;

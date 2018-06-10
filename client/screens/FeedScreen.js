@@ -17,12 +17,15 @@ import Card from '../components/card';
 
 
 class FeedScreen extends React.Component {
-  state = {
-    posts: this.props.posts,
-    // rerender: this.props.navigation.state.params.rerender || false
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: this.props.posts,
+      // rerender: this.props.navigation.state.params.rerender || false
+    }
   }
 
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = ({ navigation }) => {
     header:
       <View style={styles.headerContainer}>
         <View>
@@ -39,7 +42,18 @@ class FeedScreen extends React.Component {
           <Ionicons name='ios-paper-plane-outline' size={30}/>
         </View>
       </View>
-  })
+    // return {
+    //   tabBarOnPress: ({previousScene, scene, jumpToIndex}) => {
+    //     const { route, index, focused} = scene;
+  
+    //     if(focused){
+    //         navigation.state.params.scrollToTop()
+    //     }
+    //     jumpToIndex(0)
+    //   }
+    // }
+    
+  }
 
   componentDidMount() {
     this.props.fetchPosts();
