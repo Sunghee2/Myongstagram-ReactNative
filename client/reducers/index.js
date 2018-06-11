@@ -16,28 +16,46 @@ function posts(state = [], action) {
       return updatedPost;
     case 'DELETE_POST':
       return state.filter( post => post.id !== action.payload.id);
+    case 'EDIT_USER':
+      var updatedUser = state.map( post => {
+        if(post.User.id == action.payload.id) {
+          return {...post, 'User':action.payload};
+        }
+        return post;
+      });
+      return updatedUser;
     case 'ADD_LIKE':
-      var updatedLike =state.map( post => {
+      var updatedLike = state.map( post => {
         if (post.id === action.payload.postId) {
-          return {...post, 'like': action.payload};
+          var like = [action.payload, ...post.Likes];
+          return {...post, 'Likes': like};
         }
         return post;
       });
       return updatedLike;
     case 'DELETE_LIKE':
-      return '';
+      var deletedLike = state.map( post => {
+        if (post.id == action.payload.postId) {
+          var likesArr = post.Likes.filter( like => like.userId != action.payload.userId);
+          return {...post, 'Likes': likesArr};
+        }
+        return post;
+      });
+      return deletedLike;
     default:
       return state;
   }
 }
 
 
-function myPost(state = [], action) {
+function user(state = [], action) {
   switch (action.type) {
-    // case 'FETCHED_USER':
-    //   return {...state, 'user': action.payload};
+    case 'FETCHED_USER':
+      return {...state, 'user': action.payload};
+    case 'EDIT_USER':
+      return {...state, 'user': action.payload};
     case 'FETCHED_MYPOST':
-      return action.payload;
+      return {...state, 'posts': action.payload};
     default:
       return state;
   }
@@ -56,9 +74,9 @@ function search(state=[], action) {
 
 const rootReducer = combineReducers({
   posts: posts,
-  my_post: myPost,
-  search: search
-  // user: user
+  // my_post: myPost,
+  search: search,
+  user: user
 });
 
 export default rootReducer;

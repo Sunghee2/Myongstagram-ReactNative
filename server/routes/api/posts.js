@@ -7,7 +7,7 @@ module.exports = function(app) {
   router.use(app.oauth.authenticate());
 
   router.get('/', asyncError(async (req, res) => {
-    const posts = await db.Post.findAll({ order: [ ['createdAt', 'DESC'] ],include: { model: db.User }});
+    const posts = await db.Post.findAll({ order: [ ['createdAt', 'DESC'] ],include: { all: true }});
     res.json(posts);
   }));
 
@@ -25,7 +25,7 @@ module.exports = function(app) {
   }));
 
   router.get('/me', asyncError(async (req, res, next) => {
-    const posts = await db.Post.findAll({ where: { userId : res.locals.oauth.token.user.id }, order: [ ['createdAt', 'DESC'] ]});
+    const posts = await db.Post.findAll({ where: { userId : res.locals.oauth.token.user.id }, order: [ ['createdAt', 'DESC'] ], include: { model: db.Like}});
     res.json(posts);
   }));
 
@@ -41,7 +41,6 @@ module.exports = function(app) {
     const post = await db.Post.findOne({ where: { id: req.params.id } });
     post.update(
       updateValues, 
-      { where: { id: req.params.id }}
     ).then( result => {
       return res.json(post);
     }).catch( error => {
@@ -58,19 +57,20 @@ module.exports = function(app) {
     })
   }))
 
-  router.get('/like/:id', asyncError(async (req, res, next) => {
+  router.get('/:id/like', asyncError(async (req, res, next) => {
     db.Like.create({
       postId: req.params.id,
       userId: res.locals.oauth.token.user.id
-    }).then( post => {
-      return res.json(post);
+    }).then( like => {
+      console.log(like.dataValues);
+      return res.json(like.dataValues);
     }).catch( error => {
-      console.log(error);
+      console.log("server" + error);
       next(error);
     }); 
   }));
 
-  router.delete('/like/:id', asyncError(async (req, res, next) => {
+  router.delete('/:id/like', asyncError(async (req, res, next) => {
     const like = await db.Like.findOne({ where: { postId: req.params.id, userId: res.locals.oauth.token.user.id}});
     like.destroy().then( result => {
       return res.json(like.dataValues);

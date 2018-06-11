@@ -69,7 +69,8 @@ class SearchScreen extends React.Component {
         return (
           <FlatList
           data={this.props.search.user}
-          renderItem={ ({item}) => this.renderUserListItem(item)}/>
+          renderItem={ ({item}) => this.renderUserListItem(item)}
+          keyExtractor={(item, index) => item.id.toString()}/>
         );
       } else {
         return (

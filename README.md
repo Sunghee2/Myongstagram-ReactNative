@@ -34,6 +34,9 @@
 - 기본 구현 사항 외에 추가 구현 내용에 따라 추가 20점 부여 - 추가 내용은 보고서 및 발표에서 잘 제시하세요.
 
 
+TODO
+===========
+
 ##### 18-05-25
  - [x] 5개 Screen(Feed, Search, AddPhoto, Notification, Profile) 추가
  - [x] BottomTab 추가
@@ -42,7 +45,7 @@
 
 > header가 stack 거쳐야 나옴.. 왜지?
 > 마지막도 꼭 , 적어줘야 함.
-> 로고가 묘하게 삐뚤어짐
+> 로고가 묘하게 삐뚤어짐  
 
 
 ##### 18-05-27
@@ -52,7 +55,7 @@
 
  > 폴더를 나눠야 할 것 같은데 어떻게 나눠야할지 모르겠음ㅠㅠ -> 스택들 다 하나하나 naigation에 넣어야 하는 건가
  > ....stack들 tabnavigation에 다 합치려고 했더니 header사라짐.......
- > ** Failed prop type: Invalid props.style key `marginRigth` supplied to `Text`. ** : 뭘까.. -> 오타난 것이였음...
+ > ** Failed prop type: Invalid props.style key `marginRigth` supplied to `Text`. ** : 뭘까.. -> 오타난 것이였음...  
 
 ##### 18-05-31
 
@@ -66,7 +69,7 @@
 >
 > 중앙에 탭 못만드나 ㅠㅠ => tab을 중첩시키면 될 듯
 >
-> 사진 resize가 제대로 안됨..
+> 사진 resize가 제대로 안됨..  
 
 ##### 18-06-02 
 
@@ -94,7 +97,7 @@
 >
 > cannot add a chile that doesn't have a yoganode to a parent without a -> 오탈자
 >
-> Invalid Client..............
+> Invalid Client..............  
 
 
 
@@ -109,7 +112,7 @@
 >
 > permission-> app.json에서 
 >
-> 원래 header stack 가야 나왔었는데... 갑자기 혼자 길어지더니 이제 ㄴ됨... 고쳐야 겠다.
+> 원래 header stack 가야 나왔었는데... 갑자기 혼자 길어지더니 이제 ㄴ됨... 고쳐야 겠다.  
 
 ##### 18-06-04
 
@@ -130,7 +133,7 @@
 
 - 테이블 생성 취소 - 계속해볼것.
 
-table 만들때 띄어쓰기 절대 x
+table 만들때 띄어쓰기 절대 x  
 
 ##### 18-06-05
 - [x] 이메일 형식 체크
@@ -142,7 +145,7 @@ table 만들때 띄어쓰기 절대 x
 - [x] post insert 성공..
 
 > image url -> undefinedㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
-> user id....undefied...
+> user id....undefied...  
 
 ##### 18-06-06
 - [x] user table에 이름, 프로필이미지 추가
@@ -156,13 +159,13 @@ table 만들때 띄어쓰기 절대 x
 > fk join하려면 association 설정해야됨.
 > 피드에 사진이 안들어감.....
 
-> stack 정리해야됨.
+> stack 정리해야됨.  
 
 ##### 18-06-07
 - [x] post routes 정리
 - [x] editPostScreen 추가
 - [x] menu 추가 
-- [x] post delete 추가
+- [x] post delete 추가  
 
 
 ##### 18-06-09
@@ -177,7 +180,7 @@ table 만들때 띄어쓰기 절대 x
 
 > 이미지 안나오는게 uri... %2f로 되어있었음.
 > 프로필 username header 오류
-> add, 변경할때 reducer어떻게 할지 고민..
+> add, 변경할때 reducer어떻게 할지 고민..  
 
 ##### 18-06-10
 - [x] 수정했을 때 리스트 리로드
@@ -193,13 +196,14 @@ table 만들때 띄어쓰기 절대 x
 - [ ] 프로필에서 삭제했을 때 네비게이션 
 - [x] 페이스북 ~정보받아오기
 
-> user AsyncStorage로 옮김.
+> user AsyncStorage로 옮김.  
 
 ##### 18-06-11
 - [x] 수정/삭제 권한
 - [x] 로그아웃 추가
 - [x] search 버그
-- [ ] list key 
-- [ ] feed header 사라진 거 고치기
-- [ ] 프로필 수정 리로드
-- [ ]
+- [x] list key 
+- [x] feed header 사라진 거 고치기
+- [x] 프로필 수정 리로드
+- [ ] 내 post 리로드
+- [x] like 추가

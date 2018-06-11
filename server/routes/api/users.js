@@ -52,12 +52,11 @@ module.exports = function(app) {
       name: req.body.name,
       profileImage: req.body.image
     };
-
-    db.User.update(
+    const user = await db.User.findOne({where : {id: res.locals.oauth.token.user.id}});
+    user.update(
       updateValues, 
-      {where: {id: res.locals.oauth.token.user.id}}
-    ).then( user => {
-      return res.json({code: 200, message: '성공적으로 수정하였습니다.'});
+    ).then( result => {
+      return res.json(user);
     }).catch( error => {
       next(error);
     })

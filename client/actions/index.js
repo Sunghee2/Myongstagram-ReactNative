@@ -103,9 +103,9 @@ export function editUser(username, name, image) {
           user.username = username;
           user.name = name;
           user.image = image;
-          console.log(user);
           AsyncStorage.setItem('user', JSON.stringify(user));
         }).done();
+      dispatch({ type: 'EDIT_USER', payload: response.data});
       ToastAndroid.show('성공적으로 수정되었습니다!', ToastAndroid.SHORT);
       NavigationService.navigate('Profile');  
     } catch (err) {
@@ -248,11 +248,11 @@ export function searchPost(searchValue) {
 
 export function addLike(id) {
   return async dispatch => {
-    axios.get(`${Config.server}/api/posts/like/${id}`).then(response => {
+    axios.get(`${Config.server}/api/posts/${id}/like`).then(response => {
       dispatch({ type: 'ADD_LIKE', payload: response.data});
     }).catch(err => {
-      console.log(err.response);
-      if (err.response.status == 401) {
+      console.log("err " + err);
+      if (err.response.status && err.response.status == 401) {
         dispatch(signout());
       } else {        
         alert('Network Error');
@@ -264,7 +264,7 @@ export function addLike(id) {
 export function deleteLike(id) {
   return async dispatch => {
     try {
-      const response = await axios.delete(`${Config.server}/api/posts/like/${id}`);
+      const response = await axios.delete(`${Config.server}/api/posts/${id}/like`);
       dispatch({type: 'DELETE_LIKE', payload: response.data}); 
     } catch (err) {
       console.log(err);

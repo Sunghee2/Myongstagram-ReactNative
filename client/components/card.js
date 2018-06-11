@@ -15,14 +15,16 @@ import Menu, { MenuItem } from 'react-native-material-menu';
 import NavigationService from '../navigation_service';
 import { connect } from 'react-redux';
 
-import { deletePost } from '../actions';
+import { deletePost, addLike, deleteLike } from '../actions';
 
 
 class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: ''
+      username: '',
+      id: '',
+      like: 0
     }
   }
 
@@ -31,22 +33,36 @@ class Card extends React.Component {
       .then( data => {
         data = JSON.parse(data);
         this.setState(prevState => ({
-          username: data.username
+          username: data.username,
+          id: data.id
       }));
+
+    this.findLike()
   })}
 
+  
   _menu = null;
-
+  
   setMenuRef = ref => {
     this._menu = ref;
   }
-
+  
   hideMenu = () => {
     this._menu.hide();
   };
-
+  
   showMenu = () => {
     this._menu.show();
+  };
+
+  findLike() {
+    if (this.props.item.like.length != 0) {
+      for(var like of this.props.item.like) {
+        if(like.userId == this.state.id) {
+          this.setState({ like: 1 });
+        }
+      }
+    }
   };
 
   onPressEdit = () => {
@@ -67,7 +83,19 @@ class Card extends React.Component {
     )
   }
 
-
+  onPressHeart = () => {
+    if (this.state.like == 0) {
+      this.props.addLike(this.props.item.key);
+      this.setState({
+        like: 1
+      });
+    } else if (this.state.like == 1) {
+      this.props.deleteLike(this.props.item.key);
+      this.setState({
+        like: 0
+      });
+    }
+  }
 
   renderHeader(name, profileImage) {
     return (
@@ -108,8 +136,8 @@ class Card extends React.Component {
       <View style={styles.likeContainer}>
         <View style={styles.likeIconContainer}>
           <View style={styles.likeLeft}>
-            <TouchableOpacity onPress={()=>alert("heart!")}>
-              <EvilIcons name="heart" size={30} style={{ marginRight: 5 }}/>
+            <TouchableOpacity onPress={this.onPressHeart}>
+              {this.state.like == 0? <EvilIcons name="heart" size={30} style={{ marginRight: 5 }}/> : <Image source={require('../image/like-filled.png')} style={{ height: 20, width: 20, marginRight: 5}}/>}
             </TouchableOpacity>
             <EvilIcons name="comment" size={30} style={{ marginRight: 8 }}/>
             <Ionicons name="ios-send-outline" size={30} style={{ marginRight: 5 }}/>
@@ -159,7 +187,7 @@ class Card extends React.Component {
   }
 }
 
-export default connect(null, { deletePost } )(Card);
+export default connect(null, { deletePost, addLike, deleteLike } )(Card);
 
 
 const styles = StyleSheet.create({

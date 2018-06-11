@@ -21,11 +21,10 @@ class FeedScreen extends React.Component {
     super(props);
     this.state = {
       posts: this.props.posts,
-      // rerender: this.props.navigation.state.params.rerender || false
     }
   }
 
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = ({ navigation }) => ({
     header:
       <View style={styles.headerContainer}>
         <View>
@@ -42,18 +41,7 @@ class FeedScreen extends React.Component {
           <Ionicons name='ios-paper-plane-outline' size={30}/>
         </View>
       </View>
-    // return {
-    //   tabBarOnPress: ({previousScene, scene, jumpToIndex}) => {
-    //     const { route, index, focused} = scene;
-  
-    //     if(focused){
-    //         navigation.state.params.scrollToTop()
-    //     }
-    //     jumpToIndex(0)
-    //   }
-    // }
-    
-  }
+  })
 
   componentDidMount() {
     this.props.fetchPosts();
@@ -90,7 +78,7 @@ class FeedScreen extends React.Component {
 
     if (this.props.posts) {
       this.props.posts.map(post => {
-        data.push({ key: post.id.toString(), username: post.User.username, profileImage: post.User.profileImage, image: post.image, content: post.content, createdAt: post.createdAt});
+        data.push({ key: post.id.toString(), username: post.User.username, profileImage: post.User.profileImage, image: post.image, content: post.content, createdAt: post.createdAt, like: post.Likes});
       })
     } else {
       return (
