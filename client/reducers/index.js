@@ -27,8 +27,13 @@ function posts(state = [], action) {
     case 'ADD_LIKE':
       var updatedLike = state.map( post => {
         if (post.id === action.payload.postId) {
-          var like = [action.payload, ...post.Likes];
-          return {...post, 'Likes': like};
+          if (post.Likes) {
+            let like = [action.payload, ...post.Likes];
+            return {...post, 'Likes': like};
+          } else {
+            let like = [action.payload];
+            return {...post, 'Likes': like};
+          }
         }
         return post;
       });
@@ -56,6 +61,49 @@ function user(state = [], action) {
       return {...state, 'user': action.payload};
     case 'FETCHED_MYPOST':
       return {...state, 'posts': action.payload};
+    case 'ADD_POST':
+      if (action.payload.userId == state.user.id) {
+        var posts = [action.payload, ...state.posts];
+      }
+      return {...state, 'posts': posts};
+    case 'EDIT_POST':
+      var updatedPost = state.posts.map( post => {
+        if(post.id === action.payload.id) {
+          return {...post, ...action.payload};
+        }
+        return post;
+      });
+      return {...state, 'posts': updatedPost}; 
+    case 'DELETE_POST':
+      var deletedPost = state.posts.filter(post => post.id != action.payload.id);
+      return {...state, 'posts': deletedPost};
+    case 'ADD_LIKE':
+      console.log("들어옴!!");
+      var updatedLike = state.posts.map( post => {
+        if (post.id === action.payload.postId) {
+          if (post.Likes) {
+            let like = [action.payload, ...post.Likes];
+            // console.log("durl? : %o", like);
+            return {...post, 'Likes': like};
+          } else {
+            let like = [action.payload];
+            // console.log("or durl? : " + like);
+            return {...post, 'Likes': like};
+          }
+        }
+        return post;
+      });
+      // console.log("result: %o", {...state, 'posts': updatedLike});
+      return {...state, 'posts': updatedLike};
+    case 'DELETE_LIKE':
+      var deletedLike = state.posts.map( post => {
+        if (post.id == action.payload.postId) {
+          var likesArr = post.Likes.filter( like => like.userId != action.payload.userId);
+          return {...post, 'Likes': likesArr};
+        }
+        return post;
+      });
+      return {...state, 'posts': deletedLike};
     default:
       return state;
   }
@@ -74,7 +122,6 @@ function search(state=[], action) {
 
 const rootReducer = combineReducers({
   posts: posts,
-  // my_post: myPost,
   search: search,
   user: user
 });

@@ -56,10 +56,12 @@ class Card extends React.Component {
   };
 
   findLike() {
-    if (this.props.item.like.length != 0) {
-      for(var like of this.props.item.like) {
-        if(like.userId == this.state.id) {
-          this.setState({ like: 1 });
+    if (this.props.item.like) {
+      if (this.props.item.like.length != 0) {
+        for(var like of this.props.item.like) {
+          if(like.userId == this.state.id) {
+            this.setState({ like: 1 });
+          }
         }
       }
     }
@@ -138,7 +140,7 @@ class Card extends React.Component {
         <View style={styles.likeIconContainer}>
           <View style={styles.likeLeft}>
             <TouchableOpacity onPress={this.onPressHeart}>
-              {this.state.like == 0? <EvilIcons name="heart" size={30} style={{ marginRight: 5 }}/> : <Image source={require('../image/like-filled.png')} style={{ height: 20, width: 20, marginRight: 5}}/>}
+              {this.state.like == 0? <EvilIcons name="heart" size={30} style={{ marginRight: 5 }}/> : <Image source={require('../image/like-filled.png')} style={{ height: 20, width: 20, marginRight: 10, marginLeft: 5}}/>}
             </TouchableOpacity>
             <EvilIcons name="comment" size={30} style={{ marginRight: 8 }}/>
             <Ionicons name="ios-send-outline" size={30} style={{ marginRight: 5 }}/>
@@ -147,9 +149,10 @@ class Card extends React.Component {
             <Ionicons name="ios-bookmark-outline" size={24}/>
           </View>
         </View>
-        <View style={styles.likeNum}>
-          {this.props.item.like ? <Text style={{ fontWeight: 'bold', fontSize: 12 }}>좋아요 {this.props.item.like.length}개</Text> : <Text></Text> }
-        </View>
+        {this.props.item.like ? this.props.item.length!=0 ? 
+          <View style={styles.likeNum}>
+            <Text style={{ fontWeight: 'bold', fontSize: 12 }}>좋아요 {this.props.item.like.length}개</Text> 
+          </View> : <Text></Text> : <Text></Text>} 
       </View>
     );
   }
@@ -172,6 +175,11 @@ class Card extends React.Component {
   }
 
   render() {
+    // console.log("item?? : " + this.props.item.like);
+    // if(this.props.item.like) {
+    //   console.log("length " + this.props.item.like.length);
+    //   console.log("asdfdsf %o", this.props.item.like );
+    // }
     return (
       <View style={styles.container}>
         <View>

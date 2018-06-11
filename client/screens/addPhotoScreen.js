@@ -44,6 +44,14 @@ class AddPhotoScreen extends React.Component {
     this._pickImage();
   }
 
+  onPressButton = () => {
+    this.props.postNew(this.state.image, this.state.content);
+    this.setState({
+      image: null,
+      content: ''
+    });
+  }
+
   render() {
     let { image } = this.state;
     return (
@@ -66,7 +74,7 @@ class AddPhotoScreen extends React.Component {
         <View style={styles.buttonContainer}>
           <Button
             // style={styles.button}
-            onPress={() => this.props.postNew(this.state.image, this.state.content)}
+            onPress={this.onPressButton}
             title="공유"
           />
         </View>

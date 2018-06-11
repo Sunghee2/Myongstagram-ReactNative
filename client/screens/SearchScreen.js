@@ -74,7 +74,7 @@ class SearchScreen extends React.Component {
         );
       } else {
         return (
-          <Text style={{ textAlign: 'center' }}>검색결과가 없습니다.</Text>
+          <Text style={{ textAlign: 'center', marginTop: 20 }}>검색결과가 없습니다.</Text>
         );
       }
     } else if (this.state.tabIndex == 1) {
@@ -82,6 +82,10 @@ class SearchScreen extends React.Component {
         return (
           <ImageGrid posts={this.props.search.post}/>
         )
+      } else {
+        return (
+          <Text style={{ textAlign: 'center', marginTop: 20 }}>검색결과가 없습니다.</Text>
+        );
       }
     } 
   }

@@ -115,21 +115,23 @@ export function editUser(username, name, image) {
   }
 }
 
-export async function addPushToken(token) {
-  try {
-    const response = await axios.post(`${Config.server}/api/users/token`,
-      qs.stringify({
-        token: token,
-      }));
-    await AsyncStorage.getItem('user')
-      .then( user => {
-        user = JSON.parse(user);
-        user.pushToken = token;
-        AsyncStorage.setItem('user', JSON.stringify(user));
-      }).done();
-  } catch(err) {
-    console.log(err);
-  }
+export function addPushToken(token) {
+  return async dispatch => {
+    try {
+      const response = await axios.post(`${Config.server}/api/users/token`,
+        qs.stringify({
+          token: token,
+        }));
+      await AsyncStorage.getItem('user')
+        .then( user => {
+          user = JSON.parse(user);
+          user.pushToken = token;
+          AsyncStorage.setItem('user', JSON.stringify(user));
+        }).done();
+    } catch(err) {
+      console.log(err);
+    }
+  } 
 }
 
 export function signout() {
@@ -146,7 +148,7 @@ export function fetchPosts() {
     axios.get(`${Config.server}/api/posts`).then(response => {
       dispatch({ type: 'FETCHED_POSTS', payload: response.data});
     }).catch(err => {
-      console.log(err.response);
+      console.log(err);
       if (err.response.status == 401) {
         dispatch(signout());
       } else {        
@@ -211,7 +213,7 @@ export function getUser() {
     axios.get(`${Config.server}/api/users/me`).then(response => {
       dispatch({ type: 'FETCHED_USER', payload: response.data});
     }).catch(err => {
-      console.log(err.response);
+      console.log(err);
       if (err.response.status == 401) {
         dispatch(signout());
       } else {        
@@ -226,7 +228,7 @@ export function getMyPost() {
     axios.get(`${Config.server}/api/posts/me`).then(response => {
       dispatch({ type: 'FETCHED_MYPOST', payload: response.data});
     }).catch(err => {
-      console.log(err.response);
+      console.log(err);
       if (err.response.status == 401) {
         dispatch(signout());
       } else {        

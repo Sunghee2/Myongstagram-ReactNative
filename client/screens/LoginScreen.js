@@ -14,12 +14,21 @@ import { connect } from 'react-redux';
 import { signin, facebookLogIn } from '../actions';
 
 class LoginScreen extends React.Component {
-  state={
-    email: '',
-    password: ''
+  constructor(props) {
+    super(props);
+    this.state={
+      email: '',
+      password: ''
+    };
   }
 
-  
+  onPressButton = () => {
+    this.props.signin(this.state.email, this.state.password)
+    this.setState({
+      email: '',
+      password: ''
+    })
+  }
 
   render() {
     return (
@@ -53,7 +62,7 @@ class LoginScreen extends React.Component {
           <Text style={styles.passwordText}>비밀번호를 잊으셨나요?</Text>
           <Button
             style={styles.button}
-            onPress={()=>this.props.signin(this.state.email, this.state.password)}
+            onPress={this.onPressButton}
             disabled={!this.state.email || !this.state.password}
             title="로그인"
           />
