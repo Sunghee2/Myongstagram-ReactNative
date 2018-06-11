@@ -16,6 +16,7 @@ export function checkEmail(email) {
         NavigationService.navigate('CheckPw', { email : email });
       } 
     } catch (err) {
+      console.log(err);
       if (err.response.status == 422) {
         ToastAndroid.show(err.response.data.message, ToastAndroid.SHORT);
       }

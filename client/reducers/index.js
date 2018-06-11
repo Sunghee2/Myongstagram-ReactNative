@@ -78,22 +78,18 @@ function user(state = [], action) {
       var deletedPost = state.posts.filter(post => post.id != action.payload.id);
       return {...state, 'posts': deletedPost};
     case 'ADD_LIKE':
-      console.log("들어옴!!");
       var updatedLike = state.posts.map( post => {
         if (post.id === action.payload.postId) {
           if (post.Likes) {
             let like = [action.payload, ...post.Likes];
-            // console.log("durl? : %o", like);
             return {...post, 'Likes': like};
           } else {
             let like = [action.payload];
-            // console.log("or durl? : " + like);
             return {...post, 'Likes': like};
           }
         }
         return post;
       });
-      // console.log("result: %o", {...state, 'posts': updatedLike});
       return {...state, 'posts': updatedLike};
     case 'DELETE_LIKE':
       var deletedLike = state.posts.map( post => {

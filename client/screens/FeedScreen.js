@@ -5,11 +5,12 @@ import {
   View, 
   Image,
   Button,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { TextInput, FlatList, ScrollView } from 'react-native-gesture-handler';
-import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import { SimpleLineIcons } from "@expo/vector-icons";
 import { connect } from 'react-redux';
 
 import { fetchPosts } from '../actions';
@@ -38,12 +39,18 @@ class FeedScreen extends React.Component {
           />
         </View>
         <View>
-          <Ionicons name='ios-paper-plane-outline' size={30}/>
+          <TouchableOpacity onPress={this.onPressReload}>
+            <SimpleLineIcons name='reload' size={25}/>
+          </TouchableOpacity>
         </View>
       </View>
   })
 
   componentDidMount() {
+    this.props.fetchPosts();
+  }
+
+  onPressReload = () => {
     this.props.fetchPosts();
   }
 
@@ -89,13 +96,11 @@ class FeedScreen extends React.Component {
     }
     return (
       <View>
-        <View>
-          <FlatList
-            data={data}
-            renderItem={ ({item}) => <Card key={item.key} item={item}/>}
-            ListHeaderComponent={this.renderStory()}
-          />
-        </View>
+        <FlatList
+          data={data}
+          renderItem={ ({item}) => <Card key={item.key} item={item}/>}
+          ListHeaderComponent={this.renderStory()}
+        />
       </View>
     );
   }

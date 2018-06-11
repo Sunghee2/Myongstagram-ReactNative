@@ -205,11 +205,13 @@ table 만들때 띄어쓰기 절대 x
 - [x] list key 
 - [x] feed header 사라진 거 고치기
 - [x] 프로필 수정 리로드
-- [ ] 내 post 리로드
+- [x] 내 post 리로드
 - [x] like 추가
 - [x] 하트 누르면 푸시 알림
 - [x] 로그인, 새 글 작성 => text input 안남아있도록
+- [x] reload button 추가
 
 > 버그때문에 fk 삭제함.
 > detail 에서 하트 오류
 > detail 수정/삭제하면 feed넘어가는 것.
+> notification page 정리(옮기기)
