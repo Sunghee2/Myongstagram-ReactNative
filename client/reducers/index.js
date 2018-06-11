@@ -16,6 +16,16 @@ function posts(state = [], action) {
       return updatedPost;
     case 'DELETE_POST':
       return state.filter( post => post.id !== action.payload.id);
+    case 'ADD_LIKE':
+      var updatedLike =state.map( post => {
+        if (post.id === action.payload.postId) {
+          return {...post, 'like': action.payload};
+        }
+        return post;
+      });
+      return updatedLike;
+    case 'DELETE_LIKE':
+      return '';
     default:
       return state;
   }
@@ -36,9 +46,9 @@ function myPost(state = [], action) {
 function search(state=[], action) {
   switch (action.type) {
     case 'SEARCH_USER':
-      return {'user': action.payload};
+      return {...state, 'user': action.payload};
     case 'SEARCH_POST':
-      return {'post': action.payload};
+      return {...state, 'post': action.payload};
     default:
       return state;
   }

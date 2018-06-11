@@ -70,7 +70,6 @@ class Card extends React.Component {
 
 
   renderHeader(name, profileImage) {
-    console.log(this.state.username+"?? %o"+this.props.item.username);
     return (
       <View style={styles.header}>
         <View style={styles.headerLeft}>
