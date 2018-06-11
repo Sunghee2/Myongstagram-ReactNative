@@ -23,6 +23,9 @@ module.exports = {
       profileImage: {
         type: Sequelize.STRING
       },
+      pushToken: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

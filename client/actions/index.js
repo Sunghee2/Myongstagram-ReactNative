@@ -3,6 +3,7 @@ import qs from 'qs';
 import { AsyncStorage, ToastAndroid } from 'react-native';
 import { Config } from '../config';
 import NavigationService from '../navigation_service';
+import { Permissions, Notifications } from 'expo';
 
 export function checkEmail(email) {
   return async dispatch => {
@@ -111,6 +112,23 @@ export function editUser(username, name, image) {
     } catch (err) {
       console.log(err);
     }
+  }
+}
+
+export async function addPushToken(token) {
+  try {
+    const response = await axios.post(`${Config.server}/api/users/token`,
+      qs.stringify({
+        token: token,
+      }));
+    await AsyncStorage.getItem('user')
+      .then( user => {
+        user = JSON.parse(user);
+        user.pushToken = token;
+        AsyncStorage.setItem('user', JSON.stringify(user));
+      }).done();
+  } catch(err) {
+    console.log(err);
   }
 }
 
@@ -270,4 +288,24 @@ export function deleteLike(id) {
       console.log(err);
     }
   } 
+}
+
+export function sendPush(id, username) {
+  return async dispatch => {
+    try {
+      const token = await axios.get(`${Config.server}/api/users/${id}/token`);
+
+      const message = `${username}님이 회원님의 게시물을 좋아합니다.`;
+      await axios({
+        method: 'post',
+        url: 'https://exp.host/--/api/v2/push/send',
+        data: qs.stringify({ to: token.data, body: message}),
+        headers: {
+          Authorization: '',
+        }
+      })
+    } catch (err) {
+      console.log(err);
+    }  
+  }
 }

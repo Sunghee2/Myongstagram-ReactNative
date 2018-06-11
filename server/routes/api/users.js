@@ -45,6 +45,24 @@ module.exports = function(app) {
     const users = await db.User.findAll({});
     res.json(users);
   }));
+  
+  router.post('/token', asyncError(async (req, res, next) => {
+    let addToken = { pushToken: req.body.token };
+    
+    db.User.update(
+      addToken,
+      {where: {id: res.locals.oauth.token.user.id}}
+    ).then( result => {
+      return res.json(result);
+    }).catch ( error => {
+      next(error);
+    })
+  }));
+  
+  router.get('/:id/token', asyncError(async (req, res, next) => {
+    const user = await db.User.findOne({ where: { id : req.params.id }});
+    res.json(user.pushToken);
+  }))
 
   router.post('/edit', asyncError(async (req, res, next) => {
     let updateValues = {
@@ -70,6 +88,8 @@ module.exports = function(app) {
     ]}});
     res.json(users);
   }));
+
+
 
   return router;
 }

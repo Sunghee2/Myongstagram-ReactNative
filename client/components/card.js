@@ -15,7 +15,7 @@ import Menu, { MenuItem } from 'react-native-material-menu';
 import NavigationService from '../navigation_service';
 import { connect } from 'react-redux';
 
-import { deletePost, addLike, deleteLike } from '../actions';
+import { deletePost, addLike, deleteLike, sendPush } from '../actions';
 
 
 class Card extends React.Component {
@@ -86,6 +86,7 @@ class Card extends React.Component {
   onPressHeart = () => {
     if (this.state.like == 0) {
       this.props.addLike(this.props.item.key);
+      this.props.sendPush(this.props.item.userId, this.state.username);
       this.setState({
         like: 1
       });
@@ -147,7 +148,7 @@ class Card extends React.Component {
           </View>
         </View>
         <View style={styles.likeNum}>
-          <Text style={{ fontWeight: 'bold', fontSize: 12 }}>좋아요 151,353개</Text>
+          {this.props.item.like ? <Text style={{ fontWeight: 'bold', fontSize: 12 }}>좋아요 {this.props.item.like.length}개</Text> : <Text></Text> }
         </View>
       </View>
     );
@@ -187,7 +188,7 @@ class Card extends React.Component {
   }
 }
 
-export default connect(null, { deletePost, addLike, deleteLike } )(Card);
+export default connect(null, { deletePost, addLike, deleteLike, sendPush } )(Card);
 
 
 const styles = StyleSheet.create({
