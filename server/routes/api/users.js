@@ -27,7 +27,7 @@ module.exports = function(app) {
         return res.json({code: 200, message: '회원가입에 성공하셨습니다.'});
       }).catch( error => {
         if (error.name == 'SequelizeUniqueConstraintError') {
-          return res.status(422).json({code: 101, message: '사용자이름이 이미 존재합니다.'});
+          return res.status(422).json({code: 101});
         }
       })
     }).catch( error => {

@@ -5,7 +5,8 @@ import {
   View, 
   Image,
   Button,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity
 } from 'react-native';
 import { ImagePicker } from 'expo';
 import { TextInput } from 'react-native-gesture-handler';
@@ -20,12 +21,16 @@ import { firebaseConfig } from '../config';
 firebase.initializeApp(firebaseConfig);
 
 class AddPhotoScreen extends React.Component {
-  static navigationOptions = {
-    headerTitle: '새 게시물',
-    headerTitleStyle: { 
-      alignSelf: 'center',
-      textAlign: 'center' 
-    },
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state
+
+    return {
+      headerTitle: '새 게시물',
+      headerRight:
+        <TouchableOpacity onPress={() => params.pickImage()}>
+          <SimpleLineIcons name='camera' size={25} style={{marginRight: 20}}/>
+        </TouchableOpacity>
+    }
   }
 
   constructor(props) {
@@ -42,6 +47,10 @@ class AddPhotoScreen extends React.Component {
 
   componentWillMount() {
     this._pickImage();
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams({ pickImage: this._pickImage})
   }
 
   onPressButton = () => {

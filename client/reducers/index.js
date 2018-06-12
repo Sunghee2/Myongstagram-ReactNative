@@ -16,14 +16,6 @@ function posts(state = [], action) {
       return updatedPost;
     case 'DELETE_POST':
       return state.filter( post => post.id !== action.payload.id);
-    case 'EDIT_USER':
-      var updatedUser = state.map( post => {
-        if(post.User.id == action.payload.id) {
-          return {...post, 'User':action.payload};
-        }
-        return post;
-      });
-      return updatedUser;
     case 'ADD_LIKE':
       var updatedLike = state.map( post => {
         if (post.id === action.payload.postId) {
@@ -47,6 +39,14 @@ function posts(state = [], action) {
         return post;
       });
       return deletedLike;
+    case 'EDIT_USER':
+      var updatedUser = state.map( post => {
+        if(post.User.id == action.payload.id) {
+          return {...post, 'User':action.payload};
+        }
+        return post;
+      });
+      return updatedUser;
     default:
       return state;
   }

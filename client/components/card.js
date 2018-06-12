@@ -88,7 +88,9 @@ class Card extends React.Component {
   onPressHeart = () => {
     if (this.state.like == 0) {
       this.props.addLike(this.props.item.key);
-      this.props.sendPush(this.props.item.userId, this.state.username);
+      if (this.state.username!=this.props.item.username) {
+        this.props.sendPush(this.props.item.userId, this.state.username);
+      }
       this.setState({
         like: 1
       });
@@ -126,10 +128,8 @@ class Card extends React.Component {
   renderImage(image) {
     return (
       <Image 
-        // style={{height: 200, width: 200}}
         style={{width: '100%', height: '100%'}}
         source={{uri: image}}
-        // resizeMode='contain'
       />
     );
   }
@@ -175,11 +175,6 @@ class Card extends React.Component {
   }
 
   render() {
-    // console.log("item?? : " + this.props.item.like);
-    // if(this.props.item.like) {
-    //   console.log("length " + this.props.item.like.length);
-    //   console.log("asdfdsf %o", this.props.item.like );
-    // }
     return (
       <View style={styles.container}>
         <View>
