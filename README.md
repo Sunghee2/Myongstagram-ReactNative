@@ -212,6 +212,6 @@ table 만들때 띄어쓰기 절대 x
 - [x] reload button 추가
 
 > 버그때문에 fk 삭제함.
-> detail 에서 하트 오류
-> detail 수정/삭제하면 feed넘어가는 것.
-> notification page 정리(옮기기)
+> notification page 정리(옮기기)  
+
+##### 18-06-12

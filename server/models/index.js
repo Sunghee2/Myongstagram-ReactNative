@@ -38,6 +38,6 @@ db.Post = require('./post.js')(sequelize, Sequelize);
 db.User = require('./user.js')(sequelize, Sequelize);
 
 db.Post.belongsTo(db.User, {foreignKey: 'userId', targetKey: 'id'});
-db.Post.hasMany(db.Like, {foreignKey: 'postId', targetKey: 'id'});
+db.Post.hasMany(db.Like, {foreignKey: 'postId', targetKey: 'id', onDelete: 'CASCADE'});
 
 module.exports = db;

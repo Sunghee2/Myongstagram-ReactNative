@@ -62,44 +62,64 @@ function user(state = [], action) {
     case 'FETCHED_MYPOST':
       return {...state, 'posts': action.payload};
     case 'ADD_POST':
-      if (action.payload.userId == state.user.id) {
-        var posts = [action.payload, ...state.posts];
+      if(state.posts!='undefined') { 
+        return state;
+      } else {
+        if (action.payload.userId == state.user.id) {
+          var posts = [action.payload, ...state.posts];
+        }
+        return {...state, 'posts': posts};
       }
-      return {...state, 'posts': posts};
     case 'EDIT_POST':
-      var updatedPost = state.posts.map( post => {
-        if(post.id === action.payload.id) {
-          return {...post, ...action.payload};
-        }
-        return post;
-      });
-      return {...state, 'posts': updatedPost}; 
-    case 'DELETE_POST':
-      var deletedPost = state.posts.filter(post => post.id != action.payload.id);
-      return {...state, 'posts': deletedPost};
-    case 'ADD_LIKE':
-      var updatedLike = state.posts.map( post => {
-        if (post.id === action.payload.postId) {
-          if (post.Likes) {
-            let like = [action.payload, ...post.Likes];
-            return {...post, 'Likes': like};
-          } else {
-            let like = [action.payload];
-            return {...post, 'Likes': like};
+      if (state.posts!='undefined') { 
+        return state;
+      } else {
+        var updatedPost = state.posts.map( post => {
+          if(post.id === action.payload.id) {
+            return {...post, ...action.payload};
           }
-        }
-        return post;
-      });
-      return {...state, 'posts': updatedLike};
+          return post;
+        });
+        return {...state, 'posts': updatedPost}; 
+      }
+    case 'DELETE_POST':
+      if(state.posts!='undefined') { 
+        return state;
+      } else {
+        var deletedPost = state.posts.filter(post => post.id != action.payload.id);
+        return {...state, 'posts': deletedPost};
+      }
+    case 'ADD_LIKE':
+      if(state.posts!='undefined') { 
+        return state;
+      } else {
+        var updatedLike = state.posts.map( post => {
+          if (post.id === action.payload.postId) {
+            if (post.Likes) {
+              let like = [action.payload, ...post.Likes];
+              return {...post, 'Likes': like};
+            } else {
+              let like = [action.payload];
+              return {...post, 'Likes': like};
+            }
+          }
+          return post;
+        });
+        return {...state, 'posts': updatedLike};
+      }
     case 'DELETE_LIKE':
-      var deletedLike = state.posts.map( post => {
-        if (post.id == action.payload.postId) {
-          var likesArr = post.Likes.filter( like => like.userId != action.payload.userId);
-          return {...post, 'Likes': likesArr};
-        }
-        return post;
-      });
-      return {...state, 'posts': deletedLike};
+      if(state.posts!='undefined') { 
+        return state;
+      } else {
+        var deletedLike = state.posts.map( post => {
+          if (post.id == action.payload.postId) {
+            var likesArr = post.Likes.filter( like => like.userId != action.payload.userId);
+            return {...post, 'Likes': likesArr};
+          }
+          return post;
+        });
+        return {...state, 'posts': deletedLike};
+      }
     default:
       return state;
   }

@@ -14,9 +14,9 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id',
-          onUpdate: 'cascade',
-          onDelete: 'cascade'
         },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       image: {
         type: Sequelize.STRING,

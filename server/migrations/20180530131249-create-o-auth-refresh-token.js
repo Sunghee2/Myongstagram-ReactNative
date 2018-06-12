@@ -23,16 +23,16 @@ module.exports = {
         references: {
           model: 'OAuthClients',
           key: 'clientId',
-          onDelete: 'cascade'
-        }
+        },
+        onDelete: 'cascade'
       },
       userId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Accounts',
           key: 'id',
-          onDelete: 'cascade'
-        }
+        },
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,

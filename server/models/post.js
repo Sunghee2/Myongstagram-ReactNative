@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Post.associate = function(models) {
-    // associations can be defined here
+    Post.belongsTo(models.User, {foreignKey: 'userId', targetKey: 'id'});
+    Post.hasMany(models.Like, {foreignKey: 'postId', targetKey: 'id', onDelete: 'CASCADE'});
+
   };
   return Post;
 };

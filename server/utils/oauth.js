@@ -12,6 +12,7 @@ m.getClient = async function(clientId, clientSecret) {
   if (!result) {
     return null;
   }
+  console.log("here");
   return {
     id: result.clientId,
     redirectUris: [result.redirectUri],
@@ -24,6 +25,7 @@ m.getUser = async function(email, password) {
   if (!user) {
     return null;
   }
+  console.log("here");
   if (await user.validatePassword(password)) {
     return user;
   } else {

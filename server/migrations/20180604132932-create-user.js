@@ -9,9 +9,9 @@ module.exports = {
         references: {
           model: 'Accounts',
           key: 'id',
-          onUpdate: 'cascade',
-          onDelete: 'cascade'
         },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       username: {
         type: Sequelize.STRING,
