@@ -26,7 +26,6 @@ class NotificationScreen extends React.Component {
     AsyncStorage.getItem('user')
       .then( data => {
         data = JSON.parse(data);
-        console.log("들어옴!");
         this.setState({
           token: data.pushToken,
           isMount: true
@@ -50,7 +49,6 @@ class NotificationScreen extends React.Component {
     if (finalStatus !== 'granted') {return;}
   
     let token = await Notifications.getExpoPushTokenAsync();
-    console.log(token);
 
     this.props.addPushToken(token);
     this.setState({ isMount: false });

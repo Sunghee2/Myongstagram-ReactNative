@@ -62,7 +62,7 @@ function user(state = [], action) {
     case 'FETCHED_MYPOST':
       return {...state, 'posts': action.payload};
     case 'ADD_POST':
-      if(state.posts!='undefined') { 
+      if(state.posts == undefined) { 
         return state;
       } else {
         if (action.payload.userId == state.user.id) {
@@ -71,7 +71,7 @@ function user(state = [], action) {
         return {...state, 'posts': posts};
       }
     case 'EDIT_POST':
-      if (state.posts!='undefined') { 
+      if (state.posts==undefined) { 
         return state;
       } else {
         var updatedPost = state.posts.map( post => {
@@ -83,14 +83,14 @@ function user(state = [], action) {
         return {...state, 'posts': updatedPost}; 
       }
     case 'DELETE_POST':
-      if(state.posts!='undefined') { 
+      if(state.posts==undefined) { 
         return state;
       } else {
         var deletedPost = state.posts.filter(post => post.id != action.payload.id);
         return {...state, 'posts': deletedPost};
       }
     case 'ADD_LIKE':
-      if(state.posts!='undefined') { 
+      if(state.posts==undefined) { 
         return state;
       } else {
         var updatedLike = state.posts.map( post => {
@@ -108,7 +108,7 @@ function user(state = [], action) {
         return {...state, 'posts': updatedLike};
       }
     case 'DELETE_LIKE':
-      if(state.posts!='undefined') { 
+      if(state.posts==undefined) { 
         return state;
       } else {
         var deletedLike = state.posts.map( post => {

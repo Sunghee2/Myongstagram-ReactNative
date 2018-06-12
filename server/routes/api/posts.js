@@ -62,7 +62,6 @@ module.exports = function(app) {
       postId: req.params.id,
       userId: res.locals.oauth.token.user.id
     }).then( like => {
-      console.log(like.dataValues);
       return res.json(like.dataValues);
     }).catch( error => {
       console.log("server" + error);

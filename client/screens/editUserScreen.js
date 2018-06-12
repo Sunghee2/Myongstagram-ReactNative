@@ -105,7 +105,6 @@ class EditUserScreen extends React.Component {
 
       if (!pickerResult.cancelled) {
         uploadUrl = await uploadImageAsync(pickerResult.uri);
-        console.log(uploadUrl);
         this.setState({ image: uploadUrl });
       }
     } catch (e) {

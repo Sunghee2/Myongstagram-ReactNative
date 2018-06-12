@@ -31,7 +31,37 @@
 ### 평가
 
 - 사이트 완성도 30점, 발표 30점, 보고서(발표 자료) 10점, 소스 코드 10점
-- 기본 구현 사항 외에 추가 구현 내용에 따라 추가 20점 부여 - 추가 내용은 보고서 및 발표에서 잘 제시하세요.
+
+- 기본 구현 사항 외에 추가 구현 내용에 따라 추가 20점 부여 - 추가 내용은 보고서 및 발표에서 잘 제시하세요.  
+
+    
+
+    
+
+# 실행
+
+```
+$ cd client
+$ npm install
+$ yarn start
+```
+
+```
+$ cd server
+$ npm install
+
+$ psql postgres
+  >  CREATE ROLE myongstagram WITH LOGIN CREATEDB PASSWORD 'myongstagram';
+  
+$ sequelize db:create 
+$ sequelize db:migrate
+$ sequelize db:seed:all
+
+$ npm start
+```
+
+-Android Emulator-사용
+
 
 
 TODO

@@ -77,7 +77,6 @@ class FeedScreen extends React.Component {
     if (finalStatus !== 'granted') {return;}
   
     let token = await Notifications.getExpoPushTokenAsync();
-    console.log(token);
 
     this.props.addPushToken(token);
     this.setState({ isMount: false });
