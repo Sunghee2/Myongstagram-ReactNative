@@ -33,7 +33,8 @@ class EditUserScreen extends React.Component {
     this.state={
       username: this.props.navigation.state.params.user.username,
       name: this.props.navigation.state.params.user.name,
-      image: this.props.navigation.state.params.user.profileImage
+      image: this.props.navigation.state.params.user.profileImage,
+      uploading: false
     };
     console.ignoredYellowBox = [
       'Setting a timer'
@@ -42,6 +43,13 @@ class EditUserScreen extends React.Component {
 
 
   render() {
+    if (this.state.uploading == true) {
+      return (
+        <View style={{flex: 1, justifyContent: 'center'}}>
+          <ActivityIndicator size="large" color='gray'/>
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
@@ -93,6 +101,8 @@ class EditUserScreen extends React.Component {
   
   _handleImagePicked = async pickerResult => {
     try {
+      this.setState({ uploading: true });
+
       if (!pickerResult.cancelled) {
         uploadUrl = await uploadImageAsync(pickerResult.uri);
         console.log(uploadUrl);
@@ -101,7 +111,9 @@ class EditUserScreen extends React.Component {
     } catch (e) {
       console.log(e);
       ToastAndroid.show('Upload failed', ToastAndroid.SHORT);  
-    } 
+    } finally {
+      this.setState({ uploading: false });
+    }
   };
   
 }
