@@ -11,7 +11,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import { Facebook } from 'expo';
 
 import { connect } from 'react-redux';
-import { signin, facebookLogIn } from '../actions';
+import { signin } from '../actions';
 
 class LoginScreen extends React.Component {
   constructor(props) {
@@ -65,11 +65,6 @@ class LoginScreen extends React.Component {
             onPress={this.onPressButton}
             disabled={!this.state.email || !this.state.password}
             title="로그인"
-          />
-          <Button
-            style={styles.button}
-            onPress={() => this.props.facebookLogIn()}
-            title="페이스북 로그인"
           />
         </View>
         <View style={styles.signinContainer}>
@@ -143,4 +138,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, { signin, facebookLogIn })(LoginScreen);
+export default connect(null, { signin })(LoginScreen);

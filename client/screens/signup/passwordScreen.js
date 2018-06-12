@@ -51,7 +51,7 @@ class passwordScreen extends React.Component {
             onPress={()=>this.props.navigation.navigate('Login')}>로그인</Text>
         </View>
       </View>
-    )
+    );
   }
 }
 

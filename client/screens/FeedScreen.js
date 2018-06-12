@@ -6,14 +6,16 @@ import {
   Image,
   Button,
   ActivityIndicator,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { TextInput, FlatList, ScrollView } from 'react-native-gesture-handler';
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { connect } from 'react-redux';
+import { Permissions, Notifications } from 'expo';
 
-import { fetchPosts } from '../actions';
+import { fetchPosts, addPushToken } from '../actions';
 import Card from '../components/card';
 
 
@@ -22,6 +24,8 @@ class FeedScreen extends React.Component {
     super(props);
     this.state = {
       posts: this.props.posts,
+      token: '',
+      isMount: false,
     }
   }
 
@@ -46,8 +50,37 @@ class FeedScreen extends React.Component {
       </View>
   })
 
+  componentWillMount() {
+    AsyncStorage.getItem('user')
+      .then( data => {
+        data = JSON.parse(data);
+        this.setState({
+          token: data.pushToken,
+          isMount: true
+        });
+      })
+  }
+
   componentDidMount() {
     this.props.fetchPosts();
+  }
+
+  async registerForPushNotifications() {
+    const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+    let finalStatus = status;
+  
+    if (status !=='granted') {
+      const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+      finalStatus = status;
+    }
+  
+    if (finalStatus !== 'granted') {return;}
+  
+    let token = await Notifications.getExpoPushTokenAsync();
+    console.log(token);
+
+    this.props.addPushToken(token);
+    this.setState({ isMount: false });
   }
 
   onPressReload = () => {
@@ -82,7 +115,9 @@ class FeedScreen extends React.Component {
 
   render() {
     var data = [];
-
+    if(this.state.isMount && !this.state.token) {
+      this.registerForPushNotifications();
+    }
     if (this.props.posts) {
       this.props.posts.map(post => {
         data.push({ key: post.id.toString(), userId: post.userId, username: post.User.username, profileImage: post.User.profileImage, image: post.image, content: post.content, createdAt: post.createdAt, like: post.Likes});
@@ -110,7 +145,7 @@ function mapStateToProps(state) {
   return { posts: state.posts };
 }
 
-export default connect(mapStateToProps, { fetchPosts })(FeedScreen);
+export default connect(mapStateToProps, { fetchPosts, addPushToken })(FeedScreen);
 
 const styles = StyleSheet.create({
   headerContainer: {

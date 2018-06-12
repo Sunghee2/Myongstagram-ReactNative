@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Post.associate = function(models) {
-    Post.belongsTo(models.User, {foreignKey: 'userId', targetKey: 'id'});
-    Post.hasMany(models.Like, {foreignKey: 'postId', targetKey: 'id', onDelete: 'CASCADE'});
-
+    // Post.belongsTo(models.User, {foreignKey: 'userId', targetKey: 'id'});
+    // Post.belongsTo(models.User, {foreignKey: 'userId', targetKey: 'id'});
+    // Post.hasMany(models.Like, {foreignKey: 'postId', targetKey: 'id', onDelete: 'CASCADE'});
   };
   return Post;
 };
