@@ -173,7 +173,7 @@ class ProfileScreen extends React.Component {
     if (!posts || !user) {
       return (
         <View style={{flex: 1, justifyContent: 'center'}}>
-          <ActivityIndicator size="large" color='blue'/>
+          <ActivityIndicator size="large" color='gray'/>
         </View>
       );
     }

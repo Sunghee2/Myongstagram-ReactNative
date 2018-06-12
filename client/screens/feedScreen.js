@@ -70,7 +70,7 @@ class FeedScreen extends React.Component {
     let finalStatus = status;
   
     if (status !=='granted') {
-      const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
       finalStatus = status;
     }
   

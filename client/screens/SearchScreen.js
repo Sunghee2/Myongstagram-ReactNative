@@ -111,10 +111,6 @@ class SearchScreen extends React.Component {
   }
 
   render() {
-    console.log("render~~~: " + this.state.searchValue);
-    // console.log("state: %o",this.props.search);
-    // this.props.searchUser(this.state.searchValue);
-    // this.props.searchPost(this.state.searchValue);   
     return (
       <View>
         <View
@@ -126,9 +122,6 @@ class SearchScreen extends React.Component {
             onChangeText={this.handleChange}
             value={this.state.searchValue}
           />
-          {/* <TouchableOpacity onPress={() => this.search(this.state.searchValue)}>
-            <Text>검색</Text>
-          </TouchableOpacity> */}
         </View>
         <View>
           {this.renderTabButton()}

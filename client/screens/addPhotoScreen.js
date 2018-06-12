@@ -50,7 +50,7 @@ class AddPhotoScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({ pickImage: this._pickImage})
+    this.props.navigation.setParams({ pickImage: this._pickImage })
   }
 
   onPressButton = () => {
@@ -63,6 +63,13 @@ class AddPhotoScreen extends React.Component {
 
   render() {
     let { image } = this.state;
+    if (this.state.uploading == true) {
+      return (
+        <View style={{flex: 1, justifyContent: 'center'}}>
+          <ActivityIndicator size="large" color='gray'/>
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
