@@ -5,10 +5,10 @@ export const Config = {
 };
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyDZRQvC6JsSnkcHIFJhZ1_yixGDqZTxvm0",
-  authDomain: "myongstagram.firebaseapp.com",
-  databaseURL: "https://myongstagram.firebaseio.com",
-  projectId: "myongstagram",
-  storageBucket: "myongstagram.appspot.com",
-  messagingSenderId: "194524925203"
+  apiKey: "<your-api-key>",
+  authDomain: "<your-auth-domain>",
+  databaseURL: "<your-database-url>",
+  projectId: "<your-project_id>",
+  storageBucket: "<your-storage-bucket>",
+  messagingSenderId: "<your-sender-id>"
 };
