@@ -2,17 +2,17 @@
 
   ## Table of Contents
 
-- [개발 환경](#개발 환경)
-- [Getting Started](#Getting Started)
-  - [Prerequisites](#Prerequisites)
-  - [Running the App](#Running the App)
-- [Screenshots](#Screenshots)
-  - [Signup & Signin & Logout](#Signup & Signin & Logout)
-  - [add, edit, delete Post](#add, edit, delete Post)
-  - [Add Heart & Push Notification](#Add Heart & Push Notification)
-  - [Search accounts & posts](#Search accounts & posts)
-  - [Profile](#Profile)
-- [Todo](#Todo)
+1. [개발 환경](#개발-환경)
+2. [Getting Started](#Getting-Started)
+   - [Prerequisites](#Prerequisites)
+   - [Running the App](#Running-the-App)
+3. [Screenshots](#Screenshots)
+   - [Signup & Signin & Logout](#Signup-&-Signin-&-Logout)
+   - [add, edit, delete Post](#add,-edit,-delete-Post)
+   - [Add Heart & Push Notification](#Add-Heart-&-Push-Notification)
+   - [Search accounts & posts](#Search-accounts-&-posts)
+   - [Profile](#Profile)
+4. [Todo](#Todo)
 
 ## 개발 환경
 
