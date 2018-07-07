@@ -1,44 +1,46 @@
 # myongstagram
 
-### 개발 범위:
+  
 
-- 클라이언트: React Native
-- 서버: Node.JS + Express + Postgres or MySQL
+[TOC]
 
-### 기본 기능:
+## 개발
 
-- post: 글 혹은 사진을 작성
-- 글목록
-- 검색
-- 프로필
-- React Navigation을 활용한 UI
-- Instagram과 유사하게 UI를 만들기
+- Client : React Native(Expo)
+- Server : Node.JS + Express + Postgres + firebase
+- Android emulator : pixel2 api 26, galaxy s7 api 23
 
-### 추가 기능:
+  
 
-- 사진 업로드
-- 사용자 인증(토큰기반)
-- 딥링크를 통한 Share
-- Push Notification
+## Getting Started
 
-### 과제 제출:
+#### Prerequisites
 
-- 발표: 6월 12일 / 14일
-- 발표 자료 제출: Tahiti 사이트에 업로드 (6월 11일까지) - 파일 사이즈가 너무 클 경우 조교에게 이메일 제출
-- github 주소는 조교에게 이메일로 제공하세요.
-- 이메일로 보내는 경우에도 간단한 요약 파일을 홈페이지에 업로드 하시오. (과제 채점용)
+ ##### * Firebase Api Key
 
-### 평가
+Follow these steps to get your firebase API key
 
-- 사이트 완성도 30점, 발표 30점, 보고서(발표 자료) 10점, 소스 코드 10점
+1. Browse https://console.firebase.google.com
 
-- 기본 구현 사항 외에 추가 구현 내용에 따라 추가 20점 부여 - 추가 내용은 보고서 및 발표에서 잘 제시하세요.  
+2. Generate an empty project
 
-    
+3. Change firebase storage security rules like:
 
-    
+   ```
+   service firebase.storage {
+     match /b/{bucket}/o {
+       match /{allPaths=**} {
+         allow read, write;
+       }
+     }
+   }
+   ```
 
-# 실행
+4. Navigate different icons in DEVELOP to get **apiKey, authDomain, databaseUrl, projectID, storageBucket, messagingSenderID**  and add them in `client/config/index.js`
+
+
+
+#### Running the App
 
 ```
 $ cd client
@@ -62,10 +64,31 @@ $ npm start
 
 -Android Emulator-사용
 
+## Result
+
+#### Signup & Signin & Logout
+
+![signup&signin&logout](screenshots/login.gif)
+
+#### add, edit, delete Post
+
+![addPost&editPost&deletePost](screenshots/post.gif)
+
+#### Add Heart & Push Notification 
+
+![addHeart&pushNotification](screenshots/push.gif)
+
+#### Search accounts & posts
+
+![searchPeople&posts](screenshots/search.gif)
+
+#### Profile
+
+![profile&editProfile](screenshots/profile.gif)
 
 
-TODO
-===========
+
+## Todo
 
 ##### 18-05-25
  - [x] 5개 Screen(Feed, Search, AddPhoto, Notification, Profile) 추가
