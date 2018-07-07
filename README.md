@@ -1,13 +1,23 @@
 # myongstagram
 
-  
+  ## Table of Contents
 
-[TOC]
+- [개발 환경](#개발 환경)
+- [Getting Started](#Getting Started)
+  - [Prerequisites](#Prerequisites)
+  - [Running the App](#Running the App)
+- [Screenshots](#Screenshots)
+  - [Signup & Signin & Logout](#Signup & Signin & Logout)
+  - [add, edit, delete Post](#add, edit, delete Post)
+  - [Add Heart & Push Notification](#Add Heart & Push Notification)
+  - [Search accounts & posts](#Search accounts & posts)
+  - [Profile](#Profile)
+- [Todo](#Todo)
 
-## 개발
+## 개발 환경
 
-- Client : React Native(Expo)
-- Server : Node.JS + Express + Postgres + firebase
+- React Native(Expo)
+- Node.JS + Express + Postgres + firebase
 - Android emulator : pixel2 api 26, galaxy s7 api 23
 
   
@@ -64,7 +74,7 @@ $ npm start
 
 -Android Emulator-사용
 
-## Result
+## Screenshots
 
 #### Signup & Signin & Logout
 
