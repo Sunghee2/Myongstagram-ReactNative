@@ -2,19 +2,24 @@
 
   ## Table of Contents
 
-1. [개발 환경](#개발-환경)
-2. [Getting Started](#getting-started)
+1. [About](#about)
+2. [Development Environment](#development-environment)
+3. [Getting Started](#getting-started)
    - [Prerequisites](#prerequisites)
    - [Running the App](#running-the-app)
-3. [Screenshots](#screenshots)
+4. [Screenshots](#screenshots)
    - [Signup & Signin & Logout](#signup--signin--logout)
    - [add, edit, delete Post](#add-edit-delete-post)
    - [Add Heart & Push Notification](#add-heart--push-notification)
    - [Search accounts & posts](#search-accounts--posts)
    - [Profile](#profile)
-4. [Todo](#todo)
+5. [Todo](#todo)
 
-## 개발 환경
+## About
+- 개발자 : 이성희
+- 개발 기간 : 2018.05.25 ~ 2018.06.13
+
+## Development Environment
 
 - React Native(Expo)
 - Node.JS + Express + Postgres + firebase
