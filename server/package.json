@@ -10,7 +10,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
-    "express-basic-auth": "^1.1.5",
+    "express-basic-auth": "^1.1.7",
     "express-oauth-server": "^2.0.0",
     "http-errors": "~1.6.2",
     "method-override": "^2.3.10",
