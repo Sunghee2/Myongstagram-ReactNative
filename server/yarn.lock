@@ -701,9 +701,9 @@ nan@2.10.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.10.0.tgz#96d0cd610ebd58d4b4de9cc0c6828cda99c7548f"
 
-nanoid@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-1.0.2.tgz#15d2b5e76b6dbfb15cac1000cb457d4bfc845bdb"
+nanoid@^3.1.31:
+  version "3.1.31"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.31.tgz#f5b58a1ce1b7604da5f0605757840598d8974dc6"
 
 needle@^2.2.0:
   version "2.2.1"
